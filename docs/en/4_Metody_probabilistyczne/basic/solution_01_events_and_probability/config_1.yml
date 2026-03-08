@@ -1,0 +1,18 @@
+title: Math Problems Repo
+description: Mathematics notebook — Events, Probability, and more
+url: "https://liiiinadnamar.github.io"
+baseurl: "/Math_Problems_Repo_DR"
+
+theme: minima
+
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
+  input: GFM
+  syntax_highlighter: rouge
+
+plugins:
+  - jekyll-feed
+
+# MathJax configuration
+mathjax: true
