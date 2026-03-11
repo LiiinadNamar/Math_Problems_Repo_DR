@@ -29,6 +29,7 @@ plugins:
   - search
   - i18n:
       docs_structure: folder
+      locales:
         - locale: en
           name: English
           default: true
@@ -36,27 +37,27 @@ plugins:
           nav:
             - Home: 'index.md'
             - 'Lecture: Probabilistic Methods':
-              - Probabilistic Methods:
-                - Basic:
-                    - '1. Events & Probability': '4_Metody_probabilistyczne/basic/01_events_and_probability.md'
-                    - '2. Probability Distributions': '4_Metody_probabilistyczne/basic/02_probability_distributions.md'
-                - Solutions Basic:
-                    - '1. Events & Probability Sol': '4_Metody_probabilistyczne/basic/solution_01_events_and_probability/sol_prob_01.md'
-                - Advanced:
-                    - '1. Events & Probability': '4_Metody_probabilistyczne/advanced/01_events_and_probability.md'
-                    - '2. Random Variables': '4_Metody_probabilistyczne/advanced/02_random_variables.md'
-                    - '3. Distribution Parameters': '4_Metody_probabilistyczne/advanced/03_distribution_parameters.md'
-                    - '4. Selected Distributions': '4_Metody_probabilistyczne/advanced/04_selected_distributions.md'
-                    - '5. Limit Theorems': '4_Metody_probabilistyczne/advanced/05_limit_theorems.md'
-                    - '6. Basic Statistics': '4_Metody_probabilistyczne/advanced/06_basic_statistics.md'
-                    - '7. Estimation': '4_Metody_probabilistyczne/advanced/07_estimation.md'
-                    - '8. Hypothesis Testing': '4_Metody_probabilistyczne/advanced/08_hypothesis_testing.md'
-                    - '9. Correlation & Regression': '4_Metody_probabilistyczne/advanced/09_correlation_and_regression.md'
-                    - '10. Advanced Methods': '4_Metody_probabilistyczne/advanced/10_advanced_methods.md'
-                    - '11. Decision Theory': '4_Metody_probabilistyczne/advanced/11_decision_theory.md'
-                - Solutions Advanced:
-                    - '1. Events & Probability Sol': '4_Metody_probabilistyczne/advanced/solution_01_events_and_probability/sol_prob_01.md'
-              - Animations:
-                - 'Lab 1': 'anim/4_Metody_probalistyczne/laboratory_1.html'
-                - 'Lab 2': 'anim/4_Metody_probalistyczne/laboratory_2.html'
-                - 'Lab 3': 'anim/4_Metody_probalistyczne/laboratory_3.html'
+                - Probabilistic Methods:
+                    - Basic:
+                        - '1. Events & Probability': '4_Metody_probabilistyczne/basic/01_events_and_probability.md'
+                        - '2. Probability Distributions': '4_Metody_probabilistyczne/basic/02_probability_distributions.md'
+                    - Solutions Basic:
+                        - '1. Events & Probability Sol': '4_Metody_probabilistyczne/basic/solution_01_events_and_probability/sol_prob_01.md'
+                    - Advanced:
+                        - '1. Events & Probability': '4_Metody_probabilistyczne/advanced/01_events_and_probability.md'
+                        - '2. Random Variables': '4_Metody_probabilistyczne/advanced/02_random_variables.md'
+                        - '3. Distribution Parameters': '4_Metody_probabilistyczne/advanced/03_distribution_parameters.md'
+                        - '4. Selected Distributions': '4_Metody_probabilistyczne/advanced/04_selected_distributions.md'
+                        - '5. Limit Theorems': '4_Metody_probabilistyczne/advanced/05_limit_theorems.md'
+                        - '6. Basic Statistics': '4_Metody_probabilistyczne/advanced/06_basic_statistics.md'
+                        - '7. Estimation': '4_Metody_probabilistyczne/advanced/07_estimation.md'
+                        - '8. Hypothesis Testing': '4_Metody_probabilistyczne/advanced/08_hypothesis_testing.md'
+                        - '9. Correlation & Regression': '4_Metody_probabilistyczne/advanced/09_correlation_and_regression.md'
+                        - '10. Advanced Methods': '4_Metody_probabilistyczne/advanced/10_advanced_methods.md'
+                        - '11. Decision Theory': '4_Metody_probabilistyczne/advanced/11_decision_theory.md'
+                    - Solutions Advanced:
+                        - '1. Events & Probability Sol': '4_Metody_probabilistyczne/advanced/solution_01_events_and_probability/sol_prob_01.md'
+                - Animations:
+                    - 'Lab 1': 'anim/4_Metody_probalistyczne/laboratory_1.html'
+                    - 'Lab 2': 'anim/4_Metody_probalistyczne/laboratory_2.html'
+                    - 'Lab 3': 'anim/4_Metody_probalistyczne/laboratory_3.html'
