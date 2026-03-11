@@ -25,11 +25,9 @@ extra_javascript:
 extra_css:
   - stylesheets/extra.css
 
-plugins:
-  - search
   - i18n:
       docs_structure: folder
-      locales:
+      languages:
         - locale: en
           name: English
           default: true
