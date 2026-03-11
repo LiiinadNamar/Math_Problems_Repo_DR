@@ -25,6 +25,8 @@ extra_javascript:
 extra_css:
   - stylesheets/extra.css
 
+plugins:
+  - search
   - i18n:
       docs_structure: folder
       languages:
@@ -40,7 +42,7 @@ extra_css:
                         - '1. Events & Probability': '4_Metody_probabilistyczne/basic/01_events_and_probability.md'
                         - '2. Probability Distributions': '4_Metody_probabilistyczne/basic/02_probability_distributions.md'
                     - Solutions Basic:
-                        - '1. Events & Probability Sol': '4_Metody_probabilistyczne/basic/solution_01_events_and_probability/sol_prob_01.md'
+                        - '1. Events & Probability Sol': '4_Metody_probabilistyczne/basic/solution_01_events_and_probability.md'
                     - Advanced:
                         - '1. Events & Probability': '4_Metody_probabilistyczne/advanced/01_events_and_probability.md'
                         - '2. Random Variables': '4_Metody_probabilistyczne/advanced/02_random_variables.md'
@@ -54,7 +56,7 @@ extra_css:
                         - '10. Advanced Methods': '4_Metody_probabilistyczne/advanced/10_advanced_methods.md'
                         - '11. Decision Theory': '4_Metody_probabilistyczne/advanced/11_decision_theory.md'
                     - Solutions Advanced:
-                        - '1. Events & Probability Sol': '4_Metody_probabilistyczne/advanced/solution_01_events_and_probability/sol_prob_01.md'
+                        - '1. Events & Probability Sol': '4_Metody_probabilistyczne/advanced/solution_01_events_and_probability.md'
                 - Animations:
                     - 'Lab 1': 'anim/4_Metody_probalistyczne/laboratory_1.html'
                     - 'Lab 2': 'anim/4_Metody_probalistyczne/laboratory_2.html'
