@@ -1,16 +1,13 @@
-site_name: Math Problems
-site_url: https://dchorazkiewicz.github.io/Math_Problems_Repo/
+site_name: Math Problems Solutions
+site_url: https://liiiinadnamar.github.io/Math_Problems_Repo_DR/
 
 theme:
   name: material
   palette:
-    # Palette toggle for light mode
     - scheme: default
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
-
-    # Palette toggle for dark mode
     - scheme: slate
       toggle:
         icon: material/brightness-4
@@ -30,95 +27,9 @@ extra_css:
 
 plugins:
   - search
-  - i18n:
-      docs_structure: folder
-      languages:
-        - locale: pl
-          name: Polski
-          build: true
-          nav:
-            - Home: 'index.md'
-            - 'Wykład: Matematyka':
-              - Algebra:
-                - '1. Macierze i operacje': '1_Algebra/01_matrices_and_operations.md'
-                - '2. Wyznaczniki': '1_Algebra/02_determinants.md'
-                - '3. Odwracanie macierzy': '1_Algebra/03_matrix_inversion.md'
-                - '4. Układy równań': '1_Algebra/04_systems_of_equations.md'
-              - Geometria:
-                - '1. Wektory': '2_Geometria/01_vectors.md'
-                - '2. Proste': '2_Geometria/02_lines.md'
-                - '3. Płaszczyzny': '2_Geometria/03_planes.md'
-                - '4. Prosta i płaszczyzna': '2_Geometria/04_line_and_plane.md'
-              - Analiza:
-                - '1. Granice ciągów': '3_Analiza/01_sequence_limits.md'
-                - '2. Granice funkcji': '3_Analiza/02_function_limits.md'
-                - '3. Pochodne funkcji': '3_Analiza/03_derivatives.md'
-                - '4. Badanie funkcji': '3_Analiza/04_function_analysis.md'
-                - '5. Całki': '3_Analiza/05_integrals.md'
-                - '6. Zastosowania rachunku': '3_Analiza/06_applications.md'
-            - 'Wykład: Metody probabilistyczne':
-              - Metody probabilistyczne:
-                - Podstawowe:
-                    - '1. Zdarzenia i prawdopodobieństwo': '4_Metody_probabilistyczne/basic/01_events_and_probability.md'
-                    - '2. Rozkłady prawdopodobieństwa': '4_Metody_probabilistyczne/basic/02_probability_distributions.md'
-                - Zaawansowane:
-                    - '1. Zdarzenia i prawdopodobieństwo': '4_Metody_probabilistyczne/advanced/01_events_and_probability.md'
-                    - '2. Zmienne losowe': '4_Metody_probabilistyczne/advanced/02_random_variables.md'
-                    - '3. Parametry rozkładu': '4_Metody_probabilistyczne/advanced/03_distribution_parameters.md'
-                    - '4. Wybrane rozkłady': '4_Metody_probabilistyczne/advanced/04_selected_distributions.md'
-                    - '5. Twierdzenia graniczne': '4_Metody_probabilistyczne/advanced/05_limit_theorems.md'
-                    - '6. Podstawowe statystyki': '4_Metody_probabilistyczne/advanced/06_basic_statistics.md'
-                    - '7. Estymacja': '4_Metody_probabilistyczne/advanced/07_estimation.md'
-                    - '8. Weryfikacja hipotez': '4_Metody_probabilistyczne/advanced/08_hypothesis_testing.md'
-                    - '9. Korelacja i regresja': '4_Metody_probabilistyczne/advanced/09_correlation_and_regression.md'
-                    - '10. Zaawansowane metody': '4_Metody_probabilistyczne/advanced/10_advanced_methods.md'
-                    - '11. Teoria decyzji': '4_Metody_probabilistyczne/advanced/11_decision_theory.md'
-              - Animacje:
-                - 'Lab 1': 'anim/4_Metody_probalistyczne/laboratory_1.html'
-                - 'Lab 2': 'anim/4_Metody_probalistyczne/laboratory_2.html'
-                - 'Lab 3': 'anim/4_Metody_probalistyczne/laboratory_3.html'
-        - locale: en
-          name: English
-          default: true
-          build: true
-          nav:
-            - Home: 'index.md'
-            - 'Lecture: Mathematics':
-              - Algebra:
-                - '1. Matrices & Operations': '1_Algebra/01_matrices_and_operations.md'
-                - '2. Determinants': '1_Algebra/02_determinants.md'
-                - '3. Matrix Inversion': '1_Algebra/03_matrix_inversion.md'
-                - '4. Systems of Equations': '1_Algebra/04_systems_of_equations.md'
-              - Geometry:
-                - '1. Vectors': '2_Geometria/01_vectors.md'
-                - '2. Lines': '2_Geometria/02_lines.md'
-                - '3. Planes': '2_Geometria/03_planes.md'
-                - '4. Line and Plane': '2_Geometria/04_line_and_plane.md'
-              - Analysis:
-                - '1. Sequence Limits': '3_Analiza/01_sequence_limits.md'
-                - '2. Function Limits': '3_Analiza/02_function_limits.md'
-                - '3. Derivatives': '3_Analiza/03_derivatives.md'
-                - '4. Function Analysis': '3_Analiza/04_function_analysis.md'
-                - '5. Integrals': '3_Analiza/05_integrals.md'
-                - '6. Calculus Applications': '3_Analiza/06_applications.md'
-            - 'Lecture: Probabilistic Methods':
-              - Probabilistic Methods:
-                - Basic:
-                    - '1. Events & Probability': '4_Metody_probabilistyczne/basic/01_events_and_probability.md'
-                    - '2. Probability Distributions': '4_Metody_probabilistyczne/basic/02_probability_distributions.md'
-                - Advanced:
-                    - '1. Events & Probability': '4_Metody_probabilistyczne/advanced/01_events_and_probability.md'
-                    - '2. Random Variables': '4_Metody_probabilistyczne/advanced/02_random_variables.md'
-                    - '3. Distribution Parameters': '4_Metody_probabilistyczne/advanced/03_distribution_parameters.md'
-                    - '4. Selected Distributions': '4_Metody_probabilistyczne/advanced/04_selected_distributions.md'
-                    - '5. Limit Theorems': '4_Metody_probabilistyczne/advanced/05_limit_theorems.md'
-                    - '6. Basic Statistics': '4_Metody_probabilistyczne/advanced/06_basic_statistics.md'
-                    - '7. Estimation': '4_Metody_probabilistyczne/advanced/07_estimation.md'
-                    - '8. Hypothesis Testing': '4_Metody_probabilistyczne/advanced/08_hypothesis_testing.md'
-                    - '9. Correlation & Regression': '4_Metody_probabilistyczne/advanced/09_correlation_and_regression.md'
-                    - '10. Advanced Methods': '4_Metody_probabilistyczne/advanced/10_advanced_methods.md'
-                    - '11. Decision Theory': '4_Metody_probabilistyczne/advanced/11_decision_theory.md'
-              - Animations:
-                - 'Lab 1': 'anim/4_Metody_probalistyczne/laboratory_1.html'
-                - 'Lab 2': 'anim/4_Metody_probalistyczne/laboratory_2.html'
-                - 'Lab 3': 'anim/4_Metody_probalistyczne/laboratory_3.html'
+
+nav:
+  - Home: 'index.md'
+  - 'Lecture: Probabilistic Methods':
+    - Basic:
+      - '1. Events & Probability — Solutions': '4_Metody_probabilistyczne/basic/solution_01_events_and_probability.md'
