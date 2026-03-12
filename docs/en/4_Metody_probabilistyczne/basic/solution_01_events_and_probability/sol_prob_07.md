@@ -96,68 +96,155 @@ $$
 P(C_2) = \frac{6}{36} = \frac{1}{6}
 $$
 
----
-
 ### Three Die Rolls
-
+ 
 $$
 \Omega_3 = \{(i,j,k) : i,j,k \in \{1,\ldots,6\}\}, \quad |\Omega_3| = 216
 $$
-
-**Event $A_3$** — the sum equals 10:
-
-Count the number of ordered triples $(i,j,k)$ with $i+j+k = 10$ and $i,j,k \in \{1,\ldots,6\}$.
-
-Using stars and bars adjusted for the constraint $1 \leq i,j,k \leq 6$, substitute $i' = i-1$ etc. to get $i'+j'+k' = 7$ with $0 \leq i',j',k' \leq 5$.
-
-By inclusion-exclusion:
-
+ 
+Each elementary outcome is an ordered triple $(i,j,k)$ where $i,j,k \in \{1,2,3,4,5,6\}$. Each has probability $\frac{1}{216}$.
+ 
+---
+ 
+**Event $A_3$** — the sum of the results equals 10.
+ 
+We need to count ordered triples $(i,j,k)$ with $i,j,k \in \{1,\ldots,6\}$ and $i+j+k = 10$.
+ 
+**Step 1 — Substitution to simplify bounds.**
+ 
+Let $i' = i - 1$, $j' = j - 1$, $k' = k - 1$. Then $i', j', k' \in \{0,1,2,3,4,5\}$ and:
+ 
 $$
-\binom{9}{2} - 3\binom{3}{2} = 36 - 9 = 27
+i' + j' + k' = 10 - 3 = 7
 $$
-
+ 
+We need to count non-negative integer solutions to $i' + j' + k' = 7$ with each variable at most $5$.
+ 
+**Step 2 — Stars and bars without the upper bound.**
+ 
+Without the constraint $i', j', k' \leq 5$, the number of non-negative integer solutions is:
+ 
+$$
+\binom{7 + 2}{2} = \binom{9}{2} = 36
+$$
+ 
+**Step 3 — Subtract solutions that violate the upper bound.**
+ 
+A variable violates the bound if it equals $6$ or more. Suppose $i' \geq 6$. Set $i'' = i' - 6 \geq 0$. Then $i'' + j' + k' = 1$, which has $\binom{3}{2} = 3$ solutions.
+ 
+By symmetry, the same count applies to $j' \geq 6$ and $k' \geq 6$. No two variables can simultaneously be $\geq 6$ (since $6 + 6 = 12 > 7$).
+ 
+**Step 4 — Inclusion-exclusion.**
+ 
+$$
+|A_3| = \binom{9}{2} - 3 \cdot \binom{3}{2} = 36 - 9 = 27
+$$
+ 
+**Verification by listing** (grouped by the smallest value):
+ 
+Triples with values from $\{1,\ldots,6\}$ summing to $10$, listed by unordered composition and then counting orderings:
+ 
+| Unordered triple | Orderings |
+|---|---|
+| $\{1, 3, 6\}$ | $3! = 6$ |
+| $\{1, 4, 5\}$ | $3! = 6$ |
+| $\{2, 2, 6\}$ | $\frac{3!}{2!} = 3$ |
+| $\{2, 3, 5\}$ | $3! = 6$ |
+| $\{2, 4, 4\}$ | $\frac{3!}{2!} = 3$ |
+| $\{3, 3, 4\}$ | $\frac{3!}{2!} = 3$ |
+ 
+Total: $6 + 6 + 3 + 6 + 3 + 3 = 27$ $\checkmark$
+ 
 $$
 P(A_3) = \frac{27}{216} = \frac{1}{8}
 $$
-
-**Event $B_3$** — exactly two rolls give the same number:
-
-Choose the repeated value: 6 ways. Choose which two of the three rolls show it: $\binom{3}{2} = 3$ ways. The third roll must differ from the repeated value: 5 ways.
-
+ 
+---
+ 
+**Event $B_3$** — exactly two of the three rolls give the same number.
+ 
+This means the outcome has the form $(a, a, b)$ in some order, where $a \neq b$.
+ 
+**Step 1 — Choose the repeated value $a$.**
+ 
+$a$ can be any face: $6$ choices.
+ 
+**Step 2 — Choose the distinct value $b$.**
+ 
+$b$ can be any face except $a$: $5$ choices.
+ 
+**Step 3 — Choose which two of the three positions show $a$.**
+ 
+The triple has three positions. We choose 2 of them for the repeated value:
+ 
 $$
-|B_3| = 6 \times 3 \times 5 = 90
+\binom{3}{2} = 3 \text{ ways}
 $$
-
+ 
+The remaining position automatically gets $b$.
+ 
+**Step 4 — Multiply.**
+ 
+$$
+|B_3| = 6 \times 5 \times 3 = 90
+$$
+ 
+**Example outcomes** (for $a = 3$, $b = 5$):
+ 
+$$
+(3,3,5), \quad (3,5,3), \quad (5,3,3)
+$$
+ 
 $$
 P(B_3) = \frac{90}{216} = \frac{5}{12}
 $$
-
-**Event $C_3$** — exactly two twos and one three (in any order):
-
-The sequences $(2,2,3)$, $(2,3,2)$, $(3,2,2)$ are the only outcomes.
-
+ 
+---
+ 
+**Event $C_3$** — the outcome contains exactly two twos and one three, in any order.
+ 
+We need triples using exactly the values $2, 2, 3$ (in any order).
+ 
+**Step 1 — List all orderings.**
+ 
+The three positions must contain two twos and one three. The position of the three can be:
+ 
+- Position 1: $(3, 2, 2)$
+- Position 2: $(2, 3, 2)$
+- Position 3: $(2, 2, 3)$
+ 
+**Step 2 — Count using the multinomial coefficient.**
+ 
+The number of distinct orderings of the sequence $(2, 2, 3)$ is:
+ 
+$$
+\frac{3!}{2! \cdot 1!} = \frac{6}{2} = 3
+$$
+ 
+The denominator $2!$ accounts for the two identical twos.
+ 
 $$
 |C_3| = 3
 $$
-
+ 
 $$
 P(C_3) = \frac{3}{216} = \frac{1}{72}
 $$
-
+ 
 ---
-
+ 
 ### Additional Event on $\Omega_3$
-
+ 
 **Event $D_3$** — all three rolls give distinct values:
-
+ 
 $$
 |D_3| = 6 \times 5 \times 4 = 120
 $$
-
+ 
 $$
 P(D_3) = \frac{120}{216} = \frac{5}{9}
 $$
-
+ 
 ---
 
 ## Final Result
@@ -198,3 +285,4 @@ $$
 - Forgetting to account for all orderings when counting triples. For example, for $C_3$ one might write only $(2,2,3)$ and miss the other two orderings.
 - Using combinations instead of permutations when order matters.
 - In event $A_3$, attempting to list all triples manually instead of using combinatorial counting.
+
