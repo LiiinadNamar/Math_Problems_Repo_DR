@@ -8,27 +8,115 @@ Using the sample space $\Omega_7$ from Task 4, compute the probabilities of spec
 
 ## Definitions / Theory
 
-**Independent days**: the weather on each day does not affect the others. The probability of any specific sequence of seven states is:
+## 1. Sample Space $\Omega_7$
 
-$$
-P((w_1, w_2, \ldots, w_7)) = \left(\frac{1}{3}\right)^7 = \frac{1}{2187}
-$$
+We observe the weather over **7 consecutive days** (Monday through Sunday). Each day takes exactly one of three possible states:
 
-**Probability of an event** defined by conditions on specific days:
+$$S \text{ (Sunny)}, \quad C \text{ (Cloudy)}, \quad R \text{ (Rainy)}$$
 
-If an event constrains $k$ specific days to fixed states and leaves the remaining $7 - k$ days free, then:
+A single **elementary outcome** is a specific sequence of weather states for the entire week, for example:
 
-$$
-P(A) = \left(\frac{1}{3}\right)^k \times 1^{7-k} = \left(\frac{1}{3}\right)^k
-$$
+$$\omega = (S,\ C,\ S,\ R,\ R,\ C,\ S)$$
 
-**Complement rule**: $P(A^c) = 1 - P(A)$.
+The full collection of all such sequences is called the **sample space**:
 
-**Binomial probability**: the probability that exactly $m$ out of $n$ independent days are in a given state with probability $p$:
+$$\Omega_7 = \{\,(w_1, w_2, \ldots, w_7) \mid w_i \in \{S, C, R\}\,\}$$
 
-$$
-P = \binom{n}{m} p^m (1-p)^{n-m}
-$$
+The total number of elementary outcomes is $|\Omega_7| = 3^7 = 2187$.
+
+---
+
+## 2. Independence of Days
+
+The days are assumed to be **mutually independent** — this is the central modelling assumption. It means that the weather on any one day **has no influence** on the weather on any other day.
+
+Formally, for independent events $A_1, A_2, \ldots, A_n$ the following holds:
+
+$$P(A_1 \cap A_2 \cap \cdots \cap A_n) = P(A_1) \cdot P(A_2) \cdots P(A_n)$$
+
+This is exactly why the probability of any **specific sequence** is computed as the product of the individual daily probabilities:
+
+$$P\bigl((w_1, w_2, \ldots, w_7)\bigr)
+= P(w_1) \cdot P(w_2) \cdots P(w_7)
+= \underbrace{\frac{1}{3} \cdot \frac{1}{3} \cdots \frac{1}{3}}_{7 \text{ times}}
+= \left(\frac{1}{3}\right)^7
+= \frac{1}{2187}$$
+
+Because every one of the $2187$ outcomes is equally likely, the model is called a **uniform probability model**.
+
+---
+
+## 3. Probability of an Event with Fixed Days
+
+Suppose an event $A$ imposes conditions on exactly $k$ specific days, while the remaining $7 - k$ days are left completely free (any state is allowed).
+
+**Counting logic:**
+
+- Each of the $k$ fixed days contributes a factor of $\left(\dfrac{1}{3}\right)$
+- Each of the $7 - k$ free days may be in any of the 3 states, contributing a factor of $1$ (i.e. certainty)
+
+$$\boxed{P(A) = \left(\frac{1}{3}\right)^k \times 1^{7-k} = \left(\frac{1}{3}\right)^k}$$
+
+**Example:** the event "Saturday and Sunday are both Sunny" fixes $k = 2$ days:
+
+$$P = \left(\frac{1}{3}\right)^2 = \frac{1}{9}$$
+
+Alternatively: out of $2187$ total outcomes, exactly $3^5 = 243$ have $S$ in positions 6 and 7, so:
+
+$$P = \frac{243}{2187} = \frac{1}{9} \checkmark$$
+
+---
+
+## 4. The Complement Rule
+
+For any event $A$ and its **complement** $A^c$ (the event "$A$ did not occur"):
+
+$$P(A) + P(A^c) = 1 \implies \boxed{P(A) = 1 - P(A^c)}$$
+
+This rule is especially powerful for events of the form **"at least one …"**, because:
+
+> Counting "at least one Sunny day" directly is cumbersome — there are many favourable sequences.  
+> Its complement — "no Sunny day at all" — is straightforward to compute.
+
+$$P(\text{at least one } S) = 1 - P(\text{no } S) = 1 - \left(\frac{2}{3}\right)^7$$
+
+Here $\dfrac{2}{3}$ is the probability that a single day is **not** Sunny (i.e. it is $C$ or $R$). Since the days are independent, the probability of avoiding $S$ every day is $\left(\dfrac{2}{3}\right)^7$.
+
+---
+
+## 5. Binomial Probability (Bernoulli Formula)
+
+Used when we want the probability that **exactly $m$ out of $n$ days** are in a given state (e.g. exactly 2 of 7 days are Sunny).
+
+$$\boxed{P = \binom{n}{m} \cdot p^m \cdot (1-p)^{n-m}}$$
+
+Each factor has a clear meaning:
+
+| Factor | Meaning |
+|---|---|
+| $\binom{n}{m} = \dfrac{n!}{m!\,(n-m)!}$ | Number of ways to **choose** which $m$ days will be in the given state |
+| $p^m$ | Probability that those $m$ chosen days **are** in the given state |
+| $(1-p)^{n-m}$ | Probability that the remaining $n-m$ days are **not** in the given state |
+
+**Example** — exactly 2 Sunny days out of 7, with $p = \dfrac{1}{3}$:
+
+$$P = \underbrace{\binom{7}{2}}_{21 \text{ combinations}}
+\cdot \underbrace{\left(\frac{1}{3}\right)^2}_{2 \text{ sunny days}}
+\cdot \underbrace{\left(\frac{2}{3}\right)^5}_{5 \text{ non-sunny days}}
+= 21 \cdot \frac{1}{9} \cdot \frac{32}{243}
+= \frac{672}{2187}
+= \frac{224}{729}$$
+
+---
+
+## Summary of Tools
+
+| Situation | Formula to use |
+|---|---|
+| Probability of one specific sequence | $\left(\frac{1}{3}\right)^7$ |
+| Event fixes $k$ days, rest are free | $\left(\frac{1}{3}\right)^k$ |
+| "At least one" or "none" | Complement rule: $1 - P(A^c)$ |
+| Exactly $m$ out of $n$ days in a state | Binomial: $\binom{n}{m}p^m(1-p)^{n-m}$ |
 
 ---
 
@@ -127,3 +215,4 @@ For event $E$, a quick check: the expected number of sunny days is $7 \times \fr
 - Confusing "no rainy day" with "all days sunny." No rain means each day is $S$ or $C$, not necessarily $S$.
 - Forgetting to use the complement for "at least one" events — direct counting is error-prone.
 - In event $E$, using $\left(\frac{1}{3}\right)^2 \left(\frac{2}{3}\right)^5$ without the binomial coefficient $\binom{7}{2}$, which accounts for the different positions of the two sunny days.
+
