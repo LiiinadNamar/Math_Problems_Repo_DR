@@ -20,7 +20,7 @@ Construct the sample spaces for one card drawn, two cards drawn with replacement
 The number of ordered sequences of length $r$ drawn from $n$ objects:
 
 - With replacement: $n^r$
-- Without replacement: $n \cdot (n-1) \cdots (n-r+1) = \frac{n!}{(n-r)!}$
+- Without replacement: $n \cdot (n-1) \cdots (n-r+1) = \frac{n!}{(n-r)!}$ (Permutation)
 
 ---
 
@@ -59,22 +59,41 @@ Note that outcomes such as $(A\heartsuit,\ A\heartsuit)$ are possible — the sa
 Each elementary outcome is an ordered pair of cards where repetition is allowed.
 
 ---
-
-### Two Cards Drawn Without Replacement
-
-After the first draw, the card is not returned. The second draw is from the remaining 51 cards.
-
-$$
-\Omega_2' = \{(c_1, c_2) : c_1 \in D,\ c_2 \in D \setminus \{c_1\}\}
-$$
-
+**Step 3 — Counting by the multiplication principle.**
+ 
+Since there are 52 choices for the first draw and, for each such choice, exactly 51 choices for the second draw:
+ 
 $$
 |\Omega_2'| = 52 \times 51 = 2652
 $$
-
-The same card cannot appear twice. The outcome $(A\heartsuit,\ A\heartsuit)$ is impossible.
-
-Each elementary outcome is an ordered pair of distinct cards.
+ 
+**Formal definition of the sample space.**
+ 
+$$
+\Omega_2' = \{(c_1, c_2) : c_1 \in D,\ c_2 \in D \setminus \{c_1\}\}
+$$
+ 
+where $D$ denotes the full 52-card deck and $D \setminus \{c_1\}$ denotes the deck after removing $c_1$.
+ 
+**Connection to permutations.**
+ 
+The number $52 \times 51$ is the number of ordered permutations of 2 cards chosen from 52, denoted $P(52, 2)$ or ${}_{52}P_2$:
+ 
+$$
+P(52, 2) = \frac{52!}{(52-2)!} = \frac{52!}{50!} = 52 \times 51 = 2652
+$$
+ 
+**Example outcomes.**
+ 
+A few elementary outcomes in $\Omega_2'$:
+ 
+$$
+(A\heartsuit,\ K\spadesuit), \quad (K\spadesuit,\ A\heartsuit), \quad (2\clubsuit,\ 7\diamondsuit), \quad (J\heartsuit,\ J\clubsuit)
+$$
+ 
+Note that $(A\heartsuit,\ K\spadesuit)$ and $(K\spadesuit,\ A\heartsuit)$ are two distinct elementary outcomes because order matters.
+ 
+The outcome $(A\heartsuit,\ A\heartsuit)$ is not in $\Omega_2'$ — it is impossible without replacement. 
 
 ---
 
@@ -105,3 +124,4 @@ This equals exactly the 52 outcomes of the form $(c, c)$ that are possible with 
 - Treating $(c_1, c_2)$ and $(c_2, c_1)$ as the same outcome when order matters. They are distinct elementary outcomes.
 - Using combinations $\binom{52}{2}$ instead of permutations $52 \times 51$ for the without-replacement case. Combinations are appropriate only when order does not matter.
 - Forgetting that with replacement the two draws are independent, while without replacement they are not.
+
