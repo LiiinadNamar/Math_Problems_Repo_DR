@@ -1,4 +1,5 @@
 /.venv
 site/
 kopie/
+.DS_Store
 *.pdf
