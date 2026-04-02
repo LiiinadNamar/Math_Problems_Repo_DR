@@ -25,21 +25,52 @@ $$
 
 Given $p=0.1$, so $1-p=0.9$.
 
-### 1. First error on 4th compilation
+### 1. First Error on 4th Compilation
 
-Need three no-error attempts and then one error:
-
-$$
-P(X=4)=(0.9)^3 \cdot 0.1 = 0.0729
-$$
-
-### 2. First error no later than 3rd compilation
-
-Use cumulative formula:
+**Reasoning:** For the first error to occur on the 4th compilation:
+- Compilations 1, 2, 3 must be **successful** (no error): probability $1-p = 0.9$ each.
+- Compilation 4 must **fail** (error occurs): probability $p = 0.1$.
+- By independence, multiply:
 
 $$
-P(X \le 3)=1-(0.9)^3=1-0.729=0.271
+P(X=4) = (0.9)^3 \times 0.1
 $$
+
+Compute:
+
+$$
+P(X=4) = 0.729 \times 0.1 = 0.0729 \approx 7.29\%
+$$
+
+**Interpretation:** It's fairly unlikely (≈7%) that we need exactly 4 compilations. The exponential decay makes waiting longer increasingly rare.
+
+### 2. First Error No Later Than 3rd Compilation
+
+**Reasoning:** "No later than 3rd" means the first error occurs at compilation 1, 2, **or** 3. In other words:
+
+$$
+P(X \le 3) = P(X=1) + P(X=2) + P(X=3)
+$$
+
+Computing all three terms is tedious, so use the **complement:**
+
+$$
+P(X \le 3) = 1 - P(X > 3) = 1 - P(X \ge 4)
+$$
+
+$P(X \ge 4)$ means the first 3 compilations are all successful (no error) **and** we haven't counted later compilations:
+
+$$
+P(X \ge 4) = (0.9)^3 = 0.729
+$$
+
+Therefore:
+
+$$
+P(X \le 3) = 1 - 0.729 = 0.271 \approx 27.1\%
+$$
+
+**Interpretation:** There's roughly a 27% chance that we'll see the first error within the first 3 compilations. This is higher than the single event $P(X=4)$ because it includes multiple ways for an error to occur (on attempts 1, 2, or 3).
 
 ## Final Result
 

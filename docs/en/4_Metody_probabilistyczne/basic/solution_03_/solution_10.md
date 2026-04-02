@@ -38,29 +38,47 @@ $$
 (p_1,p_2,p_3)=(0.40,0.35,0.25)
 $$
 
-Apply multinomial formula:
+### Apply the Multinomial Formula
+
+For the desired outcome $(x_1, x_2, x_3) = (3, 2, 1)$ with $n=6$ selections:
 
 $$
-P = \frac{6!}{3!2!1!}(0.40)^3(0.35)^2(0.25)^1
+P(3\text{ strawberry}, 2\text{ lemon}, 1\text{ mint}) = \frac{6!}{3!\cdot 2!\cdot 1!} \cdot (0.40)^3 \cdot (0.35)^2 \cdot (0.25)^1
 $$
 
-Compute coefficient:
+### Compute the Multinomial Coefficient
 
 $$
-\frac{6!}{3!2!1!}=\frac{720}{6 \cdot 2}=60
+\frac{6!}{3!\cdot 2!\cdot 1!} = \frac{720}{6 \times 2 \times 1} = \frac{720}{12} = 60
 $$
 
-Compute product of probabilities:
+**Why this number?** It counts all the **orderings** of 6 selections that result in exactly 3 strawberry, 2 lemon, 1 mint. For example:
+- (S, S, S, L, L, M)
+- (S, S, L, S, L, M)
+- (L, L, S, S, M, S)
+- ... and 57 more distinct sequences.
+
+Each ordering has the same probability (since selections are independent with the same probabilities), so we multiply the count by that probability.
+
+### Compute the Probability of One Specific Sequence
 
 $$
-(0.40)^3(0.35)^2(0.25)=0.064 \cdot 0.1225 \cdot 0.25=0.00196
+(0.40)^3 \times (0.35)^2 \times (0.25)^1
 $$
 
-Therefore:
+**Why?** One particular sequence, say (S, S, S, L, L, M), has:
+- 3 strawberry selections at probability 0.40 each: $(0.40)^3 = 0.064$.
+- 2 lemon selections at probability 0.35 each: $(0.35)^2 = 0.1225$.
+- 1 mint selection at probability 0.25 each: $(0.25)^1 = 0.25$.
+- By independence: $0.064 \times 0.1225 \times 0.25 = 0.00196$.
+
+### Combine
 
 $$
-P=60 \cdot 0.00196=0.1176
+P = 60 \times 0.00196 = 0.1176 \approx 11.76\%
 $$
+
+**Interpretation:** Among all ways to select 6 candies, about 11.8% will yield exactly 3 strawberry, 2 lemon, 1 mint. This is a moderate probability — not the most likely outcome, but plausible. The expected counts are $(6 \times 0.40, 6 \times 0.35, 6 \times 0.25) = (2.4, 2.1, 1.5)$, so our outcome (3, 2, 1) is close to the mode and has decent probability.
 
 ## Final Result
 

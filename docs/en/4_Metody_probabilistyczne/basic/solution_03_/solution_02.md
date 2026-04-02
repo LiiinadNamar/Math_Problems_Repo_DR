@@ -21,25 +21,43 @@ $$
 
 ## Step-by-Step Solution
 
+### Identify the Model Parameters
+
 Given:
+- $N = 20$ total components
+- $K = 5$ defective components  
+- $n = 4$ components selected
+- Success = selecting a defective component
+
+Why **hypergeometric** and not binomial?
+- Drawing **without replacement** means the probability of selecting a defective component changes after each draw.
+- For example: if we draw 1 defective first, then $P(\text{2nd is defective}) = \frac{4}{19}$, not $\frac{5}{20}$ anymore.
+- Binomial requires **independence** (constant probability); hypergeometric handles changing probabilities due to depletion.
+
+### Determine Possible Values of $X$
+
+Since we draw 4 components from only 5 defective ones, the number of defective items in the sample ranges from:
 
 $$
-N = 20, \quad K = 5, \quad n = 4
+k = \max(0, n - (N-K)) \text{ to } \min(n, K) = \max(0, 4-15) \text{ to } \min(4, 5) = 0 \text{ to } 4
 $$
 
-Success means selecting a defective component.
+So $X \in \{0,1,2,3,4\}$.
 
-Possible values of $X$:
+### Apply the Hypergeometric Formula
 
-$$
-k = 0,1,2,3,4
-$$
-
-Therefore:
+For each value of $k$, the probability is:
 
 $$
 P(X = k) = \frac{\binom{5}{k}\binom{15}{4-k}}{\binom{20}{4}}, \quad k=0,1,2,3,4
 $$
+
+**Why this formula?**
+- $\binom{5}{k}$ = ways to choose $k$ defective components from 5.
+- $\binom{15}{4-k}$ = ways to choose $4-k$ good components from 15 (we need $4-k$ good to fill the remaining slots).
+- The product gives all favorable outcomes.
+- $\binom{20}{4}$ = total ways to choose 4 from 20 components.
+- Division gives the probability.
 
 Numerical values:
 

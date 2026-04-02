@@ -21,29 +21,43 @@ where:
 
 ## Step-by-Step Solution
 
+### Identify Parameters
+
 Given:
+- $N = 15$ total bulbs (12 working + 3 defective).
+- $K = 3$ defective bulbs (the "success" items).
+- $n = 5$ bulbs drawn without replacement.
+- We want $P(X = 2)$ where $X$ = number of defective bulbs in the sample.
 
-$$
-N=15, \quad K=3, \quad n=5, \quad k=2
-$$
+### Why Hypergeometric?
 
-Apply formula:
+We **cannot use binomial** because:
+- We draw **without replacement**.
+- After drawing 1 defective bulb, there are only 2 defective left among 14 remaining.
+- The probability changes: it was $3/15$, now it's $2/14$ — not constant.
+
+Hypergeometric handles this changing probability automatically through the combinatorial structure.
+
+### Apply the Hypergeometric Formula
 
 $$
 P(X=2)=\frac{\binom{3}{2}\binom{12}{3}}{\binom{15}{5}}
 $$
 
-Compute combinations:
+**Component by component:**
+
+- $\binom{3}{2} = 3$ = ways to choose 2 defective bulbs from 3 available.
+- $\binom{12}{3} = 220$ = ways to choose 3 working bulbs from 12 available (to fill the remaining 3 of the 5 drawn).
+- Numerator = $3 \times 220 = 660$ = total favorable outcomes (2 defective AND 3 working).
+- $\binom{15}{5} = 3003$ = total ways to choose 5 bulbs from 15 (all possible samples).
+
+### Calculate
 
 $$
-\binom{3}{2}=3, \quad \binom{12}{3}=220, \quad \binom{15}{5}=3003
+P(X=2)=\frac{660}{3003} \approx 0.21978 \approx 22.0\%
 $$
 
-Therefore:
-
-$$
-P(X=2)=\frac{3 \cdot 220}{3003}=\frac{660}{3003} \approx 0.21978
-$$
+**Interpretation:** About 1 in 5 samples of 5 bulbs will contain exactly 2 defective bulbs. This is reasonably likely because the defect rate is $3/15 = 20\%$, so in a sample of 5, we'd expect around 1 defect, making 2 defects plausible but not the most common outcome.
 
 ## Final Result
 

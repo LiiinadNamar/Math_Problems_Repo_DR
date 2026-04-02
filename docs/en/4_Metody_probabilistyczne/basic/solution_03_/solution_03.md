@@ -16,29 +16,44 @@ This is the geometric distribution.
 
 ## Step-by-Step Solution
 
-Success is: an error appears on a page.
+### Define Success and the Experiment
 
-Random experiment: inspect pages sequentially until the first page with an error.
+**Success:** An error appears on a page.  
+**Experiment:** Inspect pages one by one until we find the first page with an error.
 
-Sample space as trial indices:
+### Construct the Sample Space
+
+The sample space consists of the trial number on which the first success occurs:
 
 $$
 \Omega = \{1,2,3,\ldots\}
 $$
 
-Equivalent sequence representation:
+Why only integers? Because we count **how many pages we inspect before finding an error**, not the pages themselves. If the first error appears on page 4, we record the outcome as $X = 4$.
+
+Alternatively, as ordered sequences:
 
 $$
-E,\; NE, E,\; NE, NE, E,\; \ldots
+E,\quad (NE, E),\quad (NE, NE, E),\quad \ldots
 $$
 
-where $E$ denotes error and $NE$ denotes no error.
+where $NE$ = no error, $E$ = error.
 
-Distribution:
+### Derive the Probability Distribution
+
+For the first success to occur on trial $k$:
+- Trials $1$ through $k-1$ must be failures (no error): probability $(1-p)^{k-1}$.
+- Trial $k$ must be a success (error appears): probability $p$.
+
+Since trials are **independent**:
 
 $$
-P(X=k) = (1-p)^{k-1}p, \quad k \in \mathbb{N}
+P(X=k) = (1-p)^{k-1} \cdot p, \quad k = 1,2,3,\ldots
 $$
+
+**Why this form?**
+- The factor $(1-p)^{k-1}$ penalizes larger $k$ exponentially: waiting longer is increasingly unlikely.
+- Support starts at $k=1$, not $k=0$, because the first success cannot occur before trial 1.
 
 ## Final Result
 

@@ -29,27 +29,55 @@ $$
 n=10, \quad p=0.04, \quad 1-p=0.96
 $$
 
-### 1. Exactly 2 defective parts
+### 1. Exactly 2 Defective Parts
+
+**Reasoning:** We use the binomial formula because:
+- We have a fixed number of trials ($n=10$).
+- Each trial is independent.
+- Each trial has two outcomes (defective or good) with constant probability.
+
+Apply the formula:
 
 $$
 P(X=2)=\binom{10}{2}(0.04)^2(0.96)^8
 $$
 
-$$
-P(X=2)=45 \cdot 0.0016 \cdot 0.7213895789838336 \approx 0.05194
-$$
+**Break down each component:**
+- $\binom{10}{2} = \frac{10!}{2! \cdot 8!} = 45$ = number of ways to choose which 2 of the 10 parts are defective.
+- $(0.04)^2 = 0.0016$ = probability that those 2 specific parts are defective.
+- $(0.96)^8 \approx 0.7214$ = probability that the remaining 8 parts are good.
 
-### 2. At least one defective part
-
-Use complement:
-
-$$
-P(X \ge 1)=1-P(X=0)=1-(0.96)^{10}
-$$
+Multiply:
 
 $$
-P(X \ge 1)=1-0.664832635991501 \approx 0.33517
+P(X=2) = 45 \times 0.0016 \times 0.7214 \approx 0.05194 \approx 5.19\%
 $$
+
+**Interpretation:** It's relatively unlikely (≈5%) to see exactly 2 defective parts because the defect rate is low (4%) and 10 parts is a small sample. Most of the time, we expect 0 or 1 defect.
+
+### 2. At Least One Defective Part
+
+**Reasoning:** "At least one" ($X \ge 1$) is the complement of "zero" ($X = 0$). Using the complement is numerically faster and avoids summing many terms.
+
+$$
+P(X \ge 1) = 1 - P(X=0)
+$$
+
+**Calculate $P(X=0)$:**
+
+$$
+P(X=0) = \binom{10}{0}(0.04)^0(0.96)^{10} = 1 \times 1 \times (0.96)^{10} \approx 0.6648
+$$
+
+Why this form? All 10 parts must be good, each with probability $0.96$. By independence, multiply the probabilities.
+
+**Compute the complement:**
+
+$$
+P(X \ge 1) = 1 - 0.6648 \approx 0.3352 \approx 33.52\%
+$$
+
+**Interpretation:** There's roughly a 1 in 3 chance of finding at least one defective part in a batch of 10 when the defect rate is 4%. This makes sense: we're sampling, and defects, though rare, do exist.
 
 ## Final Result
 

@@ -21,28 +21,52 @@ In this task, $n = 3$.
 
 ## Step-by-Step Solution
 
-1. Random experiment: inspect 3 consecutive screws.
+### Step 1: Define the Random Experiment
 
-2. Sample space (ordered outcomes):
+We inspect 3 consecutive screws. Each inspection is **independent** (outcome of one screw does not affect another) and each screw has the same probability $p$ of being defective. This is the foundation of the binomial model: identical, independent trials with two outcomes.
+
+### Step 2: Construct the Sample Space
+
+Since order matters and each screw can be either $G$ (good) or $D$ (defective), we list all ordered sequences of length 3:
 
 $$
 \Omega = \{GGG, GGD, GDG, DGG, GDD, DGD, DDG, DDD\}
 $$
 
-Here, $D$ means defective and $G$ means good.
+There are $2^3 = 8$ outcomes. We use ordered sequences (not just counts) because **elementary outcomes must be atomic and indivisible**. For instance, $(G,G,D)$ and $(G,D,G)$ are different because the position of the defect matters in a real inspection process.
 
-3. Probabilities of elementary outcomes:
+### Step 3: Assign Probabilities to Elementary Outcomes
+
+Since trials are **independent**, the probability of a sequence is the product of individual probabilities:
+
+$$
+P(\text{sequence}) = P(\text{1st screw}) \times P(\text{2nd screw}) \times P(\text{3rd screw})
+$$
+
+For example:
+- $P(GGG) = (1-p) \times (1-p) \times (1-p) = (1-p)^3$ (all three good).
+- $P(GGD) = (1-p) \times (1-p) \times p = (1-p)^2 p$ (good, good, defective).
+- $P(DDD) = p \times p \times p = p^3$ (all three defective).
+
+Grouping by the number of defects:
 
 $$
 \begin{aligned}
-P(GGG) &= (1-p)^3 \\
-P(GGD) = P(GDG) = P(DGG) &= p(1-p)^2 \\
-P(GDD) = P(DGD) = P(DDG) &= p^2(1-p) \\
-P(DDD) &= p^3
+P(GGG) &= (1-p)^3 & \text{(0 defects)} \\
+P(GGD) = P(GDG) = P(DGG) &= p(1-p)^2 & \text{(1 defect, 3 positions)} \\
+P(GDD) = P(DGD) = P(DDG) &= p^2(1-p) & \text{(2 defects, 3 positions)} \\
+P(DDD) &= p^3 & \text{(3 defects)}
 \end{aligned}
 $$
 
-4. Success definition: a success is observing a defective screw (event $D$ in a single trial).
+Note: sequences with the same number of defects have **equal probability** because they involve the same product of $p$ and $(1-p)$ factors, just in different orders.
+
+### Step 4: Define Success
+
+In this context, a **success** is observing a defective screw. Why? Because:
+- The problem states "probability $p$ that a screw is defective."
+- We count defects, not good screws.
+- In quality control, "success" of the inspection means identifying a problem (defect).
 
 ## Final Result
 
