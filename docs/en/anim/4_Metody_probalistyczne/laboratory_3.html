@@ -1,312 +1,802 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sigma-algebra Generator - Construction from Generators</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .math { font-family: "Times New Roman", Times, serif; font-style: italic; }
-        .math-b { font-family: "Times New Roman", Times, serif; font-weight: bold; font-style: normal; }
-        .set-card { transition: all 0.2s ease; }
-        .set-card:hover { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
-        
-        @keyframes pulse-indigo {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        .generating { animation: pulse-indigo 1.5s infinite; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Problem 3 - Weather (7 days x 3 states)</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --line: #d8dde8;
+      --text: #1f2937;
+      --muted: #4b5563;
+      --required-bg: #fee2e2;
+      --required-tx: #9f1239;
+      --allowed-bg: #eff6ff;
+      --allowed-tx: #1d4ed8;
+      --forbidden-bg: #f3f4f6;
+      --forbidden-tx: #6b7280;
+      --accent: #0f766e;
+      --accent-soft: #ccfbf1;
+      --badge-bg: #ecfeff;
+      --badge-tx: #155e75;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 10% 0%, #eef2ff 0%, #f7f8fb 40%, #f5f7fa 100%);
+      color: var(--text);
+    }
+
+    .app {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .title {
+      background: linear-gradient(120deg, #0f766e, #0e7490);
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 16px 20px;
+      box-shadow: 0 10px 24px rgba(15, 118, 110, 0.2);
+      margin-bottom: 16px;
+    }
+
+    .title h1 {
+      margin: 0;
+      font-size: clamp(1.2rem, 2.4vw, 1.8rem);
+      letter-spacing: 0.2px;
+    }
+
+    .title p {
+      margin: 6px 0 0;
+      font-size: 0.95rem;
+      opacity: 0.95;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 330px 1fr;
+      gap: 16px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(31, 41, 55, 0.05);
+    }
+
+    .controls {
+      padding: 14px;
+    }
+
+    .section {
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .section:last-child {
+      margin-bottom: 0;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .section h2 {
+      margin: 0 0 10px;
+      font-size: 0.96rem;
+      color: #0f172a;
+      letter-spacing: 0.2px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    select,
+    button {
+      width: 100%;
+      min-height: 36px;
+      border-radius: 9px;
+      border: 1px solid var(--line);
+      font-size: 0.92rem;
+    }
+
+    select {
+      padding: 0 10px;
+      background: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .btn-row {
+      display: grid;
+      gap: 8px;
+    }
+
+    button {
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+      color: #0f172a;
+      background: #f8fafc;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 12px rgba(15, 23, 42, 0.08);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: #0d6962;
+    }
+
+    .btn-secondary {
+      background: #ecfeff;
+      color: #164e63;
+      border-color: #a5f3fc;
+    }
+
+    .toggle-group {
+      display: grid;
+      gap: 8px;
+    }
+
+    .toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: #374151;
+      padding: 6px 8px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fafafa;
+    }
+
+    .toggle input {
+      margin: 0;
+    }
+
+    .viz {
+      padding: 14px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge {
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 0.79rem;
+      font-weight: 700;
+      background: var(--badge-bg);
+      color: var(--badge-tx);
+      border: 1px solid #bae6fd;
+    }
+
+    .matrix-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px;
+      background: #ffffff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 620px;
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      text-align: center;
+      padding: 7px;
+      font-size: 0.88rem;
+    }
+
+    th {
+      background: #f8fafc;
+      color: #1e293b;
+      font-weight: 700;
+    }
+
+    .row-label {
+      width: 48px;
+      background: #f8fafc;
+      font-weight: 700;
+    }
+
+    .cell-required {
+      background: var(--required-bg);
+      color: var(--required-tx);
+      font-weight: 800;
+    }
+
+    .cell-allowed {
+      background: var(--allowed-bg);
+      color: var(--allowed-tx);
+      font-weight: 700;
+    }
+
+    .cell-forbidden {
+      background: var(--forbidden-bg);
+      color: var(--forbidden-tx);
+      text-decoration: line-through;
+      text-decoration-thickness: 1.3px;
+      font-weight: 700;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.84rem;
+      color: #374151;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      border: 1px solid #cbd5e1;
+    }
+
+    .result {
+      border: 1px solid #bae6fd;
+      background: #f0f9ff;
+      border-radius: 10px;
+      padding: 10px;
+      display: grid;
+      gap: 7px;
+      color: #0c4a6e;
+      font-size: 0.88rem;
+      line-height: 1.35;
+    }
+
+    .result strong {
+      color: #082f49;
+    }
+
+    .union-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .union-card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #ffffff;
+      padding: 8px;
+    }
+
+    .union-title {
+      font-size: 0.83rem;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+
+    .mini table {
+      min-width: 400px;
+    }
+
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-<body class="bg-white text-slate-900 min-h-screen font-sans">
+<body>
+  <div class="app">
+    <header class="title">
+      <h1>Problem 3 - Weather (7 days x 3 states)</h1>
+      <p>Event constraint visualizer over weekly outcomes (S, C, R).</p>
+    </header>
 
-    <div class="max-w-6xl mx-auto p-4 md:p-8">
-        <header class="mb-8 border-b pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-                <h1 class="text-3xl font-extrabold text-slate-800 tracking-tight">Sigma-algebra Generator &sigma;(G)</h1>
-                <p class="text-slate-500 mt-1 italic">Closure of family G under Kolmogorov axioms</p>
-            </div>
-            <div class="flex items-center gap-4">
-                <label class="text-sm font-bold text-slate-400 uppercase">Sample Space Size &Omega; (n):</label>
-                <input type="number" id="omega-n" value="6" min="1" max="10" 
-                       class="w-20 px-3 py-2 border-2 border-slate-200 rounded-xl focus:border-indigo-500 outline-none font-bold"
-                       onchange="initOmega()">
-            </div>
-        </header>
+    <main class="layout">
+      <aside class="panel controls">
+        <section class="section">
+          <h2>Parameters</h2>
+          <label for="partSelect">Part</label>
+          <select id="partSelect">
+            <option value="A">Part A - Marking Events</option>
+            <option value="B">Part B - Interpretation</option>
+          </select>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            
-            <!-- LEFT PANEL: GENERATING FAMILY -->
-            <div class="lg:col-span-4 space-y-6">
-                <section class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-                    <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-slate-800">
-                        Primary Sets (G)
-                    </h2>
-                    <p class="text-xs text-slate-500 mb-6">
-                        Define any subsets of &Omega;. The &sigma;-algebra will be constructed by taking all possible complements, unions, and intersections of these sets.
-                    </p>
+          <label for="itemSelect">Statement / Case</label>
+          <select id="itemSelect"></select>
+        </section>
 
-                    <div id="subset-builder" class="space-y-4">
-                        <div id="element-toggles" class="flex flex-wrap gap-2 mb-4">
-                            <!-- Buttons generated by JS -->
-                        </div>
-                        <button onclick="addGenerator()" class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-md active:scale-95">
-                            Add set to G
-                        </button>
-                    </div>
+        <section class="section">
+          <h2>Action Buttons</h2>
+          <div class="btn-row">
+            <button id="applyBtn" class="btn-primary">Apply</button>
+            <button id="resetBtn">Reset</button>
+            <button id="interpretBtn" class="btn-secondary">Interpret</button>
+          </div>
+        </section>
 
-                    <div class="mt-8">
-                        <div class="flex justify-between items-center mb-4">
-                            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Your Family G:</h3>
-                            <button onclick="clearGenerators()" class="text-[10px] text-red-500 hover:underline uppercase font-bold">Clear G</button>
-                        </div>
-                        <div id="generator-list" class="space-y-2">
-                            <!-- List of added generators -->
-                        </div>
-                    </div>
-                </section>
+        <section class="section">
+          <h2>Optional Toggles</h2>
+          <div class="toggle-group">
+            <label class="toggle" for="showUnionBoth">
+              <input type="checkbox" id="showUnionBoth" checked />
+              Show both sub-events for disjunctions
+            </label>
+            <label class="toggle" for="showComplement">
+              <input type="checkbox" id="showComplement" />
+              Show complement note (if available)
+            </label>
+          </div>
+        </section>
+      </aside>
 
-                <section class="p-6 bg-white border border-slate-200 rounded-2xl">
-                    <h3 class="font-bold text-slate-800 mb-4 text-sm">Completeness Analysis</h3>
-                    <div id="completeness-stats" class="space-y-4">
-                        <div class="text-sm text-slate-400 italic">Waiting for construction...</div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- RIGHT PANEL: RESULTING SIGMA-ALGEBRA -->
-            <div class="lg:col-span-8 space-y-6">
-                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-                    <div class="flex justify-between items-center mb-6">
-                        <div>
-                            <h2 class="text-2xl font-bold text-slate-800">Resulting Sigma-algebra (F)</h2>
-                            <p class="text-xs text-slate-500 font-mono mt-1" id="f-size-info">Elements count |F| = 0</p>
-                        </div>
-                        <button onclick="generateSigma()" class="px-8 py-3 bg-slate-900 hover:bg-black text-white font-bold rounded-xl transition-all shadow-lg active:scale-95">
-                            Construct F
-                        </button>
-                    </div>
-
-                    <div id="sigma-display" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                        <!-- F elements -->
-                    </div>
-
-                    <!-- MISSING ELEMENTS SECTION -->
-                    <div id="missing-section" class="mt-12 pt-8 border-t border-slate-200 hidden">
-                        <h3 class="text-sm font-bold text-red-600 uppercase mb-4 flex items-center gap-2">
-                            Elements of P(&Omega;) NOT in F:
-                        </h3>
-                        <p class="text-xs text-slate-500 mb-4">
-                            The following events are "unreachable" using your generators. This means your structure is too "coarse" to distinguish these outcomes.
-                        </p>
-                        <div id="missing-display" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-                            <!-- Missing sets -->
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <section class="panel viz">
+        <div class="badge-row">
+          <span class="badge" id="eventId">Event: -</span>
+          <span class="badge">Omega size: 3^7 = 2187</span>
         </div>
-    </div>
 
-    <script>
-        let n = 6;
-        let generators = []; 
-        let currentSelection = new Set();
-        let atoms = [];
-        let sigmaAlgebra = [];
+        <div id="singleMatrixContainer" class="matrix-wrap"></div>
 
-        function initOmega() {
-            const input = document.getElementById('omega-n');
-            n = parseInt(input.value);
-            generators = [];
-            currentSelection.clear();
-            renderToggles();
-            renderGenerators();
-            clearOutputs();
+        <div id="unionContainer" class="union-grid" hidden></div>
+
+        <div class="legend">
+          <div class="legend-item"><span class="swatch" style="background: var(--required-bg);"></span>Required (X)</div>
+          <div class="legend-item"><span class="swatch" style="background: var(--allowed-bg);"></span>Allowed (.)</div>
+          <div class="legend-item"><span class="swatch" style="background: var(--forbidden-bg);"></span>Forbidden (-)</div>
+        </div>
+
+        <div class="result" id="resultBox">
+          <div><strong>Meaning:</strong> Choose a statement/case and press Apply.</div>
+          <div><strong>Count:</strong> -</div>
+          <div><strong>Share of Omega:</strong> -</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    const STATES = ["S", "C", "R"];
+    const OMEGA = Math.pow(3, 7);
+
+    function createAllAllowedMatrix() {
+      const matrix = {};
+      for (const day of DAYS) {
+        matrix[day] = {};
+        for (const state of STATES) {
+          matrix[day][state] = "allowed";
         }
+      }
+      return matrix;
+    }
 
-        function clearOutputs() {
-            document.getElementById('sigma-display').innerHTML = '';
-            document.getElementById('missing-display').innerHTML = '';
-            document.getElementById('missing-section').classList.add('hidden');
-            document.getElementById('f-size-info').textContent = 'Waiting for construction...';
-            document.getElementById('completeness-stats').innerHTML = '<div class="text-sm text-slate-400 italic">Waiting for construction...</div>';
+    function cloneMatrix(matrix) {
+      return JSON.parse(JSON.stringify(matrix));
+    }
+
+    function requireState(matrix, day, requiredState) {
+      for (const state of STATES) {
+        matrix[day][state] = state === requiredState ? "required" : "forbidden";
+      }
+    }
+
+    function allowOnly(matrix, day, allowedStates) {
+      for (const state of STATES) {
+        matrix[day][state] = allowedStates.includes(state) ? "allowed" : "forbidden";
+      }
+    }
+
+    function renderMatrix(matrix, className) {
+      const table = document.createElement("table");
+      if (className) {
+        table.className = className;
+      }
+
+      const thead = document.createElement("thead");
+      const headRow = document.createElement("tr");
+      const empty = document.createElement("th");
+      empty.textContent = "";
+      headRow.appendChild(empty);
+
+      for (const day of DAYS) {
+        const th = document.createElement("th");
+        th.textContent = day;
+        headRow.appendChild(th);
+      }
+      thead.appendChild(headRow);
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+      for (const state of STATES) {
+        const row = document.createElement("tr");
+        const label = document.createElement("td");
+        label.textContent = state;
+        label.className = "row-label";
+        row.appendChild(label);
+
+        for (const day of DAYS) {
+          const td = document.createElement("td");
+          const status = matrix[day][state];
+
+          if (status === "required") {
+            td.className = "cell-required";
+            td.textContent = "X";
+          } else if (status === "forbidden") {
+            td.className = "cell-forbidden";
+            td.textContent = "-";
+          } else {
+            td.className = "cell-allowed";
+            td.textContent = ".";
+          }
+          row.appendChild(td);
         }
+        tbody.appendChild(row);
+      }
+      table.appendChild(tbody);
+      return table;
+    }
 
-        function renderToggles() {
-            const container = document.getElementById('element-toggles');
-            container.innerHTML = '';
-            for (let i = 1; i <= n; i++) {
-                const btn = document.createElement('button');
-                btn.textContent = i;
-                btn.className = `w-10 h-10 rounded-lg font-bold border-2 transition-all 
-                    ${currentSelection.has(i) ? 'bg-indigo-600 border-indigo-700 text-white' : 'bg-white border-slate-200 text-slate-600 hover:border-indigo-300'}`;
-                
-                btn.onclick = () => {
-                    if (currentSelection.has(i)) currentSelection.delete(i);
-                    else currentSelection.add(i);
-                    renderToggles();
-                };
-                container.appendChild(btn);
-            }
+    function countMatrix(matrix) {
+      let total = 1;
+      for (const day of DAYS) {
+        let allowedCount = 0;
+        for (const state of STATES) {
+          if (matrix[day][state] !== "forbidden") {
+            allowedCount += 1;
+          }
         }
+        total *= allowedCount;
+      }
+      return total;
+    }
 
-        function addGenerator() {
-            if (currentSelection.size === 0) return;
-            const newGen = Array.from(currentSelection).sort((a,b) => a-b);
-            generators.push(newGen);
-            currentSelection.clear();
-            renderToggles();
-            renderGenerators();
-            clearOutputs();
+    function intersectionCount(matrixA, matrixB) {
+      let total = 1;
+      for (const day of DAYS) {
+        let commonAllowed = 0;
+        for (const state of STATES) {
+          const allowedA = matrixA[day][state] !== "forbidden";
+          const allowedB = matrixB[day][state] !== "forbidden";
+          if (allowedA && allowedB) {
+            commonAllowed += 1;
+          }
         }
+        total *= commonAllowed;
+      }
+      return total;
+    }
 
-        function removeGenerator(index) {
-            generators.splice(index, 1);
-            renderGenerators();
-            clearOutputs();
+    function formatPercent(value) {
+      return (100 * value / OMEGA).toFixed(2) + "%";
+    }
+
+    function makeA1() {
+      const m = createAllAllowedMatrix();
+      requireState(m, "Mon", "S");
+      return m;
+    }
+
+    function makeA2() {
+      const m = createAllAllowedMatrix();
+      requireState(m, "Sat", "R");
+      requireState(m, "Sun", "R");
+      return m;
+    }
+
+    function makeA3_1() {
+      const m = createAllAllowedMatrix();
+      requireState(m, "Wed", "R");
+      return m;
+    }
+
+    function makeA3_2() {
+      const m = createAllAllowedMatrix();
+      requireState(m, "Fri", "R");
+      return m;
+    }
+
+    function makeA4() {
+      const m = createAllAllowedMatrix();
+      for (const day of DAYS) {
+        allowOnly(m, day, ["S", "C"]);
+      }
+      return m;
+    }
+
+    function makeA5_1() {
+      const m = createAllAllowedMatrix();
+      requireState(m, "Thu", "C");
+      return m;
+    }
+
+    function makeA5_2() {
+      const m = createAllAllowedMatrix();
+      requireState(m, "Thu", "R");
+      return m;
+    }
+
+    function makeB1() {
+      const m = createAllAllowedMatrix();
+      requireState(m, "Sat", "S");
+      requireState(m, "Sun", "S");
+      return m;
+    }
+
+    function makeB2() {
+      const m = createAllAllowedMatrix();
+      for (const day of DAYS) {
+        allowOnly(m, day, ["S", "C"]);
+      }
+      return m;
+    }
+
+    const EVENTS = {
+      A: [
+        {
+          id: "A1",
+          label: "A1 - Monday is sunny",
+          type: "single",
+          build: makeA1,
+          meaning: "Monday must be sunny. The other six days are unconstrained.",
+          formal: "A = {omega : omega(Mon) = S}",
+          complement: "Complement: Monday is not sunny."
+        },
+        {
+          id: "A2",
+          label: "A2 - Weekend (Sat, Sun) is rainy",
+          type: "single",
+          build: makeA2,
+          meaning: "Saturday and Sunday must both be rainy.",
+          formal: "A = {omega : omega(Sat) = R and omega(Sun) = R}",
+          complement: "Complement: At least one weekend day is not rainy."
+        },
+        {
+          id: "A3",
+          label: "A3 - It rains on Wednesday or Friday",
+          type: "union",
+          buildLeft: makeA3_1,
+          buildRight: makeA3_2,
+          leftLabel: "A1: Wednesday is rainy",
+          rightLabel: "A2: Friday is rainy",
+          meaning: "Disjunction event: at least one of Wednesday, Friday is rainy.",
+          formal: "A = A1 union A2, where A1={omega(Wed)=R}, A2={omega(Fri)=R}",
+          complement: "Complement: neither Wednesday nor Friday is rainy."
+        },
+        {
+          id: "A4",
+          label: "A4 - No rainy day during the week",
+          type: "single",
+          build: makeA4,
+          meaning: "Every day is either sunny or cloudy, never rainy.",
+          formal: "A = {omega : omega(d) in {S,C} for all days d}",
+          complement: "Complement: there is at least one rainy day."
+        },
+        {
+          id: "A5",
+          label: "A5 - Thursday is not sunny",
+          type: "union",
+          buildLeft: makeA5_1,
+          buildRight: makeA5_2,
+          leftLabel: "A1: Thursday is cloudy",
+          rightLabel: "A2: Thursday is rainy",
+          meaning: "Thursday is either cloudy or rainy.",
+          formal: "A = {omega(Thu)=C} union {omega(Thu)=R}",
+          complement: "Complement: Thursday is sunny."
         }
-
-        function clearGenerators() {
-            generators = [];
-            currentSelection.clear();
-            renderGenerators();
-            clearOutputs();
+      ],
+      B: [
+        {
+          id: "B1",
+          label: "B1 - Case 1 interpretation",
+          type: "single",
+          build: makeB1,
+          meaning: "Saturday and Sunday are sunny; weekdays are unconstrained.",
+          formal: "A = {omega : omega(Sat)=S and omega(Sun)=S}",
+          complement: "Complement: at least one weekend day is not sunny."
+        },
+        {
+          id: "B2",
+          label: "B2 - Case 2 interpretation",
+          type: "single",
+          build: makeB2,
+          meaning: "No rainy day in the week. Each day may be sunny or cloudy.",
+          formal: "A = {omega : omega(d) != R for all days d}",
+          complement: "Complement: at least one rainy day occurs."
         }
+      ]
+    };
 
-        function renderGenerators() {
-            const container = document.getElementById('generator-list');
-            container.innerHTML = '';
-            if (generators.length === 0) {
-                container.innerHTML = '<p class="text-[10px] text-slate-400 italic">No sets defined.</p>';
-                return;
-            }
-            generators.forEach((g, idx) => {
-                const div = document.createElement('div');
-                div.className = "flex items-center justify-between p-3 bg-white rounded-xl border border-slate-100 text-sm shadow-sm";
-                div.innerHTML = `
-                    <span class="font-serif italic font-bold text-slate-700">G<sub>${idx+1}</sub> = { ${g.join(', ')} }</span>
-                    <button onclick="removeGenerator(${idx})" class="text-slate-300 hover:text-red-500 px-2 font-bold">&times;</button>
-                `;
-                container.appendChild(div);
-            });
-        }
+    const partSelect = document.getElementById("partSelect");
+    const itemSelect = document.getElementById("itemSelect");
+    const applyBtn = document.getElementById("applyBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const interpretBtn = document.getElementById("interpretBtn");
+    const showUnionBoth = document.getElementById("showUnionBoth");
+    const showComplement = document.getElementById("showComplement");
 
-        function calculateAtoms() {
-            const atomMap = new Map();
-            for (let i = 1; i <= n; i++) {
-                let signature = "";
-                generators.forEach(g => {
-                    signature += g.includes(i) ? "1" : "0";
-                });
-                if (!atomMap.has(signature)) atomMap.set(signature, []);
-                atomMap.get(signature).push(i);
-            }
-            return Array.from(atomMap.values()).sort((a,b) => a[0] - b[0]);
-        }
+    const singleMatrixContainer = document.getElementById("singleMatrixContainer");
+    const unionContainer = document.getElementById("unionContainer");
+    const resultBox = document.getElementById("resultBox");
+    const eventId = document.getElementById("eventId");
 
-        function generateSigma() {
-            const display = document.getElementById('sigma-display');
-            display.innerHTML = '<div class="col-span-full py-12 text-center text-indigo-500 font-bold generating">Performing closure operations...</div>';
+    let currentEvent = null;
 
-            setTimeout(() => {
-                const localAtoms = calculateAtoms();
-                const k = localAtoms.length;
-                const totalF = Math.pow(2, k);
-                const totalP = Math.pow(2, n);
-                
-                sigmaAlgebra = [];
-                const sigmaKeys = new Set();
+    function getCurrentEvent() {
+      const part = partSelect.value;
+      const idx = Number(itemSelect.value);
+      return EVENTS[part][idx];
+    }
 
-                for (let i = 0; i < totalF; i++) {
-                    let currentSet = [];
-                    for (let bit = 0; bit < k; bit++) {
-                        if ((i >> bit) & 1) currentSet = currentSet.concat(localAtoms[bit]);
-                    }
-                    currentSet.sort((a,b) => a-b);
-                    sigmaAlgebra.push(currentSet);
-                    sigmaKeys.add(JSON.stringify(currentSet));
-                }
+    function fillItemOptions() {
+      const part = partSelect.value;
+      const list = EVENTS[part];
+      itemSelect.innerHTML = "";
+      list.forEach((item, idx) => {
+        const option = document.createElement("option");
+        option.value = String(idx);
+        option.textContent = item.label;
+        itemSelect.appendChild(option);
+      });
+    }
 
-                sigmaAlgebra.sort((a,b) => a.length - b.length || a[0] - b[0]);
-                renderSigma();
-                
-                // Analysis of differences
-                const missing = [];
-                if (totalF < totalP) {
-                    // Check singletons as simplest examples of missing elements
-                    for (let i = 1; i <= n; i++) {
-                        const set = [i];
-                        if (!sigmaKeys.has(JSON.stringify(set))) missing.push(set);
-                    }
-                }
+    function renderSingleEvent(eventObj) {
+      const matrix = eventObj.build();
+      singleMatrixContainer.innerHTML = "";
+      singleMatrixContainer.appendChild(renderMatrix(matrix));
 
-                updateStats(totalF, totalP);
-                renderMissing(missing);
-            }, 300);
-        }
+      unionContainer.hidden = true;
+      unionContainer.innerHTML = "";
 
-        function updateStats(sizeF, sizeP) {
-            const container = document.getElementById('completeness-stats');
-            const ratio = ((sizeF / sizeP) * 100).toFixed(1);
-            const isFull = sizeF === sizeP;
+      const count = countMatrix(matrix);
+      const lines = [
+        "<div><strong>Meaning:</strong> " + eventObj.meaning + "</div>",
+        "<div><strong>Formal:</strong> " + eventObj.formal + "</div>",
+        "<div><strong>Count:</strong> " + count + "</div>",
+        "<div><strong>Share of Omega:</strong> " + formatPercent(count) + "</div>"
+      ];
 
-            container.innerHTML = `
-                <div class="flex justify-between items-end mb-2">
-                    <span class="text-xs font-bold text-slate-500 uppercase">P(&Omega;) Coverage</span>
-                    <span class="text-lg font-serif font-bold ${isFull ? 'text-emerald-600' : 'text-indigo-600'}">${ratio}%</span>
-                </div>
-                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden border border-slate-200">
-                    <div class="h-full ${isFull ? 'bg-emerald-500' : 'bg-indigo-500'} transition-all duration-700" style="width: ${ratio}%"></div>
-                </div>
-                <div class="flex justify-between text-[10px] font-mono mt-2 text-slate-400">
-                    <span>|F| = ${sizeF}</span>
-                    <span>|P(&Omega;)| = ${sizeP}</span>
-                </div>
-            `;
-            document.getElementById('f-size-info').textContent = `Elements count |F| = ${sizeF}`;
-        }
+      if (showComplement.checked) {
+        lines.push("<div><strong>Complement:</strong> " + eventObj.complement + "</div>");
+      }
+      resultBox.innerHTML = lines.join("");
+    }
 
-        function renderSigma() {
-            const container = document.getElementById('sigma-display');
-            container.innerHTML = '';
-            sigmaAlgebra.forEach((set, idx) => {
-                const div = document.createElement('div');
-                div.className = "set-card p-4 bg-white border border-slate-200 rounded-xl text-xs font-mono shadow-sm flex flex-col justify-center min-h-[60px]";
-                let content = set.length === 0 ? "∅" : `{ ${set.join(', ')} }`;
-                if (set.length === n) content = "Ω";
-                div.innerHTML = `<span class="text-[9px] text-slate-400 mb-1 uppercase">Element ${idx+1}</span><span class="font-bold text-slate-800">${content}</span>`;
-                container.appendChild(div);
-            });
-        }
+    function renderUnionEvent(eventObj) {
+      const left = eventObj.buildLeft();
+      const right = eventObj.buildRight();
 
-        function renderMissing(missing) {
-            const section = document.getElementById('missing-section');
-            const container = document.getElementById('missing-display');
-            container.innerHTML = '';
+      const leftCount = countMatrix(left);
+      const rightCount = countMatrix(right);
+      const inter = intersectionCount(left, right);
+      const unionCount = leftCount + rightCount - inter;
 
-            if (missing.length === 0) {
-                section.classList.add('hidden');
-                return;
-            }
+      if (showUnionBoth.checked) {
+        unionContainer.hidden = false;
+        unionContainer.innerHTML = "";
 
-            section.classList.remove('hidden');
-            missing.forEach(set => {
-                const div = document.createElement('div');
-                div.className = "p-3 bg-red-50 border border-red-100 rounded-lg text-[10px] font-mono text-red-400 flex items-center justify-center text-center";
-                div.textContent = `{ ${set.join(', ')} }`;
-                container.appendChild(div);
-            });
-            
-            if (missing.length >= 12) {
-                const more = document.createElement('div');
-                more.className = "col-span-full text-center text-[10px] text-slate-400 italic mt-2";
-                more.textContent = "...and other subset combinations.";
-                container.appendChild(more);
-            }
-        }
+        const card1 = document.createElement("div");
+        card1.className = "union-card";
+        card1.innerHTML = '<div class="union-title">' + eventObj.leftLabel + "</div>";
+        const wrap1 = document.createElement("div");
+        wrap1.className = "matrix-wrap mini";
+        wrap1.appendChild(renderMatrix(left));
+        card1.appendChild(wrap1);
 
-        initOmega();
-    </script>
+        const card2 = document.createElement("div");
+        card2.className = "union-card";
+        card2.innerHTML = '<div class="union-title">' + eventObj.rightLabel + "</div>";
+        const wrap2 = document.createElement("div");
+        wrap2.className = "matrix-wrap mini";
+        wrap2.appendChild(renderMatrix(right));
+        card2.appendChild(wrap2);
+
+        unionContainer.appendChild(card1);
+        unionContainer.appendChild(card2);
+      } else {
+        unionContainer.hidden = true;
+        unionContainer.innerHTML = "";
+      }
+
+      // Show one matrix as a representative view while union details are presented below.
+      singleMatrixContainer.innerHTML = "";
+      singleMatrixContainer.appendChild(renderMatrix(left));
+
+      const lines = [
+        "<div><strong>Meaning:</strong> " + eventObj.meaning + "</div>",
+        "<div><strong>Formal:</strong> " + eventObj.formal + "</div>",
+        "<div><strong>Count (Inclusion-Exclusion):</strong> " + leftCount + " + " + rightCount + " - " + inter + " = " + unionCount + "</div>",
+        "<div><strong>Share of Omega:</strong> " + formatPercent(unionCount) + "</div>"
+      ];
+
+      if (showComplement.checked) {
+        lines.push("<div><strong>Complement:</strong> " + eventObj.complement + "</div>");
+      }
+      resultBox.innerHTML = lines.join("");
+    }
+
+    function applySelection() {
+      currentEvent = getCurrentEvent();
+      eventId.textContent = "Event: " + currentEvent.id;
+      if (currentEvent.type === "single") {
+        renderSingleEvent(currentEvent);
+      } else {
+        renderUnionEvent(currentEvent);
+      }
+    }
+
+    function interpretSelection() {
+      if (!currentEvent) {
+        applySelection();
+        return;
+      }
+      const existing = resultBox.innerHTML;
+      const note = '<div><strong>Interpretation note:</strong> The table represents a set of outcomes (an event), not one single weekly outcome.</div>';
+      if (!existing.includes("Interpretation note:")) {
+        resultBox.innerHTML = existing + note;
+      }
+    }
+
+    function resetView() {
+      currentEvent = null;
+      eventId.textContent = "Event: -";
+      singleMatrixContainer.innerHTML = "";
+      singleMatrixContainer.appendChild(renderMatrix(createAllAllowedMatrix()));
+      unionContainer.hidden = true;
+      unionContainer.innerHTML = "";
+      resultBox.innerHTML = "<div><strong>Meaning:</strong> Neutral baseline shown. Press Apply for a selected statement/case.</div><div><strong>Count:</strong> 2187</div><div><strong>Share of Omega:</strong> 100.00%</div>";
+    }
+
+    partSelect.addEventListener("change", () => {
+      fillItemOptions();
+      applySelection();
+    });
+    itemSelect.addEventListener("change", applySelection);
+    applyBtn.addEventListener("click", applySelection);
+    interpretBtn.addEventListener("click", interpretSelection);
+    resetBtn.addEventListener("click", resetView);
+    showUnionBoth.addEventListener("change", () => {
+      if (currentEvent && currentEvent.type === "union") {
+        renderUnionEvent(currentEvent);
+      }
+    });
+    showComplement.addEventListener("change", () => {
+      if (currentEvent) {
+        applySelection();
+      }
+    });
+
+    fillItemOptions();
+    resetView();
+  </script>
 </body>
 </html>
