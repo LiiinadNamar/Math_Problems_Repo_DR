@@ -80,7 +80,7 @@ plugins:
                         - 4. Discovery Formalism Sol:
                           - 'Problem 1': '4_Metody_probabilistyczne/basic/solution_04_/solution_01.md'
                           - 'Problem 2': '4_Metody_probabilistyczne/basic/solution_04_/solution_02.md'
-                          - 'Problem 3': '4_Metody_probabilistyczne/basic/solution_04_/solution_03.md'
+                          - 'Problem 3': '4_Metody_probabilistyczne/basic/solution_04_/4_sol_prob_03.md'
                           - 'Problem 4': '4_Metody_probabilistyczne/basic/solution_04_/solution_04.md'
                     - Advanced:
                         - '1. Events & Probability': '4_Metody_probabilistyczne/advanced/01_events_and_probability.md'
