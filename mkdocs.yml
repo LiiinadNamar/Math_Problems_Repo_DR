@@ -42,6 +42,7 @@ plugins:
                         - '1. Events & Probability': '4_Metody_probabilistyczne/basic/01_events_and_probability.md'
                         - '2. Combinatorics': '4_Metody_probabilistyczne/basic/02_combinatorics.md'
                         - '3. Probability Distributions': '4_Metody_probabilistyczne/basic/03_probability_distributions.md'
+                        - '4. Discovery Formalism': '4_Metody_probabilistyczne/basic/04_discovery_formalism.md'
                     - Solutions Basic:
                         - 1. Events & Probability Sol: 
                             - 'Problem 1': '4_Metody_probabilistyczne/basic/solution_01_events_and_probability/sol_prob_01.md'
@@ -76,6 +77,11 @@ plugins:
                             - 'Problem 8': '4_Metody_probabilistyczne/basic/solution_03_/solution_08.md'
                             - 'Problem 9': '4_Metody_probabilistyczne/basic/solution_03_/solution_09.md'
                             - 'Problem 10': '4_Metody_probabilistyczne/basic/solution_03_/solution_10.md'
+                        - 4. Discovery Formalism Sol:
+                          - 'Problem 1': '4_Metody_probabilistyczne/basic/solution_04_/solution_01.md'
+                          - 'Problem 2': '4_Metody_probabilistyczne/basic/solution_04_/solution_02.md'
+                          - 'Problem 3': '4_Metody_probabilistyczne/basic/solution_04_/solution_03.md'
+                          - 'Problem 4': '4_Metody_probabilistyczne/basic/solution_04_/solution_04.md'
                     - Advanced:
                         - '1. Events & Probability': '4_Metody_probabilistyczne/advanced/01_events_and_probability.md'
                         - '2. Random Variables': '4_Metody_probabilistyczne/advanced/02_random_variables.md'
@@ -94,3 +100,4 @@ plugins:
                     - 'Lab 1': 'anim/4_Metody_probalistyczne/laboratory_1.html'
                     - 'Lab 2': 'anim/4_Metody_probalistyczne/laboratory_2.html'
                     - 'Lab 3': 'anim/4_Metody_probalistyczne/laboratory_3.html'
+                    - 'Lab 4': 'anim/prob04_task03_visualization.html'
