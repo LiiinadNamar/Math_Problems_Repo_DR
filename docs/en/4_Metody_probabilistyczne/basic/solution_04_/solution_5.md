@@ -2,13 +2,9 @@
 
 ## What This Problem Is Really About
 
-Before presenting any calculations, it is essential to understand the purpose of this problem. It is not an arithmetic exercise. Its goal is to trace the path from a concrete, real experiment — throwing a die 1000 times and recording results — to the abstract mathematical concept of probability.
+The big question is: Where does probability actually come from?
 
-The central question is: **where does probability come from?**
-
-The answer this problem develops is the following. When we perform the same random experiment many times, the proportion of times each event occurs — its observed frequency — turns out to behave in a very structured, regular way. That structure does not depend on the specific numbers recorded in this particular experiment. It would hold in any repetition of this experiment, and it holds for any random experiment at all. Probability is the mathematical abstraction of that structure: it is a function that assigns numbers to events while preserving exactly the regularities we observe in frequencies.
-
-This problem works through those regularities one by one, making each one explicit and explaining why it holds. The goal is not to compute — it is to understand.
+It doesn’t just appear out of nowhere. When you repeat the same action many times, the chaos of individual results starts to form a predictable pattern. This pattern is the same for everyone, everywhere. Probability is simply the mathematical "blueprint" of that pattern. We are taking what we see in real life and turning it into a universal rulebook.
 
 ---
 
