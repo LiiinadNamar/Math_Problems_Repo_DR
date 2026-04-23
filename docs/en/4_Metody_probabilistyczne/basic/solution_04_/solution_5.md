@@ -413,13 +413,28 @@ The sample space $\Omega = \{1,2,3,4,5,6\}$ and the collection of all its subset
 
 At this level, there are no numbers. The structure is purely combinatorial and logical.
 
+By my own words: 
+At this level, there’s no magic and no math yet. This is just taking inventory.
+For example lets imagine you’re looking at a restaurant menu. The menu is your sample space (Ω). You haven’t ordered anything yet, but you know for a fact that this place only serves six dishes (labeled 1 through 6).
+
+Events are just "combo meals." For example, "anything vegetarian" or "even-numbered dishes."
+
+Logic works just like it does in real life: "I want 1 OR 2" is a Union (∪). "I want something that is BOTH spicy AND meat-based" is an Intersection (∩).
+
 ---
 
 **Level 2 — Observed frequencies from a real experiment**
 
-When the experiment is performed 1000 times, each event acquires a number: the proportion of throws in which it occurred. These numbers depend on the specific experiment — a different sequence of 1000 throws would give slightly different values.
+Now we start actually doing things. We roll the die 1000 times and write down what happens. This is like the stats after a football match.
+We see that the number 3 came up 181 times. These are "messy," real-world numbers. If you rolled the die another 1000 times, the numbers would change slightly.
 
-But regardless of the specific counts, the function $f$ always satisfies the same structural properties: non-negativity, normalization to 1, additivity for disjoint events. These are not statistical coincidences — they follow from the definition of $f$ and the logic of counting.
+But here’s the trick: no matter how much the numbers change, the rules of the game stay the same:
+
+You can’t score "negative" goals (frequency is never below 0).
+
+The total of all results always adds up to 100% (you definitely rolled something).
+
+If you want to know how many times you got "a 1 or a 2," you just add their individual scores. You can't count the same physical roll twice.
 
 ---
 
@@ -428,6 +443,11 @@ But regardless of the specific counts, the function $f$ always satisfies the sam
 Probability is a function $P$ defined on all events, satisfying the same properties that $f$ always has. It is not tied to any particular experiment. It describes what we expect in the long run — or what we believe before any experiment is performed.
 
 The movement from Level 2 to Level 3 is the movement from empirical regularity to mathematical axiom. The properties of $f$ that we verified in specific data become the axioms that $P$ must satisfy by definition. Probability theory then develops as the body of theorems that can be proved from those axioms alone.
+
+In my own words: 
+We take the rules from Level 2 (which always work) and "detach" them from any specific experiment.
+
+Probability is the "perfect version" of frequency. We say: "It doesn't matter exactly how many times we rolled a 3 today. We are going to create a mathematical model (P) that acts exactly how a frequency would act if we rolled the die forever."
 
 **The path of this problem:**
 
