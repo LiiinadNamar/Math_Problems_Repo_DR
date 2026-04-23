@@ -1,31 +1,37 @@
 # Problem 6 — Final Discussion: The Axiomatic Point of View
 
-## Problem Statement
+## What This Problem Is Really About
 
-Using everything developed in the previous problems, write a short discussion of the axiomatic formulation of probability. State and comment on the Kolmogorov axioms. Explain which features were already suggested by earlier work with events and observed frequencies, and indicate clearly what goes beyond those finite considerations. In particular, discuss why non-negativity, normalization, and finite additivity appear naturally, and why countable additivity is a more subtle principle not directly obtained from finite experiments.
+Problem 6 is the culmination of the entire problem set. Its purpose is not to state the Kolmogorov axioms and verify them — it is to explain **why** those axioms take precisely the form they do, where they come from, what they capture, and what goes beyond our earlier experience.
+
+The central claim of this discussion is the following: two of the three Kolmogorov axioms — non-negativity and normalization — are immediately visible in observed frequencies and require almost no conceptual work beyond what we did in Problem 5. The finite part of the third axiom — additivity for disjoint events — is also suggested by frequencies, as we saw in detail. But the full third axiom — **countable additivity** — is a genuinely new postulate that goes beyond anything finite experiments can suggest, and understanding why it is needed, and what it does for the theory, is the deepest point in this discussion.
 
 ---
 
-## Definitions / Theory
+## The Setting: From Finite to General
 
-### The Setting: $\sigma$-algebra and Probability Space
+In Problems 1–5, the sample space was always finite: a coin, a die, a week of weather. Every subset of $\Omega$ was automatically an event, and all our reasoning stayed within the finite.
 
-In the finite setting of Problems 1–5, every subset of $\Omega$ was automatically an event. When $\Omega$ is infinite (or uncountable, as in the Buffon needle experiment), not every subset can be assigned a probability in a consistent way. This technical difficulty requires restricting attention to a collection $\mathcal{F}$ of "measurable" subsets.
+When we move to general probability theory, the sample space may be infinite — even uncountably infinite, as in the Buffon needle experiment where outcomes are pairs of real numbers. In such settings, two complications arise.
 
-A **$\sigma$-algebra** on $\Omega$ is a collection $\mathcal{F}$ of subsets of $\Omega$ satisfying:
+**First complication — not all subsets can be events.** On uncountable sample spaces, it is mathematically impossible to assign probabilities consistently to every subset. The solution is to restrict attention to a specific collection $\mathcal{F}$ of "measurable" subsets, called a **$\sigma$-algebra**.
+
+**Definition:** A **$\sigma$-algebra** on $\Omega$ is a collection $\mathcal{F}$ of subsets of $\Omega$ satisfying:
 1. $\Omega \in \mathcal{F}$
-2. If $A \in \mathcal{F}$, then $A^c \in \mathcal{F}$
-3. If $A_1, A_2, A_3, \ldots \in \mathcal{F}$, then $\bigcup_{n=1}^{\infty} A_n \in \mathcal{F}$
+2. If $A \in \mathcal{F}$, then $A^c \in \mathcal{F}$ (closed under complement)
+3. If $A_1, A_2, A_3, \ldots \in \mathcal{F}$, then $\bigcup_{n=1}^{\infty} A_n \in \mathcal{F}$ (closed under countable union)
 
 The triple $(\Omega, \mathcal{F}, P)$ is called a **probability space**.
 
-In the finite setting, $\mathcal{F} = 2^{\Omega}$ (all subsets) is always a $\sigma$-algebra, so this distinction did not arise in Problems 1–5.
+**In the finite setting:** $\mathcal{F} = 2^{\Omega}$ (all subsets) is automatically a $\sigma$-algebra. This is why the $\sigma$-algebra never appeared in Problems 1–5 — it was always trivially the full power set.
+
+**Second complication — finite additivity is not enough for infinite processes.** Even if we know how probabilities add for finite unions of disjoint events, this tells us nothing about infinite unions. A new axiom is needed.
 
 ---
 
-### The Kolmogorov Axioms (1933)
+## The Kolmogorov Axioms (1933)
 
-Let $(\Omega, \mathcal{F})$ be a measurable space. A **probability measure** is a function $P : \mathcal{F} \to \mathbb{R}$ satisfying the following three axioms.
+Let $(\Omega, \mathcal{F})$ be a measurable space. A function $P : \mathcal{F} \to \mathbb{R}$ is a **probability measure** if it satisfies:
 
 **Axiom 1 — Non-negativity:**
 
@@ -41,176 +47,188 @@ $$
 
 **Axiom 3 — Countable additivity ($\sigma$-additivity):**
 
-For any sequence of pairwise disjoint events $A_1, A_2, A_3, \ldots \in \mathcal{F}$:
+For any sequence $A_1, A_2, A_3, \ldots$ of pairwise disjoint events in $\mathcal{F}$:
 
 $$
-P\!\left(\bigcup_{n=1}^{\infty} A_n\right) = \sum_{n=1}^{\infty} P(A_n)
+P\!\left(\bigsqcup_{n=1}^{\infty} A_n\right) = \sum_{n=1}^{\infty} P(A_n)
 $$
 
-These three axioms are the entire foundation of modern probability theory. Every theorem in the subject — the law of large numbers, the central limit theorem, Bayes' theorem — is derived from these axioms alone, without additional assumptions.
+These three axioms are the complete foundation of probability theory. Every theorem — the law of large numbers, the central limit theorem, Bayes' theorem, the theory of stochastic processes — is derived from these three statements alone.
 
 ---
 
-## Discussion
+## Axiom 1 — Non-negativity: Transparent from Frequencies
 
-### Axiom 1 — Non-negativity: directly suggested by frequencies
-
-In Problem 5, the observed frequency was defined as:
+In Problem 5, the observed frequency was:
 
 $$
 f(A) = \frac{n(A)}{1000}
 $$
 
-where $n(A) \geq 0$ always, since it counts a number of throws. Division by 1000 preserves non-negativity. Therefore $f(A) \in [0, 1]$ for every event $A$.
+The count $n(A)$ is a non-negative integer (it counts throws), and 1000 is positive, so $f(A) \geq 0$ always. This is not a special property of our data — it holds for any experiment, with any number of repetitions, for any event.
 
-Non-negativity is not a deep conceptual constraint — it simply reflects the fact that frequencies are ratios of non-negative integers. Any function meant to model frequencies must inherit this property. Axiom 1 formalizes it as an unconditional requirement on the abstract function $P$.
+**Why Axiom 1 takes this form:** A function modelling frequencies must be non-negative, because frequencies are non-negative. There is no mystery here. The axiom simply elevates an obvious empirical fact to a formal requirement.
 
-The upper bound $P(A) \leq 1$ is not a separate axiom — it follows from Axioms 1 and 2. Since $A \subseteq \Omega$, we have $A$ and $A^c$ disjoint with $A \cup A^c = \Omega$, so by Axioms 2 and 3: $P(A) + P(A^c) = 1$, and by Axiom 1: $P(A^c) \geq 0$, giving $P(A) \leq 1$.
-
----
-
-### Axiom 2 — Normalization: directly suggested by frequencies
-
-In Part D of Problem 5, it was observed that:
-
-$$
-\sum_{k=1}^{6} f(\{k\}) = 1
-$$
-
-and more generally:
-
-$$
-\sum_{i} f(A_i) = 1
-$$
-
-for any partition of $\Omega$ into disjoint events. In particular, $f(\Omega) = 1$ always, because every throw produces some outcome in $\Omega$.
-
-Normalization is the mathematical expression of certainty: the experiment always produces some outcome, and the event "some outcome occurs" has probability 1. The choice of the value 1 (rather than 100, as in percentages) is a convention, but it is the natural one for a ratio.
-
-This axiom, like Axiom 1, is immediately transparent from the frequency interpretation.
+Note: the upper bound $P(A) \leq 1$ is not a separate axiom. It follows from Axioms 1 and 2: since $A$ and $A^c$ are disjoint with $A \cup A^c = \Omega$, Axiom 3 (applied finitely) gives $P(A) + P(A^c) = 1$, and Axiom 1 gives $P(A^c) \geq 0$, so $P(A) \leq 1$.
 
 ---
 
-### Finite Additivity: directly suggested by frequencies
+## Axiom 2 — Normalization: Transparent from Frequencies
 
-The crucial property discovered in Problem 5, Parts B and C, was:
+In Part D of Problem 5, we showed that for any partition of $\Omega$ into disjoint events — in particular the partition $\Omega$ itself — the frequencies sum to 1. The key argument:
 
-$$
-A \cap B = \emptyset \implies f(A \cup B) = f(A) + f(B)
-$$
-
-This held because of the simple counting argument: when $A$ and $B$ share no outcomes, no throw is counted in both $n(A)$ and $n(B)$, so $n(A \cup B) = n(A) + n(B)$.
-
-This property extends by induction to any finite collection of pairwise disjoint events:
+Every throw produces some outcome in $\Omega$. Therefore $n(\Omega) = 1000$ (the total number of throws), and:
 
 $$
-A_1, \ldots, A_m \text{ pairwise disjoint} \implies f\!\left(\bigcup_{i=1}^{m} A_i\right) = \sum_{i=1}^{m} f(A_i)
+f(\Omega) = \frac{1000}{1000} = 1
 $$
 
-**Finite additivity** is therefore a direct, elementary consequence of the definition of frequency and the logic of counting. It requires no further justification once one understands what $f(A)$ means.
+This would hold with any total number of throws, not just 1000. **The certain event always occurs.** Normalization to 1 (rather than some other constant) is the natural choice because frequencies are naturally ratios between 0 and 1.
+
+**Why Axiom 2 takes this form:** It formalizes the certainty of the whole sample space. In every throw, something happens — and the event "something happens" is $\Omega$. Its probability must be 1.
 
 ---
 
-### Countable Additivity: the subtle step beyond finite experience
+## Finite Additivity: Fully Explained by Counting
 
-Axiom 3 extends finite additivity to **infinite sequences** of disjoint events. This is the step that genuinely goes beyond what finite experiments can suggest.
+### The Key Observation from Problem 5
 
-**Why finite experiments cannot establish countable additivity:**
+The most important discovery in Part C of Problem 5 was this: **simple addition of frequencies works if and only if the events are disjoint.**
 
-In a finite experiment with 1000 throws, there are at most $2^6 = 64$ events. The statement "$f(A \cup B) = f(A) + f(B)$ for disjoint $A, B$" is verified in finitely many cases. But the statement:
-
-$$
-P\!\left(\bigcup_{n=1}^{\infty} A_n\right) = \sum_{n=1}^{\infty} P(A_n)
-$$
-
-involves an **infinite** union and an **infinite** series. No finite experiment can exhibit infinitely many disjoint events or verify an identity involving an infinite sum.
-
-**Why countable additivity is needed:**
-
-Consider the geometric distribution from Problem Set 3: the sample space is $\Omega = \{1, 2, 3, \ldots\}$, with $P(\{k\}) = (1-p)^{k-1}p$. The event $\Omega$ itself is an infinite disjoint union:
+When $A \cap B = \emptyset$: no throw produces a result in both $A$ and $B$ simultaneously. Therefore $n(A \cup B) = n(A) + n(B)$, and dividing by 1000:
 
 $$
-\Omega = \{1\} \cup \{2\} \cup \{3\} \cup \cdots
+f(A \cup B) = f(A) + f(B)
 $$
 
-For $P(\Omega) = 1$ to hold, we need:
+When $A \cap B \neq \emptyset$: throws whose result lies in $A \cap B$ are counted once in $n(A)$ and once in $n(B)$. In $n(A) + n(B)$ they appear twice, but in $n(A \cup B)$ they appear only once. The overcounting is $n(A \cap B)$, giving:
+
+$$
+f(A \cup B) = f(A) + f(B) - f(A \cap B)
+$$
+
+### Why This Works for Any Finite Collection
+
+By induction, the same argument extends to any finite collection of pairwise disjoint events $A_1, \ldots, A_m$:
+
+$$
+n(A_1 \cup \cdots \cup A_m) = n(A_1) + \cdots + n(A_m) \quad \text{(disjointness prevents double-counting)}
+$$
+
+$$
+\implies f(A_1 \cup \cdots \cup A_m) = f(A_1) + \cdots + f(A_m)
+$$
+
+**Finite additivity is not an assumption — it is a consequence of what counting means.** It holds because the definition of $n(A)$ is: count the throws whose result belongs to $A$. When events are disjoint, each throw is counted at most once.
+
+This is the origin of the additivity clause in Axiom 3 — for finite collections. But Axiom 3 says something more.
+
+---
+
+## Countable Additivity: The Genuinely New Postulate
+
+### What Finite Experiments Cannot Tell Us
+
+Axiom 3 applies to **infinite** sequences of disjoint events. Consider:
+
+$$
+P\!\left(\bigsqcup_{n=1}^{\infty} A_n\right) = \sum_{n=1}^{\infty} P(A_n)
+$$
+
+No finite experiment can verify this. In 1000 throws of a die, there are at most $2^6 = 64$ events. There is no way to exhibit an infinite collection of disjoint events in a finite experiment. The right-hand side is an infinite series — a limit — and limits simply do not appear in finite counting.
+
+A student who has only Problem 5 to go on cannot "see" countable additivity. They can see that addition works for two disjoint events, and for three, and for six. But the step to infinitely many disjoint events requires a new idea.
+
+### Why Countable Additivity Is Needed
+
+**Example 1 — Countably infinite sample spaces.** Consider the geometric distribution from Problem Set 3: $\Omega = \{1, 2, 3, \ldots\}$ with $P(\{k\}) = (1-p)^{k-1}p$.
+
+The event $\Omega$ itself is:
+
+$$
+\Omega = \{1\} \sqcup \{2\} \sqcup \{3\} \sqcup \cdots
+$$
+
+For $P(\Omega) = 1$ (Axiom 2) to be consistent with the individual probabilities, we need:
 
 $$
 \sum_{k=1}^{\infty} P(\{k\}) = \sum_{k=1}^{\infty} (1-p)^{k-1}p = 1
 $$
 
-This is precisely Axiom 3 applied to the partition $\{\{k\}\}_{k=1}^{\infty}$. Without Axiom 3, we cannot even verify that a probability distribution on an infinite sample space is well-defined.
+This is precisely Axiom 3 applied to the countably infinite partition $\{\{k\}\}_{k=1}^{\infty}$. Without it, we could not even define a probability distribution on $\Omega = \{1, 2, 3, \ldots\}$ in a consistent way.
 
-**Why finite additivity alone is insufficient:**
-
-There exist functions satisfying Axioms 1, 2, and finite additivity, but **not** countable additivity. Such functions are called finitely additive measures. They are mathematically consistent but they fail to produce a coherent theory of infinite processes. For instance, with only finite additivity one cannot prove:
+**Example 2 — Continuity of probability.** One of the most powerful consequences of countable additivity is the **continuity property**: if $A_1 \subseteq A_2 \subseteq A_3 \subseteq \cdots$ is an increasing sequence of events with union $A$, then:
 
 $$
-P\!\left(\bigcup_{n=1}^{\infty} A_n\right) = \lim_{m \to \infty} P\!\left(\bigcup_{n=1}^{m} A_n\right)
+P(A) = \lim_{n \to \infty} P(A_n)
 $$
 
-This property — **continuity of probability** — is essential for the analysis of sequences of events, limits of random variables, and the law of large numbers. It follows directly from countable additivity but not from finite additivity alone.
+This says that probability is continuous with respect to monotone limits of events. It is essential for the analysis of random variables, the law of large numbers, and the central limit theorem.
 
-**The conceptual leap:**
+**This property does not follow from finite additivity alone.** There exist finitely additive functions satisfying Axioms 1 and 2 and finite additivity, but failing this continuity property. Such functions produce incoherent answers when infinite processes are involved.
 
-Finite additivity says: the probability of a finite union of disjoint events equals the finite sum of their probabilities. This is observed in every experiment.
+### What Finite Additivity Fails to Capture
 
-Countable additivity says: the probability of a countably infinite union of disjoint events equals the limit of the partial sums. This is a **topological** property — it says that $P$ is continuous with respect to monotone limits of events. It is an assumption about the behavior of $P$ at infinity, and it cannot be verified empirically.
+Finite additivity says: the probability of a finite disjoint union equals the finite sum. Countable additivity says: probability is **continuous** — it respects the operation of taking limits of increasing or decreasing sequences of events.
 
-Kolmogorov's insight was to recognize that this assumption — while not derivable from finite experiments — is the precisely correct one for developing a rich and consistent mathematical theory. It is both the minimal assumption needed to make the theory work and the natural one from the perspective of measure theory.
+Continuity is a topological property. It describes behavior at infinity. It cannot be observed in any finite experiment, no matter how many throws are made. This is why countable additivity is not derivable from empirical observations — it is a mathematical assumption about how probability behaves in the limit.
+
+Kolmogorov's insight was to recognize this property as the precisely correct one. It is:
+- **minimal**: weaker assumptions produce a theory too limited for real analysis
+- **not arbitrary**: it is the natural condition for probability to be a measure in the sense of Lebesgue integration theory
+- **powerful**: from it, essentially all of modern probability follows
 
 ---
 
-### Summary: What Each Axiom Expresses
+## Summary: The Origin of Each Axiom
 
-| Axiom | Mathematical content | Origin |
-|---|---|---|
-| Non-negativity | $P(A) \geq 0$ | Frequencies are non-negative ratios |
-| Normalization | $P(\Omega) = 1$ | Every experiment produces some outcome |
-| Finite additivity | $P(A \cup B) = P(A) + P(B)$ for $A \cap B = \emptyset$ | Counting argument for disjoint events |
-| Countable additivity | Extension to infinite disjoint unions | Not derivable from finite experiments; required for continuity and infinite sample spaces |
-
----
-
-## Final Result
-
-The axiomatic formulation of probability, as given by Kolmogorov in 1933, is organized as follows. A probability space consists of a sample space $\Omega$, a $\sigma$-algebra $\mathcal{F}$ of events, and a function $P : \mathcal{F} \to [0,1]$ satisfying:
-
-$$
-P(A) \geq 0, \qquad P(\Omega) = 1, \qquad P\!\left(\bigsqcup_{n=1}^{\infty} A_n\right) = \sum_{n=1}^{\infty} P(A_n)
-$$
-
-Non-negativity and normalization are direct abstractions of properties already present in observed frequencies. Finite additivity is a consequence of the elementary counting argument: disjoint events contribute non-overlapping sets of throws. Countable additivity is the genuinely new postulate — it extends the framework to infinite processes and is required to make the theory mathematically complete.
+| Axiom | Mathematical content | Origin | What it captures |
+|---|---|---|---|
+| Non-negativity | $P(A) \geq 0$ | Frequencies are non-negative | Counts cannot be negative |
+| Normalization | $P(\Omega) = 1$ | Every throw lands in $\Omega$ | Certainty of the certain event |
+| Finite additivity | $P(A \cup B) = P(A) + P(B)$ for $A \cap B = \emptyset$ | Disjoint events do not overlap in counting | No double-counting |
+| Countable additivity | Extension to $\bigcup_{n=1}^{\infty} A_n$ | **Not derivable from finite experiments** | Continuity with respect to monotone limits |
 
 ---
 
-## Interpretation / Sanity Check
+## The Kolmogorov Axioms as the Formalization of Discovered Structure
 
-The following consequences of the axioms — all derived from the three axioms alone — match perfectly with what was observed empirically in Problem 5:
+The deepest message of this problem set is this:
 
-$$
-P(\emptyset) = 0 \quad \text{(impossible event)}
-$$
+The Kolmogorov axioms are not arbitrary rules invented from nothing. They are the precise mathematical formulation of regularities that we discovered concretely — in coins, dice, weather experiments, and 1000 die throws. Non-negativity, normalization, and additivity for disjoint events were all visible in the data of Problem 5. They were not assumed — they were observed, then understood, then abstracted.
 
-$$
-P(A^c) = 1 - P(A) \quad \text{(complement rule)}
-$$
+The one genuine conceptual addition — countable additivity — extends the framework to infinite processes and gives probability its full mathematical power. It is the step from finite empirical experience to infinite mathematical theory.
 
-$$
-P(A \cup B) = P(A) + P(B) - P(A \cap B) \quad \text{(inclusion-exclusion)}
-$$
-
-$$
-A \subseteq B \implies P(A) \leq P(B) \quad \text{(monotonicity)}
-$$
-
-Each of these was already visible in the frequency data. The axiomatic system is therefore not an arbitrary set of rules — it is a precise and minimal codification of the structure already present in the act of counting outcomes.
+This is what formalism means: it is not the replacement of understanding by symbol manipulation. It is the precise organization of understanding — the crystallization of observed regularities into a small number of axioms from which everything else can be derived.
 
 ---
 
-## Common Mistakes
+## Consequences of the Axioms
 
-- Treating the three Kolmogorov axioms as independent definitions of probability, rather than recognizing them as abstractions of concrete counting properties. The axioms should be understood as capturing, in minimal form, what frequencies already do.
-- Confusing finite additivity with countable additivity. These are genuinely different properties. Every countably additive measure is finitely additive (by taking $A_n = \emptyset$ for $n > m$), but the converse fails.
-- Believing that countable additivity "follows from" finite additivity by "taking limits." This is false. Finite additivity says nothing about limits. Countable additivity is a separate postulate that gives $P$ its topological (continuity) properties.
-- Thinking that the $\sigma$-algebra $\mathcal{F}$ is merely a technical nuisance. In fact, the need for $\mathcal{F}$ reflects a genuine mathematical fact: on uncountable sample spaces, not every subset can be assigned a probability in a way consistent with the axioms. The $\sigma$-algebra specifies exactly which events are "measurable."
+All of the following follow from Axioms 1, 2, 3 alone — no additional assumptions:
+
+$$
+P(\emptyset) = 0
+$$
+
+$$
+P(A^c) = 1 - P(A)
+$$
+
+$$
+P(A \cup B) = P(A) + P(B) - P(A \cap B)
+$$
+
+$$
+A \subseteq B \implies P(A) \leq P(B)
+$$
+
+$$
+A_n \nearrow A \implies P(A_n) \to P(A) \quad \text{(continuity from below)}
+$$
+
+$$
+A_n \searrow A \implies P(A_n) \to P(A) \quad \text{(continuity from above)}
+$$
+
+Each of these was suggested — at least in the finite case — by the empirical work of Problem 5. The axiomatic system captures them all in three lines.

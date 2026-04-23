@@ -1,8 +1,20 @@
 # Problem 5 — From Recorded Frequencies to Probability
 
-## Problem Statement
+## What This Problem Is Really About
 
-A student rolled a six-sided die 1000 times. The recorded counts of each outcome are:
+Before presenting any calculations, it is essential to understand the purpose of this problem. It is not an arithmetic exercise. Its goal is to trace the path from a concrete, real experiment — throwing a die 1000 times and recording results — to the abstract mathematical concept of probability.
+
+The central question is: **where does probability come from?**
+
+The answer this problem develops is the following. When we perform the same random experiment many times, the proportion of times each event occurs — its observed frequency — turns out to behave in a very structured, regular way. That structure does not depend on the specific numbers recorded in this particular experiment. It would hold in any repetition of this experiment, and it holds for any random experiment at all. Probability is the mathematical abstraction of that structure: it is a function that assigns numbers to events while preserving exactly the regularities we observe in frequencies.
+
+This problem works through those regularities one by one, making each one explicit and explaining why it holds. The goal is not to compute — it is to understand.
+
+---
+
+## The Setup
+
+A student rolled a fair six-sided die 1000 times. The results were recorded:
 
 $$
 n(\{1\}) = 168, \quad n(\{2\}) = 154, \quad n(\{3\}) = 181
@@ -12,49 +24,41 @@ $$
 n(\{4\}) = 167, \quad n(\{5\}) = 160, \quad n(\{6\}) = 170
 $$
 
-The sample space is $\Omega = \{1, 2, 3, 4, 5, 6\}$.
+The sample space of a single throw is:
 
-For any event $A \subseteq \Omega$, the **observed frequency** is defined as:
+$$
+\Omega = \{1, 2, 3, 4, 5, 6\}
+$$
+
+**What is $\Omega$?** It is the set of all possible outcomes of one throw. Before throwing the die, we do not know which outcome will occur — but we know it must be one of these six. The sample space is the complete list of possibilities.
+
+**What is an event?** An event is any subset $A \subseteq \Omega$. An event "occurs" in a given throw if the result of that throw belongs to $A$. For example, the event $\{2, 4, 6\}$ occurs whenever the result is even.
+
+For any event $A$, we define its **observed frequency**:
 
 $$
 f(A) = \frac{n(A)}{1000}
 $$
 
-where $n(A)$ is the number of throws in which the outcome belonged to $A$.
-
----
-
-## Definitions / Theory
-
-**Elementary outcome:** a single, indivisible result of the experiment — here, one of the six faces.
-
-**Event:** any subset $A \subseteq \Omega$. An event "occurs" in a given throw if the result of that throw is an element of $A$.
-
-**Observed frequency $f(A)$:** the proportion of throws in which event $A$ occurred. It is a number between 0 and 1. It measures how often $A$ was observed in this particular experiment of 1000 throws.
-
-**Key principle for disjoint events:** if $A \cap B = \emptyset$ (no outcome belongs to both), then every throw that contributes to $n(A)$ does not contribute to $n(B)$, and vice versa. Therefore:
-
-$$
-n(A \cup B) = n(A) + n(B) \implies f(A \cup B) = f(A) + f(B)
-$$
-
-**Why additivity fails for non-disjoint events:** if $A \cap B \neq \emptyset$, then throws whose outcome lies in $A \cap B$ are counted once in $n(A)$ and once in $n(B)$, so in the sum $n(A) + n(B)$ they appear **twice**. The correct formula is:
-
-$$
-n(A \cup B) = n(A) + n(B) - n(A \cap B)
-$$
-
-$$
-f(A \cup B) = f(A) + f(B) - f(A \cap B)
-$$
-
-This is the inclusion-exclusion principle for two sets.
+where $n(A)$ is the number of throws in which event $A$ occurred. The frequency $f(A)$ measures how often $A$ was observed in this experiment. It is a number between 0 and 1.
 
 ---
 
 ## Part A — From Elementary Outcomes to Events
 
-The count $n(A)$ for any event $A$ is the sum of counts of all elementary outcomes in $A$, because each throw produces exactly one outcome, and the outcome either belongs to $A$ or it does not.
+### The Core Idea
+
+The six elementary outcomes partition every throw: each of the 1000 throws produced exactly one result, and that result belongs to exactly one of the singletons $\{1\}, \{2\}, \ldots, \{6\}$.
+
+Now suppose we want $n(A)$ for some event $A$, say $A = \{2, 4, 6\}$. A throw contributes to $n(A)$ precisely when its result is 2, or 4, or 6. Since these are three distinct outcomes that cannot occur simultaneously in a single throw, the counts do not overlap:
+
+$$
+n(\{2, 4, 6\}) = n(\{2\}) + n(\{4\}) + n(\{6\})
+$$
+
+This is not a formula we impose — it follows from the meaning of "count." In each of the 1000 throws, the result was either 2 (counted in $n(\{2\})$), or 4 (counted in $n(\{4\})$), or 6 (counted in $n(\{6\})$), or something else (counted in none of them). No throw is counted twice.
+
+The general rule: **for any event $A$, we compute $n(A)$ by summing the counts of the elementary outcomes it contains.**
 
 $$
 n(A) = \sum_{k \in A} n(\{k\})
@@ -62,95 +66,91 @@ $$
 
 ---
 
-**Event $A = \{2, 4, 6\}$** — even results
+**Event $A = \{2, 4, 6\}$** — the result is even
+
+A throw contributes to $n(A)$ when it shows 2, 4, or 6. These three outcomes are disjoint — no throw can show two values simultaneously.
 
 $$
-n(A) = n(\{2\}) + n(\{4\}) + n(\{6\}) = 154 + 167 + 170 = 491
+n(A) = 154 + 167 + 170 = 491
 $$
 
 $$
 f(A) = \frac{491}{1000} = 0.491
 $$
 
----
-
-**Event $B = \{1, 2, 3\}$** — results at most 3
-
-$$
-n(B) = n(\{1\}) + n(\{2\}) + n(\{3\}) = 168 + 154 + 181 = 503
-$$
-
-$$
-f(B) = \frac{503}{1000} = 0.503
-$$
+In roughly $49.1\%$ of throws, the result was even. For a fair die the theoretical value would be $0.5$ — our result is close, as expected.
 
 ---
 
-**Event $C = \{5, 6\}$** — results at least 5
+**Event $B = \{1, 2, 3\}$** — the result is at most 3
 
 $$
-n(C) = n(\{5\}) + n(\{6\}) = 160 + 170 = 330
-$$
-
-$$
-f(C) = \frac{330}{1000} = 0.330
+n(B) = 168 + 154 + 181 = 503, \qquad f(B) = 0.503
 $$
 
 ---
 
-**Event $D = \{1, 3, 5\}$** — odd results
+**Event $C = \{5, 6\}$** — the result is 5 or 6
 
 $$
-n(D) = n(\{1\}) + n(\{3\}) + n(\{5\}) = 168 + 181 + 160 = 509
-$$
-
-$$
-f(D) = \frac{509}{1000} = 0.509
+n(C) = 160 + 170 = 330, \qquad f(C) = 0.330
 $$
 
 ---
 
-**Event $E = \{1, 2, 3, 4\}$** — results at most 4
+**Event $D = \{1, 3, 5\}$** — the result is odd
 
 $$
-n(E) = n(\{1\}) + n(\{2\}) + n(\{3\}) + n(\{4\}) = 168 + 154 + 181 + 167 = 670
+n(D) = 168 + 181 + 160 = 509, \qquad f(D) = 0.509
 $$
 
+---
+
+**Event $E = \{1, 2, 3, 4\}$** — the result is at most 4
+
 $$
-f(E) = \frac{670}{1000} = 0.670
+n(E) = 168 + 154 + 181 + 167 = 670, \qquad f(E) = 0.670
 $$
 
 ---
 
 ## Part B — How Frequencies Combine
 
-This part examines why certain equalities hold. Each equality is a consequence of the additivity of counts for disjoint sets.
+### What We Are Observing
+
+This part does not simply verify arithmetic equalities. It reveals that the function $f$ has a structural property: it behaves predictably under set union, provided the sets are disjoint. This observation is the key step toward understanding probability.
 
 ---
 
 **Equality 1:** $f(\{2,4,6\}) = f(\{2\}) + f(\{4\}) + f(\{6\})$
 
 $$
-f(\{2\}) + f(\{4\}) + f(\{6\}) = \frac{154}{1000} + \frac{167}{1000} + \frac{170}{1000} = \frac{491}{1000} = 0.491
+f(\{2\}) + f(\{4\}) + f(\{6\}) = \frac{154 + 167 + 170}{1000} = \frac{491}{1000} = f(\{2,4,6\}) \checkmark
 $$
 
-This equals $f(\{2,4,6\}) = 0.491$. $\checkmark$
+**Why does this hold?**
 
-**Why it holds:** the sets $\{2\}$, $\{4\}$, $\{6\}$ are pairwise disjoint — no element belongs to more than one of them. Therefore, no throw is counted twice. The count of the union is exactly the sum of counts.
+The three sets $\{2\}$, $\{4\}$, $\{6\}$ are pairwise disjoint — no element belongs to more than one of them. Therefore, no throw is counted in more than one of the three counts $n(\{2\})$, $n(\{4\})$, $n(\{6\})$. The total count of the union is exactly the sum of the individual counts. Dividing everything by 1000 gives the equality for frequencies.
+
+The equality holds not because of the specific numbers, but because of the logical structure: **disjoint events do not overlap, so their counts do not overlap.**
 
 ---
 
 **Equality 2:** $f(\{1,2,3,4\}) = f(\{1,2\}) + f(\{3,4\})$
 
 $$
-f(\{1,2\}) = \frac{168 + 154}{1000} = \frac{322}{1000}, \quad f(\{3,4\}) = \frac{181 + 167}{1000} = \frac{348}{1000}
+f(\{1,2\}) = \frac{168+154}{1000} = \frac{322}{1000}, \quad f(\{3,4\}) = \frac{181+167}{1000} = \frac{348}{1000}
 $$
 
 $$
-f(\{1,2\}) + f(\{3,4\}) = \frac{322 + 348}{1000} = \frac{670}{1000} = 0.670 = f(\{1,2,3,4\}) \checkmark
+f(\{1,2\}) + f(\{3,4\}) = \frac{670}{1000} = f(\{1,2,3,4\}) \checkmark
 $$
 
-**Why it holds:** $\{1,2\}$ and $\{3,4\}$ are disjoint and their union is $\{1,2,3,4\}$. This is simply a different way of partitioning the same set.
+**Why does this hold?**
+
+We have partitioned $\{1,2,3,4\}$ into two disjoint parts: $\{1,2\}$ and $\{3,4\}$. No throw contributes to both counts. The same disjointness argument applies.
+
+This illustrates an important point: the same set can be partitioned in many ways, and the frequency of the whole equals the sum of frequencies of the parts — as long as the parts do not overlap.
 
 ---
 
@@ -160,41 +160,65 @@ $$
 \frac{509}{1000} + \frac{491}{1000} = \frac{1000}{1000} = 1 \checkmark
 $$
 
-**Why it holds:** $\{1,3,5\}$ and $\{2,4,6\}$ are complementary — they are disjoint and their union is all of $\Omega$. Every throw produces exactly one of the six outcomes, and each outcome belongs to exactly one of these two sets. Therefore every throw contributes to exactly one of the two counts, and the total is 1000 out of 1000.
+**Why does this hold?**
+
+The events $\{1,3,5\}$ (odd outcomes) and $\{2,4,6\}$ (even outcomes) are complementary. They are disjoint, and together they cover all of $\Omega$. Every throw produces either an odd or an even result — never both, never neither.
+
+This means every one of the 1000 throws is counted in exactly one of the two counts. The total is 1000, and dividing by 1000 gives 1. This is not a coincidence specific to this data — it would hold in any experiment with any counts.
 
 ---
 
 **Equality 4:** $f(\{5,6\}) = 1 - f(\{1,2,3,4\})$
 
 $$
-1 - f(\{1,2,3,4\}) = 1 - 0.670 = 0.330 = f(\{5,6\}) \checkmark
+1 - 0.670 = 0.330 = f(\{5,6\}) \checkmark
 $$
 
-**Why it holds:** $\{5,6\}$ is the complement of $\{1,2,3,4\}$ in $\Omega$. Every throw either produces a result in $\{1,2,3,4\}$ or a result in $\{5,6\}$ — never both, never neither. Therefore $n(\{5,6\}) = 1000 - n(\{1,2,3,4\}) = 1000 - 670 = 330$.
+**Why does this hold?**
+
+$\{5,6\}$ is the complement of $\{1,2,3,4\}$ in $\Omega$. Every throw either shows a result in $\{1,2,3,4\}$ or a result in $\{5,6\}$ — exclusively and exhaustively. So:
+
+$$
+n(\{5,6\}) = 1000 - n(\{1,2,3,4\}) = 1000 - 670 = 330
+$$
+
+Dividing by 1000:
+
+$$
+f(\{5,6\}) = 1 - f(\{1,2,3,4\})
+$$
+
+This is the **complement rule**. It will become one of the standard consequences of the probability axioms.
 
 ---
 
 ## Part C — When Simple Addition Works and When It Fails
 
-**Sub-part 1:** Check $f(\{1,2\} \cup \{5,6\}) = f(\{1,2\}) + f(\{5,6\})$
+### The Most Important Conceptual Step
 
-$$
-n(\{1,2\}) = 168 + 154 = 322, \quad n(\{5,6\}) = 160 + 170 = 330
-$$
-
-$$
-n(\{1,2\} \cup \{5,6\}) = n(\{1,2,5,6\}) = 322 + 330 = 652
-$$
-
-$$
-f(\{1,2\}) + f(\{5,6\}) = \frac{322}{1000} + \frac{330}{1000} = \frac{652}{1000} \checkmark
-$$
-
-The equality holds because $\{1,2\} \cap \{5,6\} = \emptyset$ — the two events are disjoint.
+This part identifies the precise condition under which frequencies add simply. It is the most conceptually important part of Problem 5, because it reveals the exact reason why naive addition sometimes fails — and what the correct formula is.
 
 ---
 
-**Sub-part 2:** Compute $f(M)$, $f(N)$, $f(M \cup N)$, and $f(M) + f(N)$ for $M = \{1,2,3\}$, $N = \{3,4,5\}$
+**Sub-part 1:** $f(\{1,2\} \cup \{5,6\}) = f(\{1,2\}) + f(\{5,6\})$
+
+$$
+f(\{1,2\}) = \frac{322}{1000}, \quad f(\{5,6\}) = \frac{330}{1000}
+$$
+
+$$
+\{1,2\} \cap \{5,6\} = \emptyset
+$$
+
+Since the two sets are disjoint, no throw is counted in both:
+
+$$
+f(\{1,2,5,6\}) = \frac{652}{1000} = f(\{1,2\}) + f(\{5,6\}) \checkmark
+$$
+
+---
+
+**Sub-part 2:** The failing case — $M = \{1,2,3\}$, $N = \{3,4,5\}$
 
 $$
 n(M) = 168 + 154 + 181 = 503, \quad f(M) = 0.503
@@ -216,39 +240,54 @@ $$
 f(M) + f(N) = 0.503 + 0.508 = 1.011
 $$
 
+The sum exceeds 1. This is impossible for a frequency — no event can occur more than 100% of the time.
+
 ---
 
-**Sub-part 3:** Why $f(M \cup N) \neq f(M) + f(N)$
+**Sub-part 3:** Why does the equality fail?
 
-The sum $f(M) + f(N) = 1.011$ exceeds 1, which is already impossible for a frequency. The cause is clear: $M \cap N = \{3\}$.
+The cause is the intersection: $M \cap N = \{3\}$.
 
-In the sum $n(M) + n(N)$, the 181 throws that produced outcome 3 are counted **twice** — once because $3 \in M$, and once because $3 \in N$. But in $n(M \cup N)$, each throw is counted exactly once, regardless of how many of the events it satisfies.
+In the sum $n(M) + n(N)$, the 181 throws that produced outcome 3 are counted **twice**: once because $3 \in M$, and once because $3 \in N$. But in $n(M \cup N)$, each throw is counted exactly once.
 
-The correct formula is:
-
-$$
-n(M \cup N) = n(M) + n(N) - n(M \cap N)
-$$
+The error is precisely $n(\{3\}) = 181$:
 
 $$
-830 = 503 + 508 - 181 = 1011 - 181 = 830 \checkmark
+n(M) + n(N) - n(M \cap N) = 503 + 508 - 181 = 830 = n(M \cup N) \checkmark
 $$
 
 $$
 f(M \cup N) = f(M) + f(N) - f(M \cap N) = 0.503 + 0.508 - 0.181 = 0.830 \checkmark
 $$
 
+This is the **inclusion-exclusion principle** for two events. It is not a correction imposed from outside — it is a direct consequence of the meaning of counting.
+
 ---
 
-**Sub-part 4:** Which outcomes are counted twice?
+**Sub-part 4:** Identifying the double-counted outcomes
 
-The element counted twice is $3 \in M \cap N$. Its count $n(\{3\}) = 181$ appears in $n(M)$ and again in $n(N)$. Simple addition therefore overcounts by exactly $n(\{3\}) = 181$.
+The outcomes counted twice in $n(M) + n(N)$ are exactly the elements of $M \cap N = \{3\}$.
 
-**Summary:** simple addition $f(A) + f(B) = f(A \cup B)$ holds **if and only if** $A \cap B = \emptyset$. When events overlap, the overlapping outcomes are double-counted and the formula must be corrected by subtracting $f(A \cap B)$.
+More generally: the element $k$ is counted twice in $n(A) + n(B)$ if and only if $k \in A$ and $k \in B$, i.e., $k \in A \cap B$. The overcounting equals $n(A \cap B)$, and the correct formula subtracts it once.
+
+**Summary of Part C:**
+
+| Condition | Formula |
+|---|---|
+| $A \cap B = \emptyset$ | $f(A \cup B) = f(A) + f(B)$ |
+| $A \cap B \neq \emptyset$ | $f(A \cup B) = f(A) + f(B) - f(A \cap B)$ |
+
+Simple addition is a special case of inclusion-exclusion when the intersection is empty.
 
 ---
 
 ## Part D — Covering the Whole Sample Space
+
+### The Idea of a Partition
+
+A **partition** of $\Omega$ is a collection of pairwise disjoint events whose union is all of $\Omega$. Partitions matter because they decompose every experiment: each throw lands in exactly one piece.
+
+---
 
 **Sub-part 1:** Sum of all elementary frequencies
 
@@ -256,128 +295,144 @@ $$
 \sum_{k=1}^{6} f(\{k\}) = \frac{168 + 154 + 181 + 167 + 160 + 170}{1000} = \frac{1000}{1000} = 1
 $$
 
-**Sub-part 2:** Why the result must be exactly 1
+---
 
-Every throw produces exactly one outcome in $\Omega = \{1,2,3,4,5,6\}$. The six sets $\{1\}, \{2\}, \ldots, \{6\}$ are pairwise disjoint and their union is all of $\Omega$. Therefore every one of the 1000 throws is counted exactly once across the six counts. The total is 1000, and dividing by 1000 gives 1.
+**Sub-part 2:** Why the result must equal 1 — necessarily, not by coincidence
 
-This is not a coincidence — it is a direct consequence of the definition of $f$ and the fact that outcomes partition every throw.
+Every throw produces exactly one outcome. The six singletons $\{1\}, \ldots, \{6\}$ are pairwise disjoint and their union is $\Omega$. Therefore every throw contributes to exactly one count $n(\{k\})$. Adding all six counts gives the total number of throws:
+
+$$
+n(\{1\}) + n(\{2\}) + \cdots + n(\{6\}) = 1000
+$$
+
+Dividing by 1000:
+
+$$
+\sum_{k=1}^{6} f(\{k\}) = 1
+$$
+
+This equality does not depend on the specific values $168, 154, \ldots$. It would hold for any counts, in any repetition of any experiment. It is a structural fact about how $f$ is defined, not a property of these particular data.
 
 ---
 
-**Sub-part 3:** Partition into $\{1,2\}$, $\{3,4\}$, $\{5,6\}$
-
-$$
-f(\{1,2\}) = \frac{322}{1000}, \quad f(\{3,4\}) = \frac{348}{1000}, \quad f(\{5,6\}) = \frac{330}{1000}
-$$
+**Sub-part 3:** A different partition — $\{1,2\}$, $\{3,4\}$, $\{5,6\}$
 
 $$
 f(\{1,2\}) + f(\{3,4\}) + f(\{5,6\}) = \frac{322 + 348 + 330}{1000} = \frac{1000}{1000} = 1
 $$
 
+---
+
 **Sub-part 4:** Why this sum is also 1
 
-The three sets $\{1,2\}$, $\{3,4\}$, $\{5,6\}$ are pairwise disjoint and their union is $\Omega$. By the same reasoning as above, every throw is counted in exactly one of the three counts.
+The three sets $\{1,2\}$, $\{3,4\}$, $\{5,6\}$ are pairwise disjoint and their union is $\Omega$. The same argument applies: each throw falls into exactly one piece, so the total count across the three events is 1000.
 
 ---
 
-**Sub-part 5:** General statement
+**Sub-part 5:** General statement — the partition rule
 
-Let $A_1, A_2, \ldots, A_m$ be any collection of pairwise disjoint events whose union is all of $\Omega$:
-
-$$
-A_i \cap A_j = \emptyset \text{ for } i \neq j, \qquad A_1 \cup A_2 \cup \cdots \cup A_m = \Omega
-$$
-
-Then:
+Let $A_1, A_2, \ldots, A_m$ be any pairwise disjoint events with $A_1 \cup A_2 \cup \cdots \cup A_m = \Omega$. Then:
 
 $$
 f(A_1) + f(A_2) + \cdots + f(A_m) = 1
 $$
 
-**Justification:** since the $A_i$ are disjoint and cover $\Omega$, every throw produces an outcome that belongs to exactly one $A_i$. Therefore:
+**Proof:** since the $A_i$ cover $\Omega$ without overlap, each throw lands in exactly one $A_i$:
 
 $$
-n(A_1) + n(A_2) + \cdots + n(A_m) = 1000
+n(A_1) + \cdots + n(A_m) = 1000 \implies f(A_1) + \cdots + f(A_m) = 1
 $$
 
-Dividing both sides by 1000:
-
-$$
-f(A_1) + f(A_2) + \cdots + f(A_m) = 1
-$$
-
-This property is called **finite additivity on a partition of $\Omega$**.
+This property — sometimes called **finite additivity on a partition of $\Omega$** — is the empirical basis for normalization in probability theory.
 
 ---
 
 ## Part E — From Observed Frequency to Probability
 
-The preceding parts revealed several structural properties of the function $f$. These properties did not arise from the specific numbers recorded — they followed from the **logic of counting** alone. Any repeated experiment of this type would produce a function $f$ with these same properties.
+### The Decisive Conceptual Move
 
-This observation motivates the following definition.
+In Parts A–D, we worked with a specific experiment: 1000 throws with specific counts. The regularities we discovered — additivity for disjoint events, the complement rule, the partition rule — held for these data. But they would hold for any data from any similar experiment, because they follow from the logic of counting, not from the specific numbers.
 
-A **probability** on a finite sample space $\Omega$ is any function $P$ that assigns a real number $P(A)$ to every event $A \subseteq \Omega$, satisfying the following properties — each of which was already seen in the frequency data above.
+This suggests the following question: **can we define a mathematical object that captures these regularities without referring to any specific experiment?**
+
+The answer is yes. We define a **probability** $P$ as a function that assigns a number to every event $A \subseteq \Omega$, satisfying the properties that frequencies always have. Here is each property, with the justification that we have already built.
 
 ---
 
 **Property 1: $P(A) \in [0,1]$ for every event $A$**
 
-An observed frequency is a count divided by the total number of throws. A count is non-negative and cannot exceed 1000, so $f(A) \in [0,1]$ always. Any function meant to model frequencies must respect this constraint.
+A frequency is a count divided by 1000. Counts are non-negative and cannot exceed 1000, so $f(A) \in [0,1]$ always. Any abstract function modelling frequencies must inherit this constraint.
+
+This rules out negative probabilities and probabilities greater than 1 — not as arbitrary conventions, but as reflections of what frequencies actually do.
 
 ---
 
 **Property 2: $P(\emptyset) = 0$**
 
-The empty set $\emptyset$ contains no outcomes. No throw can produce a result belonging to $\emptyset$. Therefore $n(\emptyset) = 0$ and $f(\emptyset) = 0$. The impossible event never occurs.
+The empty set contains no outcomes. No throw can produce a result that belongs to $\emptyset$, so $n(\emptyset) = 0$ and $f(\emptyset) = 0$. The impossible event never occurs — in any experiment, with any counts.
 
 ---
 
 **Property 3: $P(\Omega) = 1$**
 
-Every throw produces some outcome in $\Omega$. Therefore $n(\Omega) = 1000$ and $f(\Omega) = 1$. The certain event always occurs. This was verified explicitly in Part D.
+Every throw produces some outcome in $\Omega$. Therefore $n(\Omega) = 1000$ and $f(\Omega) = 1$. This was the conclusion of Part D.
 
 ---
 
 **Property 4: For disjoint events, $P(A \cup B) = P(A) + P(B)$**
 
-This was the central observation of Parts B and C. When $A \cap B = \emptyset$, no throw is counted in both $n(A)$ and $n(B)$, so $n(A \cup B) = n(A) + n(B)$ and dividing by 1000 gives $f(A \cup B) = f(A) + f(B)$. When $A \cap B \neq \emptyset$, simple addition overcounts.
+This is the central regularity of Parts B and C. When $A \cap B = \emptyset$, no throw contributes to both $n(A)$ and $n(B)$, so:
+
+$$
+n(A \cup B) = n(A) + n(B) \implies f(A \cup B) = f(A) + f(B)
+$$
+
+When $A \cap B \neq \emptyset$, the formula fails and must be corrected. The additivity property holds precisely because disjointness prevents double-counting.
 
 ---
 
 **Property 5: $P(A^c) = 1 - P(A)$**
 
-$A$ and its complement $A^c$ are disjoint and their union is $\Omega$. By Properties 3 and 4:
-
-$$
-P(A) + P(A^c) = P(A \cup A^c) = P(\Omega) = 1 \implies P(A^c) = 1 - P(A)
-$$
-
-This was verified in Part B (Equality 3 and 4): $f(D) + f(A) = 1$, and $f(C) = 1 - f(E)$.
+This follows from Properties 3 and 4: $A$ and $A^c$ are disjoint with $A \cup A^c = \Omega$, so $P(A) + P(A^c) = P(\Omega) = 1$. It was verified empirically in Equalities 3 and 4 of Part B.
 
 ---
 
 ## Part F — Conclusion: Three Connected Levels
 
-The progression through this problem illustrates how mathematical abstraction is built from concrete experience.
+The work of this problem traces a path through three distinct levels of description. Understanding how they connect is the central conceptual goal of the entire problem set.
 
 ---
 
 **Level 1 — Elementary outcomes and events**
 
-The starting point is the sample space $\Omega = \{1,2,3,4,5,6\}$ and the collection of all its subsets. Events are sets of outcomes. Set operations — union, intersection, complement — correspond to logical operations on statements: "or," "and," "not." This is a purely combinatorial, logical structure with no numbers attached yet.
+The sample space $\Omega = \{1,2,3,4,5,6\}$ and the collection of all its subsets. Events are sets. Logical statements about the die result — "even," "at most 3," "odd" — are translated into subsets. Logical operations on statements correspond to set operations:
+
+- "or" $\longleftrightarrow$ union $\cup$
+- "and" $\longleftrightarrow$ intersection $\cap$
+- "not" $\longleftrightarrow$ complement $^c$
+
+At this level, there are no numbers. The structure is purely combinatorial and logical.
 
 ---
 
 **Level 2 — Observed frequencies from a real experiment**
 
-When the experiment is actually performed, each event acquires a number: the proportion of trials in which it occurred. These numbers are empirical — they depend on the specific sequence of 1000 throws. A different experiment would give slightly different numbers. Nevertheless, the numbers always satisfy certain structural properties: they lie in $[0,1]$, they add up correctly for disjoint events, they sum to 1 over any partition of $\Omega$. These properties are not statistical coincidences — they follow from the logic of counting and the definition of $f$.
+When the experiment is performed 1000 times, each event acquires a number: the proportion of throws in which it occurred. These numbers depend on the specific experiment — a different sequence of 1000 throws would give slightly different values.
+
+But regardless of the specific counts, the function $f$ always satisfies the same structural properties: non-negativity, normalization to 1, additivity for disjoint events. These are not statistical coincidences — they follow from the definition of $f$ and the logic of counting.
 
 ---
 
 **Level 3 — Probability as mathematical abstraction**
 
-Probability is a function $P$ defined on all events, satisfying the properties discovered at Level 2. It is an idealization: instead of recording what happened in a finite experiment, it describes what we expect to happen in the long run, or what we believe before any experiment is performed.
+Probability is a function $P$ defined on all events, satisfying the same properties that $f$ always has. It is not tied to any particular experiment. It describes what we expect in the long run — or what we believe before any experiment is performed.
 
-The connection between the three levels is this: observed frequencies motivate the definition of probability, and in a well-designed model the probabilities predict what frequencies will typically be observed in large experiments. The structural properties of $f$ — non-negativity, normalization, additivity for disjoint events — are elevated from observed regularities to axioms that any function called a probability must satisfy.
+The movement from Level 2 to Level 3 is the movement from empirical regularity to mathematical axiom. The properties of $f$ that we verified in specific data become the axioms that $P$ must satisfy by definition. Probability theory then develops as the body of theorems that can be proved from those axioms alone.
 
-The movement from Level 1 to Level 3 is the movement from concrete counting to abstract formalism. The definitions, axioms, and theorems of probability theory are not arbitrary rules; they are a precise mathematical rendering of the structure already present in the act of counting outcomes in repeated trials.
+**The path of this problem:**
+
+$$
+\text{concrete outcomes} \xrightarrow{\text{events are sets}} \text{logical structure} \xrightarrow{\text{1000 throws}} \text{observed frequencies} \xrightarrow{\text{abstraction}} \text{probability}
+$$
+
+This path — from the concrete to the abstract, from the empirical to the formal — is the birth of probability theory.
