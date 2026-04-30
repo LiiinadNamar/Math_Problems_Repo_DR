@@ -1,0 +1,493 @@
+
+<style>
+  .viz56 {
+    --vz-bg-main: linear-gradient(160deg, #f7f3eb 0%, #edf5ff 45%, #eefaf4 100%);
+    --vz-card: #ffffffd9;
+    --vz-stroke: #c9d6e7;
+    --vz-text: #162132;
+    --vz-muted: #4f6279;
+    --vz-shadow: 0 14px 40px rgba(14, 38, 66, .10);
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 18px;
+    border: 1px solid #d5e1ef;
+    background: var(--vz-bg-main);
+    box-shadow: var(--vz-shadow);
+  }
+  .viz56 .section { margin: 0 0 2rem; }
+  .viz56 .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #305070;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin: 0 0 .9rem;
+  }
+  .viz56 .tab-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1rem;
+    padding: 8px;
+    background: #ffffff9e;
+    border: 1px solid #d8e5f4;
+    border-radius: 14px;
+  }
+  .viz56 .tab-btn {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 10px;
+    border: 1px solid #d4e0ef;
+    background: #f5f9ff;
+    cursor: pointer;
+    color: #35516f;
+    transition: all .2s ease;
+  }
+  .viz56 .tab-btn:hover { transform: translateY(-1px); border-color: #6e97c2; color: #1b3653; }
+  .viz56 .tab-btn.active {
+    background: linear-gradient(135deg, #205a98 0%, #2c7cc7 100%);
+    color: #eef6ff;
+    border-color: #205a98;
+    box-shadow: 0 10px 20px rgba(32, 90, 152, .25);
+  }
+  .viz56 .tab-panel {
+    display: block;
+    opacity: 0;
+    transform: translateY(8px);
+    max-height: 0;
+    overflow: hidden;
+    pointer-events: none;
+    border-radius: 14px;
+    transition: opacity .3s ease, transform .3s ease, max-height .3s ease;
+  }
+  .viz56 .tab-panel.active {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 2600px;
+    overflow: visible;
+    pointer-events: auto;
+    padding: 12px;
+    background: var(--vz-card);
+    border: 1px solid #d4e2f2;
+  }
+  .viz56 .grid-wrap { display: grid; grid-template-columns: repeat(6,1fr); gap: 6px; max-width: 390px; }
+  .viz56 .cell {
+    height: 48px;
+    border-radius: 8px;
+    border: 1px solid #cfdcee;
+    background: #f9fcff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .22s ease, border-color .2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .viz56 .cell:hover { transform: translateY(-1px) scale(1.03); box-shadow: 0 8px 16px rgba(24, 62, 101, .14); }
+  .viz56 .cell::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.5) 50%, transparent 100%);
+    transform: translateX(-130%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .viz56 .cell.in-event::after { opacity: .65; animation: cellSweep .7s ease; }
+  .viz56 .cell .num { font-size: 16px; font-weight: 700; color: #16283f; }
+  .viz56 .cell .count { font-size: 10px; color: #55708d; margin-top: 1px; }
+  .viz56 .cell.in-event { border-width: 1.5px; animation: selectedPulse .55s ease; }
+  .viz56 .cell.blue { background: #dbeeff; border-color: #185fa5; }
+  .viz56 .cell.blue .num { color: #0b3d70; }
+  .viz56 .cell.teal { background: #d9f5eb; border-color: #0f6e56; }
+  .viz56 .cell.teal .num { color: #064739; }
+  .viz56 .cell.amber { background: #fce9c9; border-color: #854f0b; }
+  .viz56 .cell.amber .num { color: #603706; }
+  .viz56 .cell.purple { background: #e6e4ff; border-color: #534ab7; }
+  .viz56 .cell.purple .num { color: #373082; }
+  .viz56 .cell.overlap { background: #ffe0e0; border-color: #a32d2d; }
+  .viz56 .cell.overlap .num { color: #6f1b1b; }
+  .viz56 .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .viz56 .leg-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #35516f;
+    cursor: pointer;
+    transition: transform .15s ease, color .15s ease;
+    background: #f6faff;
+    border: 1px solid #d2e2f4;
+    border-radius: 999px;
+    padding: 5px 10px;
+  }
+  .viz56 .leg-item:hover { transform: translateY(-1px); color: #102b47; }
+  .viz56 .leg-dot { width: 12px; height: 12px; border-radius: 3px; }
+  .viz56 .explain-box {
+    background: #f6faff;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13px;
+    color: var(--vz-muted);
+    line-height: 1.6;
+    margin-top: 12px;
+    border: 1px solid #cfdeef;
+  }
+  .viz56 .explain-box.is-updating { animation: explainPop .3s ease; }
+  .viz56 .explain-box b { color: #173049; font-weight: 700; }
+  .viz56 .compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .viz56 .compare-title { font-size:13px; font-weight:700; margin-bottom:8px; color:#173454; }
+  .viz56 .compare-subtitle { font-size:12px; color:#4a6581; margin-bottom:10px; }
+  .viz56 .freq-bar-wrap { max-width: 460px; }
+  .viz56 .freq-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .viz56 .freq-label { font-size: 12px; color: #3e5b79; width: 90px; flex-shrink: 0; }
+  .viz56 .freq-track { flex: 1; height: 20px; background: #e9f1fa; border-radius: 6px; overflow: hidden; position: relative; border: 1px solid #cfdeef; }
+  .viz56 .freq-bar {
+    height: 100%;
+    border-radius: 5px;
+    transition: width .85s cubic-bezier(.2,.75,.25,1);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 6px;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.12);
+  }
+  .viz56 .freq-val { font-size: 11px; font-weight: 700; }
+  .viz56 .level-row { display: grid; grid-template-columns: 1fr 32px 1fr 32px 1fr; gap: 0; align-items: stretch; margin: 1rem 0; }
+  .viz56 .level-box {
+    border: 1px solid #cfddee;
+    border-radius: 12px;
+    padding: 14px;
+    background: #f8fbff;
+    box-shadow: 0 8px 18px rgba(14, 38, 66, .07);
+  }
+  .viz56 .level-arrow { display: flex; align-items: center; justify-content: center; font-size: 20px; color: #56718f; }
+  .viz56 .level-num { font-size: 11px; font-weight: 700; color: #5d7895; margin-bottom: 4px; }
+  .viz56 .level-title { font-size: 14px; font-weight: 700; color: #19324d; margin-bottom: 6px; }
+  .viz56 .level-desc { font-size: 12px; color: #4a6581; line-height: 1.5; }
+  .viz56 .axiom-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+    align-items: flex-start;
+    background: #f7fbff;
+    border: 1px solid #d2e1f1;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  .viz56 .axiom-tag { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; white-space: nowrap; flex-shrink: 0; margin-top: 1px; }
+  .viz56 .axiom-text { font-size: 13px; color: #4a6581; line-height: 1.5; }
+  .viz56 .axiom-text b { color: #173049; font-weight: 700; }
+  .stagger-item { opacity: 0; transform: translateY(7px) scale(.98); animation: staggerIn .4s ease forwards; }
+  @keyframes staggerIn {
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes selectedPulse {
+    0% { box-shadow: 0 0 0 0 rgba(24,95,165,.35); }
+    100% { box-shadow: 0 0 0 10px rgba(24,95,165,0); }
+  }
+  @keyframes cellSweep {
+    0% { transform: translateX(-130%); }
+    100% { transform: translateX(130%); }
+  }
+  @keyframes explainPop {
+    0% { transform: scale(.985); }
+    100% { transform: scale(1); }
+  }
+  @media (max-width: 920px) {
+    .viz56 .compare-grid { grid-template-columns: 1fr; }
+    .viz56 .level-row { grid-template-columns: 1fr; gap: 10px; }
+    .viz56 .level-arrow { transform: rotate(90deg); min-height: 24px; }
+  }
+  @media (prefers-color-scheme: dark) {
+    .viz56 {
+      --vz-bg-main: linear-gradient(160deg, #0f1724 0%, #0b2537 48%, #0d2722 100%);
+      --vz-card: #111e2cd8;
+      --vz-text: #e1ebf7;
+      --vz-muted: #b3c6dc;
+      border-color: #27405c;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, .45);
+    }
+    .viz56 .tab-row,
+    .viz56 .tab-panel.active,
+    .viz56 .level-box,
+    .viz56 .axiom-row,
+    .viz56 .explain-box,
+    .viz56 .leg-item { background: #122538d8; border-color: #2b4766; }
+    .viz56 .tab-btn { background: #173149; border-color: #325173; color: #b7cbdf; }
+    .viz56 .tab-btn.active { background: linear-gradient(135deg, #2a7ac2 0%, #3693da 100%); color: #f3f9ff; border-color: #2a7ac2; }
+    .viz56 .cell { background: #173047; border-color: #305071; }
+    .viz56 .cell .num { color: #dbe8f5; }
+    .viz56 .cell .count,
+    .viz56 .section-label,
+    .viz56 .freq-label,
+    .viz56 .compare-subtitle,
+    .viz56 .level-desc,
+    .viz56 .axiom-text,
+    .viz56 .explain-box,
+    .viz56 .leg-item { color: #bdd0e4; }
+    .viz56 .compare-title,
+    .viz56 .level-title,
+    .viz56 .explain-box b,
+    .viz56 .axiom-text b { color: #e7f1fb; }
+    .viz56 .freq-track { background: #18344e; border-color: #355674; }
+    .viz56 .cell.blue { background: #174876; border-color: #86b5e2; }
+    .viz56 .cell.blue .num { color: #bcd8f1; }
+    .viz56 .cell.teal { background: #176151; border-color: #85d4bf; }
+    .viz56 .cell.teal .num { color: #b5eadb; }
+    .viz56 .cell.amber { background: #7a4d17; border-color: #f2bb6f; }
+    .viz56 .cell.amber .num { color: #f9ddb5; }
+    .viz56 .cell.purple { background: #4a43a9; border-color: #c4beff; }
+    .viz56 .cell.purple .num { color: #e1dcff; }
+    .viz56 .cell.overlap { background: #7d2323; border-color: #f1aaaa; }
+    .viz56 .cell.overlap .num { color: #ffd5d5; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cell,
+    .tab-btn,
+    .tab-panel,
+    .freq-bar,
+    .leg-item,
+    .stagger-item,
+    .cell.in-event,
+    .explain-box.is-updating {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+    }
+  }
+</style>
+
+<h2 class="sr-only">Visual diagrams for Problems 5 and 6 — from frequencies to probability axioms</h2>
+
+<div class="viz56">
+<div class="tab-row">
+  <button class="tab-btn active" onclick="showTab('t1',this)">Sample space &amp; events</button>
+  <button class="tab-btn" onclick="showTab('t2',this)">Why addition works (or fails)</button>
+  <button class="tab-btn" onclick="showTab('t3',this)">Three levels</button>
+  <button class="tab-btn" onclick="showTab('t4',this)">Kolmogorov axioms</button>
+</div>
+
+<div id="t1" class="tab-panel active">
+  <p class="section-label">Click an event to highlight it</p>
+  <div class="grid-wrap" id="grid"></div>
+  <div class="legend" id="legend">
+    <div class="leg-item" onclick="highlight('A','blue')"><div class="leg-dot" style="background:#185FA5"></div>A = {2,4,6} even</div>
+    <div class="leg-item" onclick="highlight('B','teal')"><div class="leg-dot" style="background:#0F6E56"></div>B = {1,2,3} ≤3</div>
+    <div class="leg-item" onclick="highlight('C','amber')"><div class="leg-dot" style="background:#854F0B"></div>C = {5,6} large</div>
+    <div class="leg-item" onclick="highlight('D','purple')"><div class="leg-dot" style="background:#534AB7"></div>D = {1,3,5} odd</div>
+    <div class="leg-item" onclick="highlight('none','')"><div class="leg-dot" style="background:var(--color-border-secondary)"></div>clear</div>
+  </div>
+  <div class="explain-box" id="event-explain">
+    Select an event above to see which outcomes belong to it.<br>
+    <b>Each cell</b> = one elementary outcome. An event is a <b>subset</b> of these six cells.
+  </div>
+</div>
+
+<div id="t2" class="tab-panel">
+  <p class="section-label">Disjoint vs overlapping events</p>
+  <div class="compare-grid">
+    <div>
+      <div class="compare-title">Looks disjoint? A = {2,4,6}, C = {5,6}</div>
+      <div class="compare-subtitle">Quick visual check can mislead: outcome 6 belongs to both sets</div>
+      <div class="grid-wrap" id="grid2" style="max-width:280px"></div>
+      <div class="explain-box" style="margin-top:10px;font-size:12px">
+        <b>Wait — {6} is in both!</b> Let's check carefully:<br>
+        A = {2,4,6}, C = {5,6}<br>
+        A ∩ C = {6} ≠ ∅<br>
+        So actually addition <b>fails</b> here too.<br>
+        f(A∪C) = f(A) + f(C) − f(A∩C)<br>
+        = 0.491 + 0.330 − 0.170 = <b>0.651</b>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:13px;font-weight:500;margin-bottom:8px;color:var(--color-text-primary)">Overlapping: M = {1,2,3}, N = {3,4,5}</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:10px">Outcome 3 is in both → double counted</div>
+      <div class="grid-wrap" id="grid3" style="max-width:280px"></div>
+      <div class="explain-box" style="margin-top:10px;font-size:12px">
+        f(M) = 0.503, f(N) = 0.508<br>
+        f(M) + f(N) = <b style="color:#A32D2D">1.011</b> — impossible!<br><br>
+        Outcome <b>3</b> counted twice (181 throws).<br>
+        Correct: f(M∪N) = 1.011 − 0.181 = <b>0.830</b>
+      </div>
+    </div>
+  </div>
+  <div class="explain-box" style="margin-top:16px">
+    <b>The rule:</b> f(A∪B) = f(A) + f(B) − f(A∩B). Simple addition f(A)+f(B) is only correct when A∩B = ∅, because then f(A∩B) = 0 and no outcome is counted twice.
+  </div>
+</div>
+
+<div id="t3" class="tab-panel">
+  <p class="section-label">The path from concrete to abstract</p>
+  <div class="level-row">
+    <div class="level-box" style="border-color:var(--color-border-info)">
+      <div class="level-num">Level 1</div>
+      <div class="level-title">Elementary outcomes &amp; events</div>
+      <div class="level-desc">Ω = {1,2,3,4,5,6}<br>Events = subsets of Ω<br>Logic: or → ∪, and → ∩, not → complement<br><br><b>No numbers yet.</b> Pure set structure.</div>
+    </div>
+    <div class="level-arrow">→</div>
+    <div class="level-box" style="border-color:var(--color-border-success)">
+      <div class="level-num">Level 2</div>
+      <div class="level-title">Observed frequencies</div>
+      <div class="level-desc">1000 throws → f(A) = n(A)/1000<br><br>Properties always hold:<br>• f(A) ∈ [0,1]<br>• f(Ω) = 1<br>• Disjoint → add<br><br><b>Empirical.</b> Specific experiment.</div>
+    </div>
+    <div class="level-arrow">→</div>
+    <div class="level-box" style="border-color:var(--color-border-warning)">
+      <div class="level-num">Level 3</div>
+      <div class="level-title">Probability P</div>
+      <div class="level-desc">P : events → [0,1]<br><br>Satisfies same properties <b>by definition</b>.<br>Not tied to any experiment.<br>Describes long-run expectation.<br><br><b>Abstract.</b> Mathematical object.</div>
+    </div>
+  </div>
+  <div class="freq-bar-wrap" style="margin-top:1.5rem">
+    <p class="section-label">Observed vs theoretical (fair die = 1/6 ≈ 0.167)</p>
+    <div id="freq-bars"></div>
+  </div>
+</div>
+
+<div id="t4" class="tab-panel">
+  <p class="section-label">Kolmogorov axioms — origin and meaning</p>
+  <div class="axiom-row">
+    <span class="axiom-tag" style="background:#E6F1FB;color:#0C447C">Axiom 1</span>
+    <div class="axiom-text"><b>P(A) ≥ 0</b> for every event A.<br>Origin: counts n(A) ≥ 0 always, so f(A) ≥ 0 always. <b>Transparent from frequencies.</b></div>
+  </div>
+  <div class="axiom-row">
+    <span class="axiom-tag" style="background:#E1F5EE;color:#085041">Axiom 2</span>
+    <div class="axiom-text"><b>P(Ω) = 1</b>.<br>Origin: every throw lands in Ω, so n(Ω) = 1000 and f(Ω) = 1 always. <b>Transparent from frequencies.</b></div>
+  </div>
+  <div class="axiom-row">
+    <span class="axiom-tag" style="background:#EEEDFE;color:#3C3489">Axiom 3a</span>
+    <div class="axiom-text"><b>Finite additivity:</b> A∩B = ∅ → P(A∪B) = P(A)+P(B).<br>Origin: disjoint events don't share throws, so counts add. <b>Explained by counting logic.</b></div>
+  </div>
+  <div class="axiom-row">
+    <span class="axiom-tag" style="background:#FAEEDA;color:#633806">Axiom 3b</span>
+    <div class="axiom-text"><b>Countable additivity (σ-additivity):</b> for any infinite sequence of disjoint events,<br>P(A₁∪A₂∪…) = P(A₁)+P(A₂)+…<br><br>Origin: <b>NOT from finite experiments.</b> No finite experiment can exhibit ∞ disjoint events. Required for: infinite sample spaces (geometric distribution), continuity P(Aₙ)→P(A), law of large numbers, CLT.</div>
+  </div>
+  <div class="explain-box" style="margin-top:8px">
+    <b>Key distinction:</b> Axioms 1–2 and finite additivity are suggested directly by observing frequencies in any experiment. Countable additivity is a <b>new mathematical postulate</b> — it gives probability its continuity and makes the theory work on infinite spaces. It cannot be verified empirically.
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+    <div class="level-box" style="border-color:var(--color-border-success)">
+      <div class="level-num" style="color:var(--color-text-success)">From frequencies</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.6">
+        P(∅) = 0<br>
+        P(Aᶜ) = 1 − P(A)<br>
+        P(A∪B) = P(A)+P(B)−P(A∩B)<br>
+        A⊆B → P(A) ≤ P(B)
+      </div>
+    </div>
+    <div class="level-box" style="border-color:var(--color-border-warning)">
+      <div class="level-num" style="color:var(--color-text-warning)">Requires σ-additivity</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.6">
+        P(Aₙ) → P(A) for Aₙ↗A<br>
+        Law of large numbers<br>
+        Central limit theorem<br>
+        Probability on ℝ (Borel sets)
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const counts = {1:168,2:154,3:181,4:167,5:160,6:170};
+const events = {
+  A:[2,4,6], B:[1,2,3], C:[5,6], D:[1,3,5]
+};
+const explainText = {
+  A: '<b>A = {2,4,6}</b> — even numbers.<br>n(A) = 154+167+170 = <b>491</b>, f(A) = 0.491.<br>All three singletons {2},{4},{6} are disjoint → counts add directly.',
+  B: '<b>B = {1,2,3}</b> — results at most 3.<br>n(B) = 168+154+181 = <b>503</b>, f(B) = 0.503.<br>Partition into three disjoint singletons.',
+  C: '<b>C = {5,6}</b> — large results.<br>n(C) = 160+170 = <b>330</b>, f(C) = 0.330.<br>Complement of {1,2,3,4}: f(C) = 1 − 0.670 = 0.330.',
+  D: '<b>D = {1,3,5}</b> — odd numbers.<br>n(D) = 168+181+160 = <b>509</b>, f(D) = 0.509.<br>Complement of A: f(D) + f(A) = 0.509 + 0.491 = 1.000 ✓',
+};
+
+function buildGrid(containerId, colorFn) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  for(let k=1;k<=6;k++){
+    const div = document.createElement('div');
+    div.className = 'cell stagger-item';
+    div.style.animationDelay = `${(k-1) * 40}ms`;
+    div.id = containerId+'-cell-'+k;
+    div.innerHTML = `<span class="num">${k}</span><span class="count">n=${counts[k]}</span>`;
+    if(colorFn) colorFn(div,k);
+    el.appendChild(div);
+  }
+}
+
+buildGrid('grid');
+buildGrid('grid2', (div,k) => {
+  if([2,4,6].includes(k)) div.classList.add('in-event','blue');
+  if([5,6].includes(k)) {
+    div.classList.remove('blue');
+    div.classList.add('in-event','overlap');
+    div.title='In both A and C';
+  }
+  if(k===5){ div.classList.remove('overlap'); div.classList.add('in-event','amber'); }
+});
+buildGrid('grid3', (div,k) => {
+  if([1,2].includes(k)) div.classList.add('in-event','teal');
+  if([4,5].includes(k)) div.classList.add('in-event','amber');
+  if(k===3){ div.classList.add('in-event','overlap'); div.title='In both M and N — counted TWICE'; }
+});
+
+function highlight(ev, cls) {
+  for(let k=1;k<=6;k++){
+    const c = document.getElementById('grid-cell-'+k);
+    c.className='cell';
+    if(ev!=='none' && events[ev] && events[ev].includes(k)) c.classList.add('in-event',cls);
+  }
+  const explain = document.getElementById('event-explain');
+  explain.classList.remove('is-updating');
+  void explain.offsetWidth;
+  explain.classList.add('is-updating');
+  explain.innerHTML =
+    ev==='none' ? 'Select an event above to see which outcomes belong to it.<br><b>Each cell</b> = one elementary outcome. An event is a <b>subset</b> of these six cells.'
+    : explainText[ev];
+}
+
+function buildFreqBars() {
+  const container = document.getElementById('freq-bars');
+  const evs = [{label:'f({2,4,6})',keys:[2,4,6],color:'#185FA5'},{label:'f({1,2,3})',keys:[1,2,3],color:'#0F6E56'},{label:'f({5,6})',keys:[5,6],color:'#854F0B'},{label:'f({1,3,5})',keys:[1,3,5],color:'#534AB7'},{label:'f({1,2,3,4})',keys:[1,2,3,4],color:'#888780'}];
+  evs.forEach(e=>{
+    const n = e.keys.reduce((s,k)=>s+counts[k],0);
+    const f = n/1000;
+    const theory = e.keys.length/6;
+    const row = document.createElement('div');
+    row.className='freq-row';
+    row.innerHTML=`<span class="freq-label">${e.label}</span><div class="freq-track"><div class="freq-bar" data-target="${(f*100).toFixed(1)}" style="width:0%;background:${e.color}"><span class="freq-val" style="color:#fff;font-size:10px">${f.toFixed(3)}</span></div></div><span style="font-size:11px;color:var(--color-text-tertiary);width:56px;flex-shrink:0">th:${theory.toFixed(3)}</span>`;
+    container.appendChild(row);
+  });
+}
+buildFreqBars();
+
+function animateFreqBars() {
+  const bars = document.querySelectorAll('#freq-bars .freq-bar');
+  bars.forEach((bar, idx) => {
+    bar.style.width = '0%';
+    const target = bar.dataset.target || '0';
+    setTimeout(() => {
+      bar.style.width = `${target}%`;
+    }, 90 + idx * 70);
+  });
+}
+
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  if(id === 't3') animateFreqBars();
+}
+
+setTimeout(() => {
+  document.querySelectorAll('#grid .cell').forEach((c, idx) => {
+    c.classList.remove('stagger-item');
+    c.style.animationDelay = '';
+    if(idx < 6) c.classList.add('stagger-item');
+  });
+}, 120);
+</script>

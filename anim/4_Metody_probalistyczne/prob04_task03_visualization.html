@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Problem 3 - Weather (7 days x 3 states)</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --line: #d8dde8;
+      --text: #1f2937;
+      --muted: #4b5563;
+      --required-bg: #fee2e2;
+      --required-tx: #9f1239;
+      --allowed-bg: #eff6ff;
+      --allowed-tx: #1d4ed8;
+      --forbidden-bg: #f3f4f6;
+      --forbidden-tx: #6b7280;
+      --accent: #0f766e;
+      --accent-soft: #ccfbf1;
+      --badge-bg: #ecfeff;
+      --badge-tx: #155e75;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 10% 0%, #eef2ff 0%, #f7f8fb 40%, #f5f7fa 100%);
+      color: var(--text);
+    }
+
+    .app {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .title {
+      background: linear-gradient(120deg, #0f766e, #0e7490);
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 16px 20px;
+      box-shadow: 0 10px 24px rgba(15, 118, 110, 0.2);
+      margin-bottom: 16px;
+    }
+
+    .title h1 {
+      margin: 0;
+      font-size: clamp(1.2rem, 2.4vw, 1.8rem);
+      letter-spacing: 0.2px;
+    }
+
+    .title p {
+      margin: 6px 0 0;
+      font-size: 0.95rem;
+      opacity: 0.95;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 330px 1fr;
+      gap: 16px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(31, 41, 55, 0.05);
+    }
+
+    .controls {
+      padding: 14px;
+    }
+
+    .section {
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .section:last-child {
+      margin-bottom: 0;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .section h2 {
+      margin: 0 0 10px;
+      font-size: 0.96rem;
+      color: #0f172a;
+      letter-spacing: 0.2px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    select,
+    button {
+      width: 100%;
+      min-height: 36px;
+      border-radius: 9px;
+      border: 1px solid var(--line);
+      font-size: 0.92rem;
+    }
+
+    select {
+      padding: 0 10px;
+      background: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .btn-row {
+      display: grid;
+      gap: 8px;
+    }
+
+    button {
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+      color: #0f172a;
+      background: #f8fafc;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 12px rgba(15, 23, 42, 0.08);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: #0d6962;
+    }
+
+    .btn-secondary {
+      background: #ecfeff;
+      color: #164e63;
+      border-color: #a5f3fc;
+    }
+
+    .toggle-group {
+      display: grid;
+      gap: 8px;
+    }
+
+    .toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: #374151;
+      padding: 6px 8px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fafafa;
+    }
+
+    .toggle input {
+      margin: 0;
+    }
+
+    .viz {
+      padding: 14px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge {
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 0.79rem;
+      font-weight: 700;
+      background: var(--badge-bg);
+      color: var(--badge-tx);
+      border: 1px solid #bae6fd;
+    }
+
+    .matrix-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px;
+      background: #ffffff;
+    }
+
+    .matrix-caption {
+      margin: 4px 0 0;
+      font-size: 0.82rem;
+      color: #475569;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 620px;
+    }
+
+    th,
+    td {
+      border: 1px solid #d1d5db;
+      text-align: center;
+      padding: 7px;
+      font-size: 0.88rem;
+    }
+
+    td.cell-clickable {
+      cursor: pointer;
+      transition: filter 100ms ease;
+    }
+
+    td.cell-clickable:hover {
+      filter: brightness(0.95);
+    }
+
+    th {
+      background: #f8fafc;
+      color: #1e293b;
+      font-weight: 700;
+    }
+
+    .row-label {
+      width: 48px;
+      background: #f8fafc;
+      font-weight: 700;
+    }
+
+    .cell-required {
+      background: var(--required-bg);
+      color: var(--required-tx);
+      font-weight: 800;
+    }
+
+    .cell-allowed {
+      background: var(--allowed-bg);
+      color: var(--allowed-tx);
+      font-weight: 700;
+    }
+
+    .cell-forbidden {
+      background: var(--forbidden-bg);
+      color: var(--forbidden-tx);
+      text-decoration: line-through;
+      text-decoration-thickness: 1.3px;
+      font-weight: 700;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.84rem;
+      color: #374151;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      border: 1px solid #cbd5e1;
+    }
+
+    .result {
+      border: 1px solid #bae6fd;
+      background: #f0f9ff;
+      border-radius: 10px;
+      padding: 10px;
+      display: grid;
+      gap: 7px;
+      color: #0c4a6e;
+      font-size: 0.88rem;
+      line-height: 1.35;
+    }
+
+    .result strong {
+      color: #082f49;
+    }
+
+    .union-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .union-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tab-btn {
+      width: auto;
+      min-height: 32px;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #334155;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .tab-btn.active {
+      background: #0e7490;
+      color: #ffffff;
+      border-color: #0e7490;
+    }
+
+    .union-card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #ffffff;
+      padding: 8px;
+    }
+
+    .union-title {
+      font-size: 0.83rem;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+
+    .mini table {
+      min-width: 400px;
+    }
+
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="title">
+      <h1>Problem 3 - Weather (7 days x 3 states)</h1>
+      <p>Event constraint visualizer over weekly outcomes (S, C, R).</p>
+    </header>
+
+    <main class="layout">
+      <aside class="panel controls">
+        <section class="section">
+          <h2>Parameters</h2>
+          <label for="partSelect">Part</label>
+          <select id="partSelect">
+            <option value="A">Part A - Marking Events</option>
+            <option value="B">Part B - Interpretation</option>
+          </select>
+
+          <label for="itemSelect">Statement / Case</label>
+          <select id="itemSelect"></select>
+        </section>
+
+        <section class="section">
+          <h2>Action Buttons</h2>
+          <div class="btn-row">
+            <button id="applyBtn" class="btn-primary">Apply</button>
+            <button id="resetBtn">Reset</button>
+            <button id="interpretBtn" class="btn-secondary">Interpret</button>
+          </div>
+        </section>
+
+        <section class="section" id="optionalSection" hidden>
+          <h2>Optional Toggles</h2>
+          <div class="toggle-group">
+            <label class="toggle" for="showUnionBoth" id="showUnionBothWrap">
+              <input type="checkbox" id="showUnionBoth" checked />
+              Show both sub-events for disjunctions
+            </label>
+          </div>
+        </section>
+      </aside>
+
+      <section class="panel viz">
+        <div class="badge-row">
+          <span class="badge" id="eventId">Event: -</span>
+          <span class="badge">Ω size: 3^7 = 2187</span>
+        </div>
+
+        <div id="singleMatrixContainer" class="matrix-wrap"></div>
+        <p id="matrixCaption" class="matrix-caption">Click cells to cycle: . -> X -> - -> .</p>
+
+        <div id="unionTabs" class="union-tabs" hidden>
+          <button type="button" class="tab-btn" data-tab="left">A1</button>
+          <button type="button" class="tab-btn" data-tab="right">A2</button>
+          <button type="button" class="tab-btn" data-tab="inter">A1 ∩ A2</button>
+          <button type="button" class="tab-btn" data-tab="union">A1 ∪ A2</button>
+        </div>
+
+        <div id="unionContainer" class="union-grid" hidden></div>
+
+        <div class="legend">
+          <div class="legend-item"><span class="swatch" style="background: var(--required-bg);"></span>Required (X)</div>
+          <div class="legend-item"><span class="swatch" style="background: var(--allowed-bg);"></span>Allowed (.)</div>
+          <div class="legend-item"><span class="swatch" style="background: var(--forbidden-bg);"></span>Forbidden (-)</div>
+        </div>
+
+        <div class="result" id="resultBox">
+          <div><strong>Meaning:</strong> Choose a statement/case and press Apply.</div>
+          <div><strong>Count:</strong> -</div>
+          <div><strong>Share of Ω:</strong> -</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    const STATES = ["S", "C", "R"];
+    const OMEGA = Math.pow(3, 7);
+    const STATUS_CYCLE = ["allowed", "required", "forbidden"];
+
+    function createAllAllowedMatrix() {
+      const matrix = {};
+      for (const day of DAYS) {
+        matrix[day] = {};
+        for (const state of STATES) {
+          matrix[day][state] = "allowed";
+        }
+      }
+      return matrix;
+    }
+
+    function cloneMatrix(matrix) {
+      return JSON.parse(JSON.stringify(matrix));
+    }
+
+    function requireState(matrix, day, requiredState) {
+      for (const state of STATES) {
+        matrix[day][state] = state === requiredState ? "required" : "forbidden";
+      }
+    }
+
+    function allowOnly(matrix, day, allowedStates) {
+      for (const state of STATES) {
+        matrix[day][state] = allowedStates.includes(state) ? "allowed" : "forbidden";
+      }
+    }
+
+    function renderMatrix(matrix, className, interactive) {
+      const table = document.createElement("table");
+      if (className) {
+        table.className = className;
+      }
+
+      const thead = document.createElement("thead");
+      const headRow = document.createElement("tr");
+      const empty = document.createElement("th");
+      empty.textContent = "";
+      headRow.appendChild(empty);
+
+      for (const day of DAYS) {
+        const th = document.createElement("th");
+        th.textContent = day;
+        headRow.appendChild(th);
+      }
+      thead.appendChild(headRow);
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+      for (const state of STATES) {
+        const row = document.createElement("tr");
+        const label = document.createElement("td");
+        label.textContent = state;
+        label.className = "row-label";
+        row.appendChild(label);
+
+        for (const day of DAYS) {
+          const td = document.createElement("td");
+          const status = matrix[day][state];
+          td.title = day + ", " + state + ": " + status;
+          td.dataset.day = day;
+          td.dataset.state = state;
+          td.dataset.status = status;
+
+          if (status === "required") {
+            td.className = "cell-required";
+            td.textContent = "X";
+          } else if (status === "forbidden") {
+            td.className = "cell-forbidden";
+            td.textContent = "-";
+          } else {
+            td.className = "cell-allowed";
+            td.textContent = ".";
+          }
+          if (interactive) {
+            td.classList.add("cell-clickable");
+            td.addEventListener("click", () => {
+              cycleCellStatus(day, state);
+            });
+          }
+          row.appendChild(td);
+        }
+        tbody.appendChild(row);
+      }
+      table.appendChild(tbody);
+      return table;
+    }
+
+    function countMatrix(matrix) {
+      let total = 1;
+      for (const day of DAYS) {
+        let allowedCount = 0;
+        for (const state of STATES) {
+          if (matrix[day][state] !== "forbidden") {
+            allowedCount += 1;
+          }
+        }
+        total *= allowedCount;
+      }
+      return total;
+    }
+
+    function intersectionCount(matrixA, matrixB) {
+      let total = 1;
+      for (const day of DAYS) {
+        let commonAllowed = 0;
+        for (const state of STATES) {
+          const allowedA = matrixA[day][state] !== "forbidden";
+          const allowedB = matrixB[day][state] !== "forbidden";
+          if (allowedA && allowedB) {
+            commonAllowed += 1;
+          }
+        }
+        total *= commonAllowed;
+      }
+      return total;
+    }
+
+    function formatPercent(value) {
+      return (100 * value / OMEGA).toFixed(2) + "%";
+    }
+
+    function intersectionMatrix(matrixA, matrixB) {
+      const m = createAllAllowedMatrix();
+      for (const day of DAYS) {
+        const allowed = [];
+        for (const state of STATES) {
+          const allowedA = matrixA[day][state] !== "forbidden";
+          const allowedB = matrixB[day][state] !== "forbidden";
+          if (allowedA && allowedB) {
+            allowed.push(state);
+          }
+        }
+        allowOnly(m, day, allowed);
+        if (allowed.length === 1) {
+          requireState(m, day, allowed[0]);
+        }
+      }
+      return m;
+    }
+
+    function nextStatus(status) {
+      const idx = STATUS_CYCLE.indexOf(status);
+      return STATUS_CYCLE[(idx + 1) % STATUS_CYCLE.length];
+    }
+
+    function makeA1() {
+      const m = createAllAllowedMatrix();
+      requireState(m, "Mon", "S");
+      return m;
+    }
+
+    function makeA2() {
+      const m = createAllAllowedMatrix();
+      requireState(m, "Sat", "R");
+      requireState(m, "Sun", "R");
+      return m;
+    }
+
+    function makeA3_1() {
+      const m = createAllAllowedMatrix();
+      requireState(m, "Wed", "R");
+      return m;
+    }
+
+    function makeA3_2() {
+      const m = createAllAllowedMatrix();
+      requireState(m, "Fri", "R");
+      return m;
+    }
+
+    function makeA4() {
+      const m = createAllAllowedMatrix();
+      for (const day of DAYS) {
+        allowOnly(m, day, ["S", "C"]);
+      }
+      return m;
+    }
+
+    function makeA5_1() {
+      const m = createAllAllowedMatrix();
+      requireState(m, "Thu", "C");
+      return m;
+    }
+
+    function makeA5_2() {
+      const m = createAllAllowedMatrix();
+      requireState(m, "Thu", "R");
+      return m;
+    }
+
+    function makeB1() {
+      const m = createAllAllowedMatrix();
+      requireState(m, "Sat", "S");
+      requireState(m, "Sun", "S");
+      return m;
+    }
+
+    function makeB2() {
+      const m = createAllAllowedMatrix();
+      for (const day of DAYS) {
+        allowOnly(m, day, ["S", "C"]);
+      }
+      return m;
+    }
+
+    const EVENTS = {
+      A: [
+        {
+          id: "A1",
+          label: "A1 - Monday is sunny",
+          type: "single",
+          build: makeA1,
+          meaning: "Monday is fixed to sunny; all other days are free.",
+          formal: "A = {ω : ω(Mon)=S}, |A|=3^6=729",
+          explanation: "Only Monday is fixed. The remaining 6 days each have 3 choices, so |A| = 1·3^6 = 729."
+        },
+        {
+          id: "A2",
+          label: "A2 - Weekend (Sat, Sun) is rainy",
+          type: "single",
+          build: makeA2,
+          meaning: "Saturday and Sunday are both rainy.",
+          formal: "A = {ω : ω(Sat)=R and ω(Sun)=R}, |A|=3^5=243",
+          explanation: "Two days are fixed (Sat and Sun). The other 5 days are free, so |A| = 3^5 = 243."
+        },
+        {
+          id: "A3",
+          label: "A3 - It rains on Wednesday or Friday",
+          type: "union",
+          buildLeft: makeA3_1,
+          buildRight: makeA3_2,
+          leftLabel: "A1: Wednesday is rainy",
+          rightLabel: "A2: Friday is rainy",
+          meaning: "Disjunction: rain on Wednesday or on Friday (or both).",
+          formal: "A=A1 ∪ A2, |A|=|A1|+|A2|-|A1∩A2|=1215",
+          explanation: "This is a union, not one rectangular pattern. Use inclusion-exclusion: 3^6 + 3^6 - 3^5 = 1215."
+        },
+        {
+          id: "A4",
+          label: "A4 - No rainy day during the week",
+          type: "single",
+          build: makeA4,
+          meaning: "Rain is forbidden every day; each day is S or C.",
+          formal: "A = {ω : ω(d) in {S,C} for all d}, |A|=2^7=128",
+          explanation: "Each day has exactly 2 allowed states (S or C), independently across 7 days. Hence |A| = 2^7 = 128."
+        },
+        {
+          id: "A5",
+          label: "A5 - Thursday is not sunny",
+          type: "union",
+          buildLeft: makeA5_1,
+          buildRight: makeA5_2,
+          leftLabel: "A1: Thursday is cloudy",
+          rightLabel: "A2: Thursday is rainy",
+          meaning: "Thursday is cloudy or rainy (not sunny).",
+          formal: "A={ω(Thu)=C} ∪ {ω(Thu)=R}, |A|=1458",
+          explanation: "Thursday has 2 allowed options (C or R), while the other 6 days stay free. So |A| = 2·3^6 = 1458."
+        }
+      ],
+      B: [
+        {
+          id: "B1",
+          label: "B1 - Case 1 interpretation",
+          type: "single",
+          build: makeB1,
+          meaning: "Weekend is sunny: Sat=S and Sun=S; weekdays are free.",
+          formal: "A={ω : ω(Sat)=S and ω(Sun)=S}, |A|=3^5=243",
+          explanation: "The marks force both weekend days to be sunny. Five weekdays remain unconstrained, giving 3^5 outcomes."
+        },
+        {
+          id: "B2",
+          label: "B2 - Case 2 interpretation",
+          type: "single",
+          build: makeB2,
+          meaning: "No rain all week; each day is allowed to be S or C.",
+          formal: "A={ω : ω(d)≠R for all d}, |A|=2^7=128",
+          explanation: "For each day both S and C are allowed, but R is excluded. That means 2 choices per day across 7 days."
+        }
+      ]
+    };
+
+    const partSelect = document.getElementById("partSelect");
+    const itemSelect = document.getElementById("itemSelect");
+    const applyBtn = document.getElementById("applyBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const interpretBtn = document.getElementById("interpretBtn");
+    const optionalSection = document.getElementById("optionalSection");
+    const showUnionBoth = document.getElementById("showUnionBoth");
+    const showUnionBothWrap = document.getElementById("showUnionBothWrap");
+
+    const singleMatrixContainer = document.getElementById("singleMatrixContainer");
+    const matrixCaption = document.getElementById("matrixCaption");
+    const unionTabs = document.getElementById("unionTabs");
+    const unionContainer = document.getElementById("unionContainer");
+    const resultBox = document.getElementById("resultBox");
+    const eventId = document.getElementById("eventId");
+
+    let currentEvent = null;
+    let activeMatrix = createAllAllowedMatrix();
+    let unionState = null;
+    let activeUnionTab = "left";
+    let showInterpretation = false;
+
+    function setUnionUIVisible(visible) {
+      unionTabs.hidden = !visible;
+      showUnionBothWrap.hidden = !visible;
+      optionalSection.hidden = !visible;
+
+      unionTabs.style.display = visible ? "flex" : "none";
+      showUnionBothWrap.style.display = visible ? "flex" : "none";
+      optionalSection.style.display = visible ? "block" : "none";
+
+      if (!visible) {
+        unionContainer.hidden = true;
+        unionContainer.style.display = "none";
+        unionContainer.innerHTML = "";
+      }
+    }
+
+    function getCurrentEvent() {
+      const part = partSelect.value;
+      const idx = Number(itemSelect.value);
+      return EVENTS[part][idx];
+    }
+
+    function fillItemOptions() {
+      const part = partSelect.value;
+      const list = EVENTS[part];
+      itemSelect.innerHTML = "";
+      list.forEach((item, idx) => {
+        const option = document.createElement("option");
+        option.value = String(idx);
+        option.textContent = item.label;
+        itemSelect.appendChild(option);
+      });
+    }
+
+    function setUnionTabsActive() {
+      const buttons = unionTabs.querySelectorAll(".tab-btn");
+      buttons.forEach((btn) => {
+        if (btn.dataset.tab === activeUnionTab) {
+          btn.classList.add("active");
+        } else {
+          btn.classList.remove("active");
+        }
+      });
+    }
+
+    function renderUnionCards() {
+      if (!unionState || !showUnionBoth.checked) {
+        unionContainer.hidden = true;
+        unionContainer.style.display = "none";
+        unionContainer.innerHTML = "";
+        return;
+      }
+
+      unionContainer.hidden = false;
+      unionContainer.style.display = "grid";
+      unionContainer.innerHTML = "";
+
+      const card1 = document.createElement("div");
+      card1.className = "union-card";
+      card1.innerHTML = '<div class="union-title">' + currentEvent.leftLabel + "</div>";
+      const wrap1 = document.createElement("div");
+      wrap1.className = "matrix-wrap mini";
+      wrap1.appendChild(renderMatrix(unionState.left));
+      card1.appendChild(wrap1);
+
+      const card2 = document.createElement("div");
+      card2.className = "union-card";
+      card2.innerHTML = '<div class="union-title">' + currentEvent.rightLabel + "</div>";
+      const wrap2 = document.createElement("div");
+      wrap2.className = "matrix-wrap mini";
+      wrap2.appendChild(renderMatrix(unionState.right));
+      card2.appendChild(wrap2);
+
+      unionContainer.appendChild(card1);
+      unionContainer.appendChild(card2);
+    }
+
+    function updateResultBox() {
+      const lines = [];
+      if (!currentEvent) {
+        const count = countMatrix(activeMatrix);
+        lines.push("<div><strong>Meaning:</strong> Custom event built by clicking cells.</div>");
+        lines.push("<div><strong>Count:</strong> " + count + "</div>");
+        lines.push("<div><strong>Share of Ω:</strong> " + formatPercent(count) + "</div>");
+      } else if (currentEvent.type === "single") {
+        const count = countMatrix(activeMatrix);
+        lines.push("<div><strong>Meaning:</strong> " + currentEvent.meaning + "</div>");
+        lines.push("<div><strong>Formal:</strong> " + currentEvent.formal + "</div>");
+        if (showInterpretation) {
+          lines.push("<div><strong>Explanation:</strong> " + currentEvent.explanation + "</div>");
+        }
+        lines.push("<div><strong>Count:</strong> " + count + "</div>");
+        lines.push("<div><strong>Share of Ω:</strong> " + formatPercent(count) + "</div>");
+      } else {
+        const leftCount = unionState.leftCount;
+        const rightCount = unionState.rightCount;
+        const interCount = unionState.interCount;
+        const unionCount = unionState.unionCount;
+        lines.push("<div><strong>Meaning:</strong> " + currentEvent.meaning + "</div>");
+        lines.push("<div><strong>Formal:</strong> " + currentEvent.formal + "</div>");
+        if (showInterpretation) {
+          lines.push("<div><strong>Explanation:</strong> " + currentEvent.explanation + "</div>");
+        }
+        lines.push("<div><strong>Tab:</strong> " + activeUnionTab.toUpperCase() + "</div>");
+        lines.push("<div><strong>Count (A1):</strong> " + leftCount + "</div>");
+        lines.push("<div><strong>Count (A2):</strong> " + rightCount + "</div>");
+        lines.push("<div><strong>Count (A1 ∩ A2):</strong> " + interCount + "</div>");
+        lines.push("<div><strong>Count (A1 ∪ A2):</strong> " + unionCount + "</div>");
+        lines.push("<div><strong>Share of Ω (A1 ∪ A2):</strong> " + formatPercent(unionCount) + "</div>");
+        if (activeUnionTab === "union") {
+          lines.push("<div><strong>Union note:</strong> A1 ∪ A2 is non-rectangular, so it cannot be represented by one matrix pattern.</div>");
+        }
+      }
+
+      resultBox.innerHTML = lines.join("");
+    }
+
+    function renderMainMatrix(interactive) {
+      singleMatrixContainer.innerHTML = "";
+      singleMatrixContainer.appendChild(renderMatrix(activeMatrix, "", interactive));
+      matrixCaption.textContent = interactive
+        ? "Click cells to cycle: . -> X -> - -> ."
+        : "Union tab shows logical event; editing is disabled in this view.";
+    }
+
+    function refreshView() {
+      if (!currentEvent) {
+        setUnionUIVisible(false);
+        renderMainMatrix(true);
+        updateResultBox();
+        return;
+      }
+
+      if (currentEvent.type === "single") {
+        setUnionUIVisible(false);
+        renderMainMatrix(true);
+      } else {
+        setUnionUIVisible(true);
+        setUnionTabsActive();
+        renderUnionCards();
+
+        if (activeUnionTab === "left") {
+          activeMatrix = cloneMatrix(unionState.left);
+          renderMainMatrix(true);
+        } else if (activeUnionTab === "right") {
+          activeMatrix = cloneMatrix(unionState.right);
+          renderMainMatrix(true);
+        } else if (activeUnionTab === "inter") {
+          activeMatrix = cloneMatrix(unionState.intersection);
+          renderMainMatrix(true);
+        } else {
+          activeMatrix = cloneMatrix(unionState.left);
+          renderMainMatrix(false);
+        }
+      }
+      updateResultBox();
+    }
+
+    function cycleCellStatus(day, state) {
+      if (currentEvent && currentEvent.type === "union" && activeUnionTab === "union") {
+        return;
+      }
+
+      if (currentEvent) {
+        currentEvent = null;
+        unionState = null;
+        showInterpretation = false;
+        setUnionUIVisible(false);
+        eventId.textContent = "Event: Custom";
+      }
+
+      const currentStatus = activeMatrix[day][state];
+      const next = nextStatus(currentStatus);
+
+      if (next === "required") {
+        requireState(activeMatrix, day, state);
+      } else {
+        activeMatrix[day][state] = next;
+      }
+
+      refreshView();
+    }
+
+    function buildUnionState(eventObj) {
+      const left = eventObj.buildLeft();
+      const right = eventObj.buildRight();
+      const intersection = intersectionMatrix(left, right);
+      const leftCount = countMatrix(left);
+      const rightCount = countMatrix(right);
+      const interCount = intersectionCount(left, right);
+      const unionCount = leftCount + rightCount - interCount;
+      return {
+        left,
+        right,
+        intersection,
+        leftCount,
+        rightCount,
+        interCount,
+        unionCount
+      };
+    }
+
+    function applySelection() {
+      currentEvent = getCurrentEvent();
+      showInterpretation = false;
+      eventId.textContent = "Event: " + currentEvent.id;
+
+      if (currentEvent.type === "single") {
+        unionState = null;
+        activeMatrix = cloneMatrix(currentEvent.build());
+      } else {
+        unionState = buildUnionState(currentEvent);
+        activeUnionTab = "left";
+        activeMatrix = cloneMatrix(unionState.left);
+      }
+      refreshView();
+    }
+
+    function interpretSelection() {
+      showInterpretation = true;
+      updateResultBox();
+    }
+
+    function resetView() {
+      currentEvent = null;
+      unionState = null;
+      activeUnionTab = "left";
+      showInterpretation = false;
+      activeMatrix = createAllAllowedMatrix();
+      eventId.textContent = "Event: -";
+      setUnionUIVisible(false);
+      refreshView();
+    }
+
+    partSelect.addEventListener("change", () => {
+      fillItemOptions();
+      applySelection();
+    });
+    itemSelect.addEventListener("change", applySelection);
+    applyBtn.addEventListener("click", applySelection);
+    interpretBtn.addEventListener("click", interpretSelection);
+    resetBtn.addEventListener("click", resetView);
+    showUnionBoth.addEventListener("change", () => {
+      refreshView();
+    });
+
+    unionTabs.querySelectorAll(".tab-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (!currentEvent || currentEvent.type !== "union") {
+          return;
+        }
+        activeUnionTab = btn.dataset.tab;
+        refreshView();
+      });
+    });
+
+    fillItemOptions();
+    resetView();
+  </script>
+</body>
+</html>

@@ -1,0 +1,4047 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://liiiinadnamar.github.io/Math_Problems_Repo_DR/4_Metody_probabilistyczne/basic/02_combinatorics/">
+      
+      
+        <link rel="prev" href="../01_events_and_probability/">
+      
+      
+        <link rel="next" href="../03_probability_distributions/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>2. Combinatorics - Math Problems Solutions</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#task-list-02-combinatorics-for-probability" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Math Problems Solutions" class="md-header__button md-logo" aria-label="Math Problems Solutions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Math Problems Solutions
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2. Combinatorics
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Math Problems Solutions" class="md-nav__button md-logo" aria-label="Math Problems Solutions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Math Problems Solutions
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture: Probabilistic Methods
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lecture: Probabilistic Methods
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Probabilistic Methods
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Probabilistic Methods
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_events_and_probability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Events & Probability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Combinatorics
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Combinatorics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-counting-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Counting Questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-tree-for-choosing-a-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision Tree for Choosing a Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-counting-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview of Counting Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permutations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permutations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#circular-permutations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Circular Permutations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combinations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combinations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k-permutations-ordered-selections-without-repetition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        k-Permutations (Ordered Selections Without Repetition)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequences-with-repetition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sequences With Repetition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permutations-with-repeated-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permutations with Repeated Elements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distinguishable-and-indistinguishable-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distinguishable and Indistinguishable Objects
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distinguishable and Indistinguishable Objects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distinguishable-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distinguishable objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indistinguishable-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Indistinguishable objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#order-and-recording-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Order and Recording Rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#product-rule-and-sum-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product Rule and Sum Rule
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-1-recognizing-counting-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 1 — Recognizing Counting Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 1 — Recognizing Counting Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-2-permutations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 2 — Permutations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-3-permutations-with-repeated-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 3 — Permutations with Repeated Elements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-4-circular-permutations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 4 — Circular Permutations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-5-combinations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 5 — Combinations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-6-combinations-in-card-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 6 — Combinations in Card Problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-7-k-permutations-ordered-selections-without-repetition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 7 — k-Permutations (Ordered Selections Without Repetition)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-8-sequences-with-repetition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 8 — Sequences with Repetition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-9-digit-restrictions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 9 — Digit Restrictions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-10-urn-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 10 — Urn Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 10 — Urn Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problems_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-11-modeling-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 11 — Modeling Outcomes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 11 — Modeling Outcomes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-distinguishable-vs-indistinguishable-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Distinguishable vs Indistinguishable Objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-recording-order-vs-ignoring-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Recording Order vs Ignoring Order
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pin-code-vs-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. PIN Code vs Number
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-12-mixed-counting-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 12 — Mixed Counting Problem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 12 — Mixed Counting Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-student-id-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Student ID Codes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Student ID Codes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problems_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-medal-assignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Medal Assignment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Medal Assignment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problems_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-committee-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Committee Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-circular-seating" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Circular Seating
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-passwords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Passwords
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Passwords">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problems_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_probability_distributions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Probability Distributions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_discovery_formalism/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Discovery Formalism
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solutions Basic
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Solutions Basic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2_1" id="__nav_2_1_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Events & Probability Sol
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Events & Probability Sol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_01_events_and_probability/sol_prob_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_01_events_and_probability/sol_prob_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_01_events_and_probability/sol_prob_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_01_events_and_probability/sol_prob_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_01_events_and_probability/sol_prob_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_01_events_and_probability/sol_prob_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_01_events_and_probability/sol_prob_07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_01_events_and_probability/sol_prob_08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_01_events_and_probability/sol_prob_09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_01_events_and_probability/sol_prob_10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2_2" id="__nav_2_1_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Combinatorics Sol
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Combinatorics Sol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions_02_combinatorics/solution_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions_02_combinatorics/solution_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions_02_combinatorics/solution_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions_02_combinatorics/solution_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions_02_combinatorics/solution_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions_02_combinatorics/solution_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions_02_combinatorics/solution_07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions_02_combinatorics/solution_08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions_02_combinatorics/solution_09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutions_02_combinatorics/solution_10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2_3" id="__nav_2_1_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Probability Distributions Sol
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Probability Distributions Sol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_03_/solution_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_03_/solution_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_03_/solution_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_03_/solution_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_03_/solution_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_03_/solution_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_03_/solution_07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_03_/solution_08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_03_/solution_09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_03_/solution_10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2_4" id="__nav_2_1_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Discovery Formalism Sol
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Discovery Formalism Sol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_04_/solution_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_04_/solution_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_04_/4_sol_prob_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_04_/solution_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_04_/solution_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution_04_/solution_6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3" id="__nav_2_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/01_events_and_probability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Events & Probability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/02_random_variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Random Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/03_distribution_parameters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Distribution Parameters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/04_selected_distributions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Selected Distributions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/05_limit_theorems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Limit Theorems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/06_basic_statistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Basic Statistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/07_estimation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/08_hypothesis_testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Hypothesis Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/09_correlation_and_regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Correlation & Regression
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/10_advanced_methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Advanced Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/11_decision_theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Decision Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_4" id="__nav_2_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solutions Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Solutions Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/solution_01_events_and_probability/sol_prob_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Events & Probability Sol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Animations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Animations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../anim/4_Metody_probalistyczne/laboratory_1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../anim/4_Metody_probalistyczne/laboratory_2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../anim/4_Metody_probalistyczne/laboratory_3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../anim/4_Metody_probalistyczne/prob04_task03_visualization.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../anim/4_Metody_probalistyczne/problems_frequency_diagrams.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vizual_5_6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-counting-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Counting Questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-tree-for-choosing-a-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision Tree for Choosing a Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-counting-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview of Counting Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permutations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permutations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#circular-permutations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Circular Permutations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combinations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combinations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k-permutations-ordered-selections-without-repetition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        k-Permutations (Ordered Selections Without Repetition)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequences-with-repetition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sequences With Repetition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permutations-with-repeated-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permutations with Repeated Elements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distinguishable-and-indistinguishable-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distinguishable and Indistinguishable Objects
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distinguishable and Indistinguishable Objects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distinguishable-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distinguishable objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indistinguishable-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Indistinguishable objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#order-and-recording-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Order and Recording Rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#product-rule-and-sum-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product Rule and Sum Rule
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-1-recognizing-counting-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 1 — Recognizing Counting Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 1 — Recognizing Counting Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-2-permutations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 2 — Permutations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-3-permutations-with-repeated-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 3 — Permutations with Repeated Elements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-4-circular-permutations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 4 — Circular Permutations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-5-combinations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 5 — Combinations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-6-combinations-in-card-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 6 — Combinations in Card Problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-7-k-permutations-ordered-selections-without-repetition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 7 — k-Permutations (Ordered Selections Without Repetition)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-8-sequences-with-repetition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 8 — Sequences with Repetition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-9-digit-restrictions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 9 — Digit Restrictions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-10-urn-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 10 — Urn Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 10 — Urn Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problems_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-11-modeling-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 11 — Modeling Outcomes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 11 — Modeling Outcomes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-distinguishable-vs-indistinguishable-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Distinguishable vs Indistinguishable Objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-recording-order-vs-ignoring-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Recording Order vs Ignoring Order
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pin-code-vs-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. PIN Code vs Number
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-12-mixed-counting-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 12 — Mixed Counting Problem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 12 — Mixed Counting Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-student-id-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Student ID Codes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Student ID Codes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problems_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-medal-assignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Medal Assignment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Medal Assignment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problems_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-committee-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Committee Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-circular-seating" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Circular Seating
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-passwords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Passwords
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Passwords">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problems_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="task-list-02-combinatorics-for-probability">Task List 02 — Combinatorics for Probability</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Many probability problems start by counting outcomes: the size of a sample space, the number of favorable outcomes, or the number of possible codes or arrangements. The main difficulty is usually not the formula, but recognizing which counting model applies.</p>
+<p>In this task list you will practice:</p>
+<ul>
+<li>identifying the correct counting model,</li>
+<li>translating a problem description into a precise outcome type,</li>
+<li>using the model to count outcomes in probability contexts.</li>
+</ul>
+<h2 id="key-counting-questions">Key Counting Questions</h2>
+<p>Before choosing a formula, decide:</p>
+<ol>
+<li>Does <strong>order</strong> matter?</li>
+<li>Are we using <strong>all objects</strong> or only <strong>some of them</strong>?</li>
+<li>Are <strong>repetitions allowed</strong>?</li>
+<li>Are objects <strong>distinguishable</strong> or <strong>indistinguishable</strong>?</li>
+<li>What kind of outcome are we describing?</li>
+<li>a set,</li>
+<li>a sequence,</li>
+<li>a linear arrangement,</li>
+<li>or a circular arrangement?</li>
+</ol>
+<h2 id="decision-tree-for-choosing-a-model">Decision Tree for Choosing a Model</h2>
+<p>The following flowchart provides a quick procedure for identifying the correct counting model.
+Students can apply these questions directly when solving exam problems.</p>
+<pre><code class="language-text">START
+
+Are we using ALL objects?
+
+ ├─ YES
+ │
+ │   Are objects arranged in a circle?
+ │
+ │   ├─ YES → Circular permutation
+ │   │
+ │   └─ NO
+ │        │
+ │        Are some objects identical?
+ │
+ │        ├─ YES → Permutation with repeated elements
+ │        │
+ │        └─ NO  → Permutation
+ │
+ └─ NO (only SOME objects)
+     │
+     Does order matter?
+     │
+     ├─ NO  → Combination
+     │
+     └─ YES
+          │
+          Is repetition allowed?
+          │
+          ├─ YES → Sequence with repetition
+          │
+          └─ NO  → k-permutation
+</code></pre>
+<p>When solving a counting problem, students should answer a small sequence of questions:</p>
+<ol>
+<li>Are we using <strong>all objects or only some of them</strong>?</li>
+<li>Does <strong>order matter</strong>?</li>
+<li>Is <strong>repetition allowed</strong>?</li>
+<li>Are some objects <strong>identical</strong>?</li>
+</ol>
+<p>The answers determine which combinatorial model applies.</p>
+<h2 id="overview-of-counting-models">Overview of Counting Models</h2>
+<p>Selections: <strong>combination</strong> (unordered), <strong>k-permutation (ordered selection without repetition)</strong>, <strong>sequence with repetition</strong>.</p>
+<p>Arrangements of all objects: <strong>permutation</strong>, <strong>circular permutation</strong>, <strong>permutation with repeated elements</strong>.</p>
+<hr />
+<h2 id="permutations">Permutations</h2>
+<p>A <strong>permutation</strong> is an arrangement of all elements of a set, where order matters.</p>
+<p>If a set contains <span class="arithmatex">\(n\)</span> distinct elements, then the number of permutations is</p>
+<div class="arithmatex">\[
+P_n = n!
+\]</div>
+<p>Permutations are used when:</p>
+<ul>
+<li>all available objects are arranged,</li>
+<li>order matters,</li>
+<li>repetitions are not allowed.</li>
+</ul>
+<p>Typical examples:</p>
+<ul>
+<li>arranging books on a shelf, </li>
+<li>seating people in a row, </li>
+<li>ordering questions in a test.</li>
+</ul>
+<hr />
+<h2 id="circular-permutations">Circular Permutations</h2>
+<p>When objects are arranged in a circle, rotations may represent the same arrangement.</p>
+<p>If <span class="arithmatex">\(n\)</span> distinct objects are arranged around a circle and only relative position matters, then the number of circular permutations is</p>
+<div class="arithmatex">\[
+(n-1)!
+\]</div>
+<p>This model is used when:</p>
+<ul>
+<li>objects are arranged around a round table, </li>
+<li>absolute position is irrelevant,</li>
+<li>only relative placement matters.</li>
+</ul>
+<hr />
+<h2 id="combinations">Combinations</h2>
+<p>A <strong>combination</strong> is a selection of elements where order does not matter.</p>
+<p>The number of ways to choose <span class="arithmatex">\(k\)</span> elements from <span class="arithmatex">\(n\)</span> distinct elements is</p>
+<div class="arithmatex">\[
+\binom{n}{k} = \frac{n!}{k!(n-k)!}
+\]</div>
+<p>Combinations are used when:</p>
+<ul>
+<li>only some objects are chosen,</li>
+<li>order does not matter,</li>
+<li>repetition is not allowed.</li>
+</ul>
+<p>Typical examples:</p>
+<ul>
+<li>choosing a committee,</li>
+<li>selecting cards from a deck,</li>
+<li>choosing endpoints of a segment.</li>
+</ul>
+<hr />
+<h2 id="k-permutations-ordered-selections-without-repetition">k-Permutations (Ordered Selections Without Repetition)</h2>
+<p>In some European textbooks the term "variation" is used for ordered selections.
+In this course we use the standard English terminology: <strong>k-permutations</strong> (ordered selections).</p>
+<p>A <strong>k-permutation</strong> (or ordered selection without repetition) is an ordered selection of <span class="arithmatex">\(k\)</span> elements from an <span class="arithmatex">\(n\)</span>-element set, where no element may be used more than once.</p>
+<p>The number of such ordered selections is</p>
+<div class="arithmatex">\[
+P(n,k) = \frac{n!}{(n-k)!}
+\]</div>
+<p>This model is used when:</p>
+<ul>
+<li>only some objects are chosen,</li>
+<li>order matters,</li>
+<li>repetition is not allowed.</li>
+</ul>
+<p>Typical examples:</p>
+<ul>
+<li>assigning medals,</li>
+<li>forming numbers with distinct digits,</li>
+<li>choosing ordered positions.</li>
+</ul>
+<hr />
+<h2 id="sequences-with-repetition">Sequences With Repetition</h2>
+<p>A <strong>sequence of length <span class="arithmatex">\((k)\)</span></strong> over an <span class="arithmatex">\((n)\)</span>-element set is an ordered selection where each position may contain any of the <span class="arithmatex">\((n)\)</span> symbols and repetition is allowed.</p>
+<p>The number of such sequences is</p>
+<div class="arithmatex">\[
+n^k
+\]</div>
+<p>This model is used when:</p>
+<ul>
+<li>order matters,</li>
+<li>repetition is allowed,</li>
+<li>each position is chosen independently.</li>
+</ul>
+<p>Typical examples:</p>
+<ul>
+<li>PIN codes,</li>
+<li>repeated coin tosses,</li>
+<li>repeated die rolls,</li>
+<li>telephone numbers.</li>
+</ul>
+<hr />
+<h2 id="permutations-with-repeated-elements">Permutations with Repeated Elements</h2>
+<p>When some objects are identical, the number of distinct permutations must account for indistinguishable elements. These are called <strong>permutations with repeated elements</strong> (or <strong>permutations of a multiset</strong>).</p>
+<p>If among <span class="arithmatex">\(n\)</span> objects there are:</p>
+<ul>
+<li><span class="arithmatex">\(n_1\)</span> identical objects of one type,</li>
+<li><span class="arithmatex">\(n_2\)</span> identical objects of another type,</li>
+<li>and so on,</li>
+</ul>
+<p>then the number of distinct arrangements is</p>
+<div class="arithmatex">\[
+\frac{n!}{n_1!n_2!\dots n_r!}
+\]</div>
+<p>This model is used when:</p>
+<ul>
+<li>objects of the same type are indistinguishable,</li>
+<li>all objects are arranged,</li>
+<li>order matters at the level of positions, but equal objects are treated as identical.</li>
+</ul>
+<p>Typical examples:</p>
+<ul>
+<li>arranging colored balls,</li>
+<li>arranging letters with repeated symbols.</li>
+</ul>
+<hr />
+<h2 id="distinguishable-and-indistinguishable-objects">Distinguishable and Indistinguishable Objects</h2>
+<p>A fundamental distinction in combinatorics is whether objects are treated as <strong>distinguishable</strong> or <strong>indistinguishable</strong>.</p>
+<h3 id="distinguishable-objects">Distinguishable objects</h3>
+<p>Objects are distinguishable if they are treated as different individual items.</p>
+<p>Example:</p>
+<div class="arithmatex">\[
+R_1, R_2, R_3
+\]</div>
+<p>are three different red balls.</p>
+<h3 id="indistinguishable-objects">Indistinguishable objects</h3>
+<p>Objects are indistinguishable if only their type matters.</p>
+<p>Example:</p>
+<p>three red balls all counted simply as</p>
+<div class="arithmatex">\[
+R
+\]</div>
+<p>In many problems, the same physical collection may lead to different counts depending on how the outcomes are recorded.</p>
+<hr />
+<h2 id="order-and-recording-rules">Order and Recording Rules</h2>
+<p>In combinatorial and probabilistic problems, the way outcomes are recorded is crucial.</p>
+<p>Examples:</p>
+<ul>
+<li>If three balls are drawn and the order of drawing is recorded, then the outcome is a sequence.</li>
+<li>If the same three balls are drawn but only the selected set matters, then order is ignored.</li>
+<li>If only colors are recorded, then objects of the same color may become indistinguishable.</li>
+</ul>
+<p>Thus the same experiment may lead to different sample spaces depending on the recording rule.</p>
+<hr />
+<h2 id="product-rule-and-sum-rule">Product Rule and Sum Rule</h2>
+<p>If a process consists of several independent stages, and:</p>
+<ul>
+<li>the first stage can be completed in <span class="arithmatex">\(a\)</span> ways,</li>
+<li>the second in <span class="arithmatex">\(b\)</span> ways,</li>
+<li>the third in <span class="arithmatex">\(c\)</span> ways,</li>
+</ul>
+<p>then the whole process can be completed in</p>
+<div class="arithmatex">\[
+a \cdot b \cdot c
+\]</div>
+<p>ways.</p>
+<p>This rule is used throughout combinatorics, especially in code construction and multi-step selections.</p>
+<hr />
+<p>If a task can be completed in one of several mutually exclusive ways, then the total number of outcomes is the sum of the numbers of outcomes in each case.</p>
+<p>If one case gives <span class="arithmatex">\(a\)</span> possibilities and another disjoint case gives <span class="arithmatex">\(b\)</span>, then the total is</p>
+<div class="arithmatex">\[
+a+b
+\]</div>
+<p>This rule is useful when a problem must be split into cases.</p>
+<hr />
+<h2 id="task-1-recognizing-counting-models">Task 1 — Recognizing Counting Models</h2>
+<p>For each situation determine which combinatorial model is most appropriate:</p>
+<ul>
+<li>permutation  </li>
+<li>circular permutation  </li>
+<li>combination  </li>
+<li>k-permutation (ordered selection without repetition)  </li>
+<li>sequence with repetition  </li>
+<li>permutation with repeated elements  </li>
+</ul>
+<h4 id="problems">Problems:</h4>
+<ol>
+<li>Arranging 7 students in a line.  </li>
+<li>Choosing 4 members of a committee from 12 people.  </li>
+<li>Assigning gold, silver, and bronze medals among 15 athletes.  </li>
+<li>Forming a 6-digit PIN code.  </li>
+<li>Arranging the letters of the word <strong>BANANA</strong>.  </li>
+<li>Seating 6 people around a round table.</li>
+</ol>
+<hr />
+<h2 id="task-2-permutations">Task 2 — Permutations</h2>
+<ol>
+<li>In how many ways can 8 different books be arranged on a shelf?  </li>
+<li>In how many ways can 8 people sit in a row if two particular people must sit next to each other?  </li>
+<li>In how many ways can they sit if those two people must <strong>not</strong> sit next to each other?  </li>
+<li>In how many ways can 10 questions in a test be ordered if the first question is fixed?</li>
+</ol>
+<hr />
+<h2 id="task-3-permutations-with-repeated-elements">Task 3 — Permutations with Repeated Elements</h2>
+<ol>
+<li>How many distinct arrangements of the word
+   $$
+   MISSISSIPPI
+   $$
+   are possible?</li>
+<li>How many distinct arrangements of<br />
+   $$
+   STATISTICS
+   $$
+   are possible?</li>
+<li>How many of the arrangements of <strong>STATISTICS</strong> start with the letter <strong>S</strong>?</li>
+</ol>
+<hr />
+<h2 id="task-4-circular-permutations">Task 4 — Circular Permutations</h2>
+<ol>
+<li>In how many ways can 7 people sit around a round table?  </li>
+<li>In how many ways can they sit if two particular people must sit next to each other?  </li>
+<li>In how many ways can they sit if those two people must sit opposite each other?</li>
+</ol>
+<hr />
+<h2 id="task-5-combinations">Task 5 — Combinations</h2>
+<ol>
+<li>A committee of 4 people is chosen from 12 students. How many committees are possible?  </li>
+<li>How many committees contain a particular student?  </li>
+<li>How many committees contain <strong>at least one</strong> of two particular students?  </li>
+<li>How many committees contain exactly two women if the group consists of 7 men and 5 women?</li>
+</ol>
+<hr />
+<h2 id="task-6-combinations-in-card-problems">Task 6 — Combinations in Card Problems</h2>
+<p>A standard deck contains 52 cards.</p>
+<ol>
+<li>In how many ways can 5 cards be drawn so that the hand contains <strong>exactly 2 hearts</strong>?  </li>
+<li>In how many ways can a 5-card hand contain <strong>at least one heart</strong>?  </li>
+<li>In how many ways can a 5-card hand contain <strong>no face cards</strong> (J, Q, K)?</li>
+</ol>
+<hr />
+<h2 id="task-7-k-permutations-ordered-selections-without-repetition">Task 7 — k-Permutations (Ordered Selections Without Repetition)</h2>
+<ol>
+<li>In how many ways can the first three places be assigned among 12 runners?  </li>
+<li>How many 4-digit numbers with <strong>distinct digits</strong> can be formed from the digits 1–9?  </li>
+<li>How many of these numbers are <strong>divisible by 5</strong>?</li>
+</ol>
+<hr />
+<h2 id="task-8-sequences-with-repetition">Task 8 — Sequences with Repetition</h2>
+<ol>
+<li>How many 5-digit PIN codes are possible if digits may repeat?  </li>
+<li>How many such codes contain <strong>at least one repeated digit</strong>?  </li>
+<li>How many such codes have <strong>all digits different</strong>?</li>
+</ol>
+<hr />
+<h2 id="task-9-digit-restrictions">Task 9 — Digit Restrictions</h2>
+<ol>
+<li>How many <strong>5-digit numbers</strong> exist?  </li>
+<li>How many of them are <strong>even</strong>?  </li>
+<li>How many contain <strong>no repeated digits</strong>?  </li>
+<li>How many contain <strong>at least one repeated digit</strong>?</li>
+</ol>
+<hr />
+<h2 id="task-10-urn-models">Task 10 — Urn Models</h2>
+<p>An urn contains:</p>
+<ul>
+<li>5 red balls  </li>
+<li>4 blue balls  </li>
+<li>3 green balls  </li>
+</ul>
+<h4 id="problems_1">Problems:</h4>
+<ol>
+<li>Three balls are drawn <strong>without replacement</strong>. How many samples are possible if <strong>order is ignored</strong>?  </li>
+<li>How many samples contain <strong>exactly two red balls</strong>?  </li>
+<li>Three balls are drawn and the <strong>order of colors is recorded</strong>. How many outcomes are possible?  </li>
+<li>How many outcomes contain <strong>exactly two red balls</strong>?</li>
+</ol>
+<h2 id="task-11-modeling-outcomes">Task 11 — Modeling Outcomes</h2>
+<p>In combinatorial and probabilistic problems, the number of possible outcomes depends on <strong>how the results of an experiment are recorded</strong>.</p>
+<p>The same physical experiment may lead to different counting models depending on whether:</p>
+<ul>
+<li>objects are treated as <strong>distinguishable or indistinguishable</strong>,</li>
+<li><strong>order is recorded or ignored</strong>,</li>
+<li>positions are treated as <strong>distinct places</strong>.</li>
+</ul>
+<p>Answer the following conceptual questions.</p>
+<hr />
+<h3 id="1-distinguishable-vs-indistinguishable-objects">1. Distinguishable vs Indistinguishable Objects</h3>
+<p>A box contains:</p>
+<ul>
+<li>4 red balls  </li>
+<li>4 blue balls  </li>
+<li>3 green balls  </li>
+</ul>
+<p>Thus there are 11 balls in total.</p>
+<ol>
+<li>How many <strong>linear arrangements of all 11 balls</strong> are possible if balls of the same color are treated as <strong>indistinguishable</strong>?</li>
+<li>How many arrangements are possible if every ball is <strong>individually labeled</strong>, for example
+$$
+R_1, R_2, R_3, R_4, B_1, B_2, B_3, B_4, G_1, G_2, G_3
+$$</li>
+<li>Explain why the answers in parts (1) and (2) are different.</li>
+</ol>
+<hr />
+<h3 id="2-recording-order-vs-ignoring-order">2. Recording Order vs Ignoring Order</h3>
+<p>Three balls are drawn <strong>without replacement</strong> from the same box.</p>
+<ol>
+<li>How many outcomes are possible if <strong>only the set of colors is recorded</strong> (order ignored)?</li>
+<li>How many outcomes are possible if <strong>the sequence of colors is recorded</strong>?</li>
+<li>Explain why recording the order changes the counting model.</li>
+</ol>
+<hr />
+<h3 id="3-pin-code-vs-number">3. PIN Code vs Number</h3>
+<p>A security system uses <strong>4-digit PIN codes</strong> consisting of digits from 0 to 9.</p>
+<ol>
+<li>How many different PIN codes are possible if <strong>repetition is allowed</strong>?</li>
+<li>Consider <strong>4-digit numbers</strong>, where the first digit cannot be zero.<br />
+   How many such numbers exist?</li>
+<li>Explain why a <strong>PIN code</strong> and a <strong>4-digit number</strong> are counted using different rules.</li>
+<li>Explain why the codes
+$$
+1234
+$$
+and
+$$
+4321
+$$
+must be treated as <strong>different outcomes</strong>.</li>
+</ol>
+<hr />
+<h2 id="task-12-mixed-counting-problem">Task 12 — Mixed Counting Problem</h2>
+<p>The following problem combines several counting models.<br />
+For each part:</p>
+<ul>
+<li>determine which <strong>counting model</strong> is most appropriate,</li>
+<li>compute the <strong>number of possible outcomes</strong>.</li>
+</ul>
+<hr />
+<h3 id="1-student-id-codes">1. Student ID Codes</h3>
+<p>A university introduces student identifiers consisting of:</p>
+<ul>
+<li>two <strong>letters</strong> chosen from the set<br />
+  $$
+  {A,B,C,D,E}
+  $$</li>
+<li>followed by <strong>three digits</strong> from <span class="arithmatex">\(0\)</span> to <span class="arithmatex">\(9\)</span>.</li>
+</ul>
+<h4 id="problems_2">Problems:</h4>
+<ol>
+<li>How many identifiers are possible if <strong>letters and digits may repeat</strong>?</li>
+<li>How many identifiers are possible if <strong>letters may not repeat but digits may repeat</strong>?</li>
+<li>How many identifiers are possible if <strong>neither letters nor digits may repeat</strong>?</li>
+</ol>
+<hr />
+<h3 id="2-medal-assignment">2. Medal Assignment</h3>
+<p>In a race with <strong>12 runners</strong>, medals are awarded for:</p>
+<ul>
+<li>gold  </li>
+<li>silver  </li>
+<li>bronze</li>
+</ul>
+<h4 id="problems_3">Problems:</h4>
+<ol>
+<li>In how many ways can the medals be assigned?</li>
+<li>Suppose two particular runners must <strong>both receive medals</strong>.<br />
+   In how many ways can the medals be assigned?</li>
+</ol>
+<hr />
+<h3 id="3-committee-selection">3. Committee Selection</h3>
+<p>A committee of <strong>4 people</strong> is chosen from <strong>10 students</strong>, including <strong>6 men and 4 women</strong>.</p>
+<ol>
+<li>How many committees are possible?</li>
+<li>How many committees contain <strong>exactly two women</strong>?</li>
+<li>How many committees contain <strong>at least one woman</strong>?</li>
+</ol>
+<hr />
+<h3 id="4-circular-seating">4. Circular Seating</h3>
+<p>Seven people sit around a <strong>round table</strong>.</p>
+<ol>
+<li>How many different seating arrangements are possible?</li>
+<li>In how many arrangements do two particular people sit <strong>next to each other</strong>?</li>
+</ol>
+<hr />
+<h3 id="5-passwords">5. Passwords</h3>
+<p>A password consists of <strong>5 characters</strong> chosen from:</p>
+<ul>
+<li>the digits <span class="arithmatex">\(0–9\)</span>,</li>
+<li>the letters <span class="arithmatex">\(A–Z\)</span>.</li>
+</ul>
+<h4 id="problems_4">Problems:</h4>
+<ol>
+<li>How many passwords are possible if <strong>repetition is allowed</strong>?</li>
+<li>How many passwords are possible if <strong>no character may repeat</strong>?</li>
+<li>Which counting model is used in each case?</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

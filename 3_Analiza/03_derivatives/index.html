@@ -1,0 +1,2744 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://liiiinadnamar.github.io/Math_Problems_Repo_DR/3_Analiza/03_derivatives/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>03 derivatives - Math Problems Solutions</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#derivatives" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Math Problems Solutions" class="md-header__button md-logo" aria-label="Math Problems Solutions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Math Problems Solutions
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              03 derivatives
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Math Problems Solutions" class="md-nav__button md-logo" aria-label="Math Problems Solutions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Math Problems Solutions
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture: Probabilistic Methods
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lecture: Probabilistic Methods
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Probabilistic Methods
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Probabilistic Methods
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/01_events_and_probability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Events & Probability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/02_combinatorics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Combinatorics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/03_probability_distributions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Probability Distributions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/04_discovery_formalism/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Discovery Formalism
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solutions Basic
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Solutions Basic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2_1" id="__nav_2_1_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Events & Probability Sol
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Events & Probability Sol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_01_events_and_probability/sol_prob_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_01_events_and_probability/sol_prob_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_01_events_and_probability/sol_prob_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_01_events_and_probability/sol_prob_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_01_events_and_probability/sol_prob_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_01_events_and_probability/sol_prob_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_01_events_and_probability/sol_prob_07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_01_events_and_probability/sol_prob_08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_01_events_and_probability/sol_prob_09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_01_events_and_probability/sol_prob_10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2_2" id="__nav_2_1_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Combinatorics Sol
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Combinatorics Sol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solutions_02_combinatorics/solution_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solutions_02_combinatorics/solution_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solutions_02_combinatorics/solution_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solutions_02_combinatorics/solution_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solutions_02_combinatorics/solution_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solutions_02_combinatorics/solution_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solutions_02_combinatorics/solution_07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solutions_02_combinatorics/solution_08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solutions_02_combinatorics/solution_09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solutions_02_combinatorics/solution_10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2_3" id="__nav_2_1_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Probability Distributions Sol
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Probability Distributions Sol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_03_/solution_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_03_/solution_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_03_/solution_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_03_/solution_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_03_/solution_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_03_/solution_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_03_/solution_07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_03_/solution_08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_03_/solution_09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_03_/solution_10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2_4" id="__nav_2_1_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Discovery Formalism Sol
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Discovery Formalism Sol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_04_/solution_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_04_/solution_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_04_/4_sol_prob_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_04_/solution_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_04_/solution_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/basic/solution_04_/solution_6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3" id="__nav_2_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/advanced/01_events_and_probability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Events & Probability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/advanced/02_random_variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Random Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/advanced/03_distribution_parameters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Distribution Parameters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/advanced/04_selected_distributions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Selected Distributions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/advanced/05_limit_theorems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Limit Theorems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/advanced/06_basic_statistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Basic Statistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/advanced/07_estimation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Estimation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/advanced/08_hypothesis_testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Hypothesis Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/advanced/09_correlation_and_regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Correlation & Regression
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/advanced/10_advanced_methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Advanced Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/advanced/11_decision_theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Decision Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_4" id="__nav_2_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solutions Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Solutions Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_Metody_probabilistyczne/advanced/solution_01_events_and_probability/sol_prob_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Events & Probability Sol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Animations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Animations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../anim/4_Metody_probalistyczne/laboratory_1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../anim/4_Metody_probalistyczne/laboratory_2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../anim/4_Metody_probalistyczne/laboratory_3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../anim/4_Metody_probalistyczne/prob04_task03_visualization.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../anim/4_Metody_probalistyczne/problems_frequency_diagrams.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vizual_5_6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#derivatives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Derivatives
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Derivatives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ex-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ex 1.
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>03 derivatives</h1>
+
+<h2 id="derivatives">Derivatives</h2>
+<h3 id="ex-1">Ex 1.</h3>
+<p>Calculate the derivatives of the functions</p>
+<p>1) <span class="arithmatex">\(y = \frac{1}{3}x^3 - \frac{3}{2}x^4 + \frac{13}{5}x^5 - 2x^6\)</span></p>
+<p>2) <span class="arithmatex">\(y = 5x^{15} - x^2 + \frac{1}{3}x - 2\)</span></p>
+<p>3) <span class="arithmatex">\(y = ax^3 + \frac{b}{x} + c\)</span></p>
+<p>4) <span class="arithmatex">\(y = \frac{4}{x^3}\)</span></p>
+<p>5) <span class="arithmatex">\(y = 9x^7 + 3x^{-5} - 3x^{-11}\)</span></p>
+<p>6) <span class="arithmatex">\(y = 3x^{7/3} - 4x^{13/4} + \frac{4}{7}x^{-1/2} + 7^{3/2}\)</span></p>
+<p>7) <span class="arithmatex">\(y = \sqrt[3]{x^2}\)</span></p>
+<p>8) <span class="arithmatex">\(y = 5\sqrt[3]{x^7}\)</span></p>
+<p>9) <span class="arithmatex">\(y = 3\sqrt[3]{x} - x^3 + \frac{2}{3}\sqrt[3]{x^4}\)</span></p>
+<p>10) <span class="arithmatex">\(y = \sqrt{x} - 5\sqrt[3]{x^2} - 2\sqrt{x^3}\)</span></p>
+<p>11) <span class="arithmatex">\(y = \frac{2}{\sqrt{x}} - \frac{3}{\sqrt{x^3}}\)</span></p>
+<p>12) <span class="arithmatex">\(y = \frac{5}{7\sqrt[3]{x}} - 2x^7 + \frac{3}{2\sqrt{x}}\)</span></p>
+<p>13) <span class="arithmatex">\(x = t^3\sqrt{t}\)</span></p>
+<p>14) <span class="arithmatex">\(y = \frac{2}{x^3\sqrt{x}}\)</span></p>
+<p>15) <span class="arithmatex">\(y = (2\sqrt[3]{x^2}-x)(4\sqrt[3]{x^4}+2\sqrt[3]{x^5}+x^2)\)</span></p>
+<p>16) <span class="arithmatex">\(y = (4x^2-2x\sqrt{x}+x)(2x+\sqrt{x})\)</span></p>
+<p>17) <span class="arithmatex">\(y = \frac{3}{3x-2}\)</span></p>
+<p>18) <span class="arithmatex">\(y = \frac{5}{2x^2-5x+1}\)</span></p>
+<p>19) <span class="arithmatex">\(y = \frac{3x^2}{7x^5-x+2}\)</span></p>
+<p>20) <span class="arithmatex">\(y = \frac{8x^3}{x^3+x-1}\)</span></p>
+<p>21) <span class="arithmatex">\(y = \frac{x+1}{x-1}\)</span></p>
+<p>22) <span class="arithmatex">\(y = \frac{5x^2+x-2}{x^2+7}\)</span></p>
+<p>23) <span class="arithmatex">\(y = \frac{x^2-2x+3}{x^2+2x-3}\)</span></p>
+<p>24) <span class="arithmatex">\(y = \frac{3}{(1-x^2)(1-2x^3)}\)</span></p>
+<p>25) <span class="arithmatex">\(y = \frac{\sqrt[3]{x}}{1-\sqrt[3]{x}}\)</span></p>
+<p>26) <span class="arithmatex">\(z = \frac{1+\sqrt{t}}{1+\sqrt{2t}}\)</span></p>
+<p>27) <span class="arithmatex">\(s = (3t+1)^7\)</span></p>
+<p>28) <span class="arithmatex">\(v = (4z^2-5z+13)^5\)</span></p>
+<p>29) <span class="arithmatex">\(x = (\frac{1}{t}+4)^4\)</span></p>
+<p>30) <span class="arithmatex">\(s = (\frac{7t^2-\frac{t}{2}+6}{t})^6\)</span></p>
+<p>31) <span class="arithmatex">\(y = \sqrt{x^2-4}\)</span></p>
+<p>32) <span class="arithmatex">\(z = \sqrt{ax^2+bx+c}\)</span></p>
+<p>33) <span class="arithmatex">\(y = \frac{1}{\sqrt{2-3t}}\)</span></p>
+<p>34) <span class="arithmatex">\(s = \frac{1}{\sqrt{6t-t^2}}\)</span></p>
+<p>35) <span class="arithmatex">\(y = \frac{1}{\sqrt[3]{(2-x^3)^4}}\)</span></p>
+<p>36) <span class="arithmatex">\(y = \frac{a}{\sqrt[p]{(a+bx)^r}}\)</span></p>
+<p>37) <span class="arithmatex">\(y = \frac{1}{(b-x^n)^m}\)</span></p>
+<p>38) <span class="arithmatex">\(y = \sqrt[4]{(x-1)^3}\)</span></p>
+<p>39) <span class="arithmatex">\(u = \frac{1}{v-\sqrt{a^2+b^2}}\)</span></p>
+<p>40) <span class="arithmatex">\(y = \sqrt{\frac{a-x}{a^2-x^2}}\)</span>, <span class="arithmatex">\(a&gt;0\)</span></p>
+<p>41) <span class="arithmatex">\(v = \frac{z}{\sqrt{a^2-z^2}}\)</span></p>
+<p>42) <span class="arithmatex">\(y = \frac{3\sqrt{x}}{x^2+1}\)</span></p>
+<p>43) <span class="arithmatex">\(y = \frac{x^2}{\sqrt[3]{x^3+1}}\)</span></p>
+<p>44) <span class="arithmatex">\(z = \sqrt{\frac{x^2-3x+2}{x^2-7x+12}}\)</span></p>
+<p>45) <span class="arithmatex">\(z = \sqrt{\frac{a^2-x^2}{a^2+x^2}}\)</span></p>
+<p>46) <span class="arithmatex">\(s = \sqrt{\frac{1-\sqrt{t}}{1+\sqrt{t}}}\)</span></p>
+<p>47) <span class="arithmatex">\(u = \frac{\sqrt{1+v}-\sqrt{1-v}}{\sqrt{1+v}+\sqrt{1-v}}\)</span></p>
+<p>48) <span class="arithmatex">\(y=u(x)v(x)w(x)\)</span></p>
+<p>49) <span class="arithmatex">\(v = \cos \frac{t}{a}\)</span>, <span class="arithmatex">\(a \ne 0\)</span></p>
+<p>50) <span class="arithmatex">\(x = a \sin bt\)</span></p>
+<p>51) <span class="arithmatex">\(y = a \sin \frac{a}{x}\)</span></p>
+<p>52) <span class="arithmatex">\(z = 2x+\sin 2x\)</span></p>
+<p>53) <span class="arithmatex">\(s = \sin^2 3t\)</span></p>
+<p>54) <span class="arithmatex">\(v = 4\cos^5 \frac{t}{4}\)</span></p>
+<p>55) <span class="arithmatex">\(s = \frac{1}{\cos^4 t}\)</span></p>
+<p>56) <span class="arithmatex">\(v = \frac{5}{\sin^3 2t}\)</span></p>
+<p>57) <span class="arithmatex">\(s = \frac{\sin t + \cos t}{2\sin 2t}\)</span></p>
+<p>58) <span class="arithmatex">\(z = \frac{\sin \alpha}{\alpha} + \frac{\alpha}{\sin \alpha}\)</span></p>
+<p>59) <span class="arithmatex">\(y = \frac{x \sin x}{1+\text{tg } x}\)</span></p>
+<p>60) <span class="arithmatex">\(y = \frac{x}{\sin x + \cos x}\)</span></p>
+<p>61) <span class="arithmatex">\(y = \cos x - \frac{1}{3}\cos^3 x\)</span></p>
+<p>62) <span class="arithmatex">\(y = \frac{1}{3}\sin^3 x - \frac{2}{5}\sin^5 x + \frac{1}{7}\sin^7 x\)</span></p>
+<p>63) <span class="arithmatex">\(y = \text{tg}^4 \sqrt{x}\)</span></p>
+<p>64) <span class="arithmatex">\(y = 3\text{ctg } x + \text{ctg}^3 x\)</span></p>
+<p>65) <span class="arithmatex">\(y = e^{ax}(a\sin x - \cos x)\)</span></p>
+<p>66) <span class="arithmatex">\(y = x^2 e^{2x} \sin x\)</span></p>
+<p>67) <span class="arithmatex">\(y = \cos^2 \frac{1}{\sqrt{x}}\)</span></p>
+<p>68) <span class="arithmatex">\(y = 2\sin^4 \frac{3}{\sqrt{x}}\)</span></p>
+<p>69) <span class="arithmatex">\(y = \frac{\sin^2 x}{\cos^7 x} - \frac{2}{5\cos^5 x}\)</span></p>
+<p>70) <span class="arithmatex">\(y = \frac{3\cos^2 x}{\sin^4 x}\)</span></p>
+<p>71) <span class="arithmatex">\(y = \sqrt{\sin x + \sqrt{x+2\sqrt{x}}}\)</span></p>
+<p>72) <span class="arithmatex">\(y = \sqrt{1+\text{tg}(x+\frac{1}{x})}\)</span></p>
+<p>73) <span class="arithmatex">\(z = \frac{3\text{tg } u - \text{tg}^3 u}{1-3\text{tg}^2 u}\)</span></p>
+<p>74) <span class="arithmatex">\(z = \text{tg } u - \text{ctg } u - 2u\)</span></p>
+<p>75) <span class="arithmatex">\(y = (4\sin x - 8\sin^3 x)\cos x\)</span></p>
+<p>76) <span class="arithmatex">\(y = \text{arctg } 3x\)</span></p>
+<p>77) <span class="arithmatex">\(y = 7\text{arctg } \frac{x}{2}\)</span></p>
+<p>78) <span class="arithmatex">\(x = \arcsin(1-t)\)</span></p>
+<p>79) <span class="arithmatex">\(x = \arccos \sqrt{1-t^2}\)</span></p>
+<p>80) <span class="arithmatex">\(x = \arcsin \sqrt{t^3}\)</span></p>
+<p>81) <span class="arithmatex">\(x = \arcsin \frac{1}{t}\)</span></p>
+<p>82) <span class="arithmatex">\(y = x\arcsin x + \sqrt{1-x^2}\)</span>, <span class="arithmatex">\(0&lt;x&lt;1\)</span></p>
+<p>83) <span class="arithmatex">\(x = \arcsin(2t\sqrt{1-t^2})\)</span></p>
+<p>84) <span class="arithmatex">\(y = \text{arctg}(x-\sqrt{x^2+1})\)</span></p>
+<p>85) <span class="arithmatex">\(y = \text{arctg} \sqrt{x^2-1} - \frac{\ln x}{\sqrt{x^2-1}}\)</span></p>
+<p>86) <span class="arithmatex">\(y = x\text{arctg } x - \frac{1}{2}\ln(x^2+1)\)</span></p>
+<p>87) <span class="arithmatex">\(y = \frac{1}{6}x^5 \text{arctg } x - \frac{1}{24}x^4 + \frac{1}{12}x^2 - \frac{1}{12}\ln(1+x^2)\)</span></p>
+<p>88) <span class="arithmatex">\(y = \arcsin \frac{x}{\sqrt{1+x^2}}\)</span></p>
+<p>89) <span class="arithmatex">\(y = \arccos \sqrt{\frac{1-x^2}{1+x^2}}\)</span></p>
+<p>90) <span class="arithmatex">\(y = \text{arctg}\sqrt{\frac{1-x}{1+x}}\)</span></p>
+<p>91) <span class="arithmatex">\(y = \text{arctg}\frac{1+x}{1-x}\)</span>, <span class="arithmatex">\(x \ne 1\)</span></p>
+<p>92) <span class="arithmatex">\(y = \text{arctg}\frac{x}{1+\sqrt{1+x^2}}\)</span></p>
+<p>93) <span class="arithmatex">\(y = \text{arctg}\frac{\sqrt{1+x^2}-1}{x}\)</span></p>
+<p>94) <span class="arithmatex">\(y = x^3 \text{arctg}^3 x\)</span></p>
+<p>95) <span class="arithmatex">\(z = \frac{\arcsin 4y}{1-4y}\)</span></p>
+<p>96) <span class="arithmatex">\(y = \frac{4}{\sqrt{3}}\text{arctg}\left[\frac{1}{\sqrt{3}}\left(2\text{tg}\frac{x}{2}+1\right)\right]-x\)</span></p>
+<p>97) <span class="arithmatex">\(y = \frac{1}{\sqrt{a^2-b^2}}\arcsin\frac{a \cos x+b}{a+b \cos x}\)</span></p>
+<p>98) <span class="arithmatex">\(y = e^{3x}\)</span></p>
+<p>99) <span class="arithmatex">\(y = 5e^{4x}\)</span></p>
+<p>100) <span class="arithmatex">\(y = e^{x^2}f(x)\)</span></p>
+<p>101) <span class="arithmatex">\(y = 3e^{-2x}g(x)\)</span></p>
+<p>102) <span class="arithmatex">\(y = e^{\sin x}\)</span></p>
+<p>103) <span class="arithmatex">\(y = 5e^{\cos x}\)</span></p>
+<p>104) <span class="arithmatex">\(y = e^{\cos^2 x}\)</span></p>
+<p>105) <span class="arithmatex">\(y = 3e^{2\sin^3 x}\)</span></p>
+<p>106) <span class="arithmatex">\(z = (v^3-3v^2+6v-6)e^v\)</span></p>
+<p>107) <span class="arithmatex">\(z = (10x^2-1)e^{3x}\)</span></p>
+<p>108) <span class="arithmatex">\(z = \frac{(2x-1)e^x}{2\sqrt{x}}\)</span></p>
+<p>109) <span class="arithmatex">\(y = (x+k\sqrt{1-x^2})e^{k \arcsin x}\)</span></p>
+<p>110) <span class="arithmatex">\(y = 5^x+2^x\)</span></p>
+<p>111) <span class="arithmatex">\(y = 3^x x^3\)</span></p>
+<p>112) <span class="arithmatex">\(y = 2^x \cdot 7^x - 1\)</span></p>
+<p>113) <span class="arithmatex">\(y = 5 \cdot 10^{3x}\)</span></p>
+<p>114) <span class="arithmatex">\(y = a^{2x}x^n\)</span>, <span class="arithmatex">\(a&gt;0\)</span></p>
+<p>115) <span class="arithmatex">\(y = \ln 3x\)</span></p>
+<p>116) <span class="arithmatex">\(y = 7 \cdot 5^{10x}\)</span></p>
+<p>117) <span class="arithmatex">\(z = \ln \frac{30}{x+3}\)</span></p>
+<p>118) <span class="arithmatex">\(y = 5\ln 10x\)</span></p>
+<p>119) <span class="arithmatex">\(s = \ln(t+\sqrt{t^2+1})\)</span></p>
+<p>120) <span class="arithmatex">\(z = 3\ln \frac{5}{x-2}\)</span></p>
+<p>121) <span class="arithmatex">\(s = \ln\sqrt{\frac{1+t}{1-t}}\)</span></p>
+<p>122) <span class="arithmatex">\(y = 2\ln \frac{3}{t+\sqrt{t^2-4}}\)</span></p>
+<p>123) <span class="arithmatex">\(y = \ln|\ln|x||\)</span></p>
+<p>124) <span class="arithmatex">\(y = \ln\frac{a+b \text{ tg } x}{a-b \text{ tg } x}\)</span></p>
+<p>125) <span class="arithmatex">\(y = \ln \text{tg}(\frac{\pi}{4}+\frac{x}{2})\)</span>, <span class="arithmatex">\(0&lt;x&lt;\frac{\pi}{2}\)</span></p>
+<p>126) <span class="arithmatex">\(y = (\ln \cos \frac{x}{2})^2\)</span></p>
+<p>127) <span class="arithmatex">\(y = \ln \sqrt{\frac{1+\sin x}{1-\sin x}}\)</span></p>
+<p>128) <span class="arithmatex">\(y = 15\ln\text{tg}\frac{x}{2} + \frac{\cos x}{\sin^4 x}(8\cos^4 x - 25\cos^2 x + 15)\)</span></p>
+<p>129) <span class="arithmatex">\(y = \ln \sin x\)</span></p>
+<p>130) <span class="arithmatex">\(y = \ln \frac{1+\sqrt{x}}{1-\sqrt{x}}\)</span>, <span class="arithmatex">\(0 \le x &lt; 1\)</span></p>
+<p>131) <span class="arithmatex">\(y = \ln(1+\frac{a}{x})\)</span></p>
+<p>132) <span class="arithmatex">\(y = \ln(e^{mx}+e^{-mx})\)</span></p>
+<p>133) <span class="arithmatex">\(y = \log_x \ln x\)</span>. </p>
+<p>134) <span class="arithmatex">\(y = \log_x a\)</span>.</p>
+<p>135) <span class="arithmatex">\(y = x^{5x}\)</span>, <span class="arithmatex">\(x&gt;0\)</span></p>
+<p>136) <span class="arithmatex">\(y = 10x^{-3x}\)</span>, <span class="arithmatex">\(x&gt;0\)</span></p>
+<p>137) <span class="arithmatex">\(y = x^{\sin x}\)</span>, <span class="arithmatex">\(x&gt;0\)</span></p>
+<p>138) <span class="arithmatex">\(y = 3x^{\cos x}\)</span>, <span class="arithmatex">\(x&gt;0\)</span></p>
+<p>139) <span class="arithmatex">\(y = (\frac{a}{x})^x\)</span>, <span class="arithmatex">\(a&gt;0, x&gt;0\)</span></p>
+<p>140) <span class="arithmatex">\(y = x^{1/x}\)</span>, <span class="arithmatex">\(x&gt;0\)</span></p>
+<p>141) <span class="arithmatex">\(y = a^{\ln x}\)</span>, <span class="arithmatex">\(a&gt;0, x&gt;0\)</span></p>
+<p>142) <span class="arithmatex">\(y = 5^{\sin 2x}\)</span>, <span class="arithmatex">\(x&gt;0\)</span></p>
+<p>143) <span class="arithmatex">\(y = x^{\ln x}\)</span>, <span class="arithmatex">\(x&gt;0\)</span>; explain the result.</p>
+<p>144) <span class="arithmatex">\(y = (\sin x)^{\cos x}\)</span>, <span class="arithmatex">\(0&lt;x&lt;\frac{\pi}{2}\)</span></p>
+<p>145) <span class="arithmatex">\(y = (\text{arctg } x)^x\)</span>, <span class="arithmatex">\(x&gt;0\)</span></p>
+<p>146) <span class="arithmatex">\(y = (\text{tg } x)^{\sin x}\)</span>, <span class="arithmatex">\(0&lt;x&lt;\frac{\pi}{2}\)</span></p>
+<p>147) <span class="arithmatex">\(y = (\text{tg } x)^{1/\cos x}\)</span>, <span class="arithmatex">\(0&lt;x&lt;\frac{\pi}{2}\)</span></p>
+<p>148) <span class="arithmatex">\(y = (\cos x)^{\text{ctg } x}\)</span>, <span class="arithmatex">\(0&lt;x&lt;\frac{\pi}{2}\)</span></p>
+<p>149) <span class="arithmatex">\(y = e^{e^x}\)</span></p>
+<p>150) <span class="arithmatex">\(y = x^{e^x}\)</span>, <span class="arithmatex">\(x&gt;0\)</span></p>
+<p>151) <span class="arithmatex">\(y = x^{x^x}\)</span>, <span class="arithmatex">\(x&gt;0\)</span></p>
+<p>152) <span class="arithmatex">\(y = (1+\frac{1}{x})^x\)</span></p>
+<p>153) <span class="arithmatex">\(y = x^{\sqrt{\frac{1}{x}}}\)</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
