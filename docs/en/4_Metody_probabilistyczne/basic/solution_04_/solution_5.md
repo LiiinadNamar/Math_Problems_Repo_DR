@@ -409,8 +409,8 @@ The sample space $\Omega = \{1,2,3,4,5,6\}$ and the collection of all its subset
 
 At this level, there are no numbers. The structure is purely combinatorial and logical.
 
-By my own words: 
-At this level, there’s no magic and no math yet. This is just taking inventory.
+**In my own words:**
+This is the Logic Level. Before we throw anything, we define the "pieces" of the game. We decide that a die has 6 sides and that an "Even" result means {2,4,6}. This level is just sorting—no numbers or experiments yet. It’s the "Menu" of what could happen.
 For example lets imagine you’re looking at a restaurant menu. The menu is your sample space (Ω). You haven’t ordered anything yet, but you know for a fact that this place only serves six dishes (labeled 1 through 6).
 
 Events are just "combo meals." For example, "anything vegetarian" or "even-numbered dishes."
@@ -432,6 +432,8 @@ The total of all results always adds up to 100% (you definitely rolled something
 
 If you want to know how many times you got "a 1 or a 2," you just add their individual scores. You can't count the same physical roll twice.
 
+**In my own words:**
+This is the Real-World Level. We actually throw the die 1,000 times and get "messy" data (like seeing the number 3 exactly 181 times). Here, we see the patterns in action. We notice that the rules from Part E actually work in practice. It’s the "Scoreboard" of what did happen.
 ---
 
 **Level 3 — Probability as mathematical abstraction**
@@ -440,10 +442,8 @@ Probability is a function $P$ defined on all events, satisfying the same propert
 
 The movement from Level 2 to Level 3 is the movement from empirical regularity to mathematical axiom. The properties of $f$ that we verified in specific data become the axioms that $P$ must satisfy by definition. Probability theory then develops as the body of theorems that can be proved from those axioms alone.
 
-In my own words: 
-We take the rules from Level 2 (which always work) and "detach" them from any specific experiment.
-
-Probability is the "perfect version" of frequency. We say: "It doesn't matter exactly how many times we rolled a 3 today. We are going to create a mathematical model (P) that acts exactly how a frequency would act if we rolled the die forever."
+**In my own words:**
+This is the Math Level. We take the patterns we saw in Level 2 and "clean them up" into perfect rules. We stop worrying about the specific 1,000 throws and create a universal "Blueprint." We say: "A fair die should act like this." This level allows us to calculate odds for any future game without having to roll the die 1,000 times first.
 
 **The path of this problem:**
 
