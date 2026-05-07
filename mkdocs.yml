@@ -43,6 +43,7 @@ plugins:
                         - '2. Combinatorics': '4_Metody_probabilistyczne/basic/02_combinatorics.md'
                         - '3. Probability Distributions': '4_Metody_probabilistyczne/basic/03_probability_distributions.md'
                         - '4. Discovery Formalism': '4_Metody_probabilistyczne/basic/04_discovery_formalism.md'
+                        - '5. PDF, PMF, CDF': '4_Metody_probabilistyczne/basic/05_pdf_pmf_cdf.md'
                     - Solutions Basic:
                         - 1. Events & Probability Sol: 
                             - 'Problem 1': '4_Metody_probabilistyczne/basic/solution_01_events_and_probability/sol_prob_01.md'
@@ -84,6 +85,12 @@ plugins:
                           - 'Problem 4': '4_Metody_probabilistyczne/basic/solution_04_/solution_04.md'
                           - 'Problem 5': '4_Metody_probabilistyczne/basic/solution_04_/solution_5.md'
                           - 'Problem 6': '4_Metody_probabilistyczne/basic/solution_04_/solution_6.md'
+                        - 5. PDF, PMF, CDF Sol:
+                          - 'Problem 1': '4_Metody_probabilistyczne/basic/solution_05_/sol_task_01.md'
+                          - 'Problem 2': '4_Metody_probabilistyczne/basic/solution_05_/sol_task_02.md'
+                          - 'Problem 3': '4_Metody_probabilistyczne/basic/solution_05_/sol_task_03.md'
+                          - 'Problem 4': '4_Metody_probabilistyczne/basic/solution_05_/sol_task_04.md'
+                          - 'Problem 5': '4_Metody_probabilistyczne/basic/solution_05_/sol_task_05.md'
                     - Advanced:
                         - '1. Events & Probability': '4_Metody_probabilistyczne/advanced/01_events_and_probability.md'
                         - '2. Random Variables': '4_Metody_probabilistyczne/advanced/02_random_variables.md'
